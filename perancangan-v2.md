@@ -71,10 +71,11 @@
 
 0. Pengajuan SKPI
     - id (PK)
-    - mahasiswa_id (FK)
+    - mahasiswa_program_studi_id (FK)
     - kode pengajuan 
     - tanggal pengajuan
     - status (pending, diproses, ditolak, siap diambil, dll)
+    - pesan (alasan ditolak, dll)
 
 0. Dokumen SKPI
     - id (PK)
