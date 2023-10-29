@@ -97,7 +97,7 @@ class InitialDataSeeder extends Seeder
                             'nama' => 'Lomba 1',
                             'tingkat' => 'Nasional',
                             'tahun' => '2020',
-                            'penyelenggara' => 'Pihak penyelenggara',
+                            'penyelenggara' => 'Kemenristekdikti',
                             'tempat' => 'Bandung',
                             'pencapaian' => 'Juara 1',
                             'file_sertifikat' => '/sertifikat/lomba1.pdf',
