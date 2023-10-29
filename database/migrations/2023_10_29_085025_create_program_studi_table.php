@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('program_studi', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            // $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            // $table->rememberToken();
-            $table->string('role')->default('admin');
+            $table->foreignId('jenjang_pendidikan_id')->constrained('jenjang_pendidikan', 'id')->cascadeOnDelete();
+            $table->string('nama', 100);
+            $table->string('nama_en', 100)->nullable();
+            $table->string('akreditasi', 10)->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('program_studi');
     }
 };
