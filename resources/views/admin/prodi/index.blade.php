@@ -22,8 +22,21 @@
 
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="card-title">Data Program Studi</div>
-                        <a href="#" class="btn btn-sm btn-primary"><i class="bi bi-plus"></i> Tambah</a>
+                        <a href="{{ route('admin.prodi.create') }}" class="btn btn-sm btn-primary"><i class="bi bi-plus"></i> Tambah</a>
                     </div>
+
+                    @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
+                    @if (session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
 
                     <table class="table table-borderless datatable">
                         <thead>
@@ -31,6 +44,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">Akreditasi</th>
+                                <th scope="col">Jenjang</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -43,15 +57,14 @@
                                     <div class="fst-italic small text-secondary">{{ $p->nama_en }}</div>
                                 </td>
                                 <td>{{ $p->akreditasi }}</td>
+                                <td>{{ $p->jenjang_pendidikan_nama }}</td>
                                 <td>
-                                    <a title="Detail" href="#" class="btn btn-sm btn-light"><i class="bi bi-search"></i>
-                                        Detail</a>
                                     <button title="Hapus" type="button" class="btn btn-sm btn-light text-danger"
-                                        data-bs-toggle="modal" data-bs-target="#hapusModal">
+                                        data-bs-toggle="modal" data-bs-target="#hapusModal" data-id="{{ $p->id }}">
                                         <i class="bi bi-trash"></i>
                                     </button>
-                                    <a title="Ubah" href="#" class="btn btn-sm btn-light text-primary"><i
-                                            class="bi bi-pencil"></i></a>
+                                    <a title="Ubah" href="{{ route('admin.prodi.edit', ['id' => $p->id]) }}"
+                                        class="btn btn-sm btn-light text-primary"><i class="bi bi-pencil"></i></a>
                                 </td>
                             </tr>
                             @endforeach
@@ -77,8 +90,13 @@
                 Apakah Anda yakin ingin menghapus program studi ini?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-sm btn-danger">Hapus</button>
+                <form method="POST" action="">
+                    @csrf
+                    @method("DELETE")
+                    {{-- <input type="hidden" name="id" value=""> --}}
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                </form>
             </div>
         </div>
     </div>
@@ -91,18 +109,40 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const hapusButton = document.querySelector("button[data-bs-target='#hapusModal']");
+        const hapusButton = document.querySelectorAll("button[data-bs-target='#hapusModal']");
         const hapusModal = document.getElementById("hapusModal");
         const modalTitle = hapusModal.querySelector(".modal-title");
 
-        hapusButton.addEventListener("click", function (e) {
+        hapusButton.forEach(btn => {
+            btn.addEventListener("click", function (e) {
+            const dataId = this.dataset.id;
+            console.log('dataId',dataId)
+
             const row = e.target.closest("tr");
-            const dataId = row.getAttribute("data-id");
-            const namaItem = row.querySelector("td:nth-child(2)").textContent; // Mengambil teks dari kolom "Nama"
+            // const dataId = row.getAttribute("data-id");
+            const namaItem = row.querySelector("td:nth-child(2) > div").textContent; // Mengambil teks dari kolom "Nama"
+            const form = hapusModal.querySelector("form");
+            // const inputId = form.querySelector("input[name='id']");
+            const buttonHapus = hapusModal.querySelector("button[type='button']");
+            const url = "{{ route('admin.prodi.destroy', ':id') }}";
+            const urlDelete = url.replace(":id", dataId);
+
+            // Setel URL form hapus
+            form.setAttribute("action", urlDelete);
+
+            // Setel data dinamis dalam form
+            // inputId.value = dataId;
 
             // Setel data dinamis dalam modal
-            // modalTitle.textContent = "Konfirmasi Hapus Program Studi #" + dataId;
+            // modalTitle.textContent = "Konfirmasi Hapus Jenjang #" + dataId;
             hapusModal.querySelector(".modal-body").textContent = "Apakah Anda yakin ingin menghapus " + namaItem + "?";
+
+            // Setel event click pada tombol hapus
+            // buttonHapus.addEventListener("click", function () {
+            //     form.submit();
+            // });
+
+            });
         });
     });
 

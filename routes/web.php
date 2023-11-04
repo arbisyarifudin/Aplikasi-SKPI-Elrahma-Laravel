@@ -43,9 +43,13 @@ Route::group(['prefix' => 'admin'], function () {
     Route::put('/jenjang/{id}', [AdminJenjangController::class, 'update'])->name('admin.jenjang.update');
     Route::delete('/jenjang/{id}', [AdminJenjangController::class, 'destroy'])->name('admin.jenjang.destroy');
 
-
     // prodi
     Route::get('/prodi', [AdminProdiController::class, 'index'])->name('admin.prodi.index');
+    Route::get('/prodi/tambah', [AdminProdiController::class, 'create'])->name('admin.prodi.create');
+    Route::post('/prodi', [AdminProdiController::class, 'store'])->name('admin.prodi.store');
+    Route::get('/prodi/{id}/ubah', [AdminProdiController::class, 'edit'])->name('admin.prodi.edit');
+    Route::put('/prodi/{id}', [AdminProdiController::class, 'update'])->name('admin.prodi.update');
+    Route::delete('/prodi/{id}', [AdminProdiController::class, 'destroy'])->name('admin.prodi.destroy');
 
     // dokumen
     Route::get('/dokumen', [AdminDokumenController::class, 'index'])->name('admin.dokumen.index');

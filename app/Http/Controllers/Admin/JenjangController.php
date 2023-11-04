@@ -27,8 +27,8 @@ class JenjangController extends Controller
     {
         // validate request
         $request->validate([
-            'nama' => 'required|min:3',
-            'nama_en' => 'required|min:3',
+            'nama' => 'required|min:3|unique:jenjang_pendidikan,nama',
+            'nama_en' => 'required|min:3|unique:jenjang_pendidikan,nama_en',
             'singkatan' => 'required',
             'level_kkni' => 'nullable|numeric',
             'syarat_masuk' => 'nullable',
@@ -70,6 +70,7 @@ class JenjangController extends Controller
 
     public function edit($id)
     {
+        // get detail data
         $detailData = JenjangPendidikan::findOrFail($id);
 
         return view('admin.jenjang.edit', [
@@ -119,9 +120,9 @@ class JenjangController extends Controller
 
     public function destroy($id)
     {
-        // check if jenjang id doesnt exist in program studi
+        // check if jenjang id doesnt exist in program_studi table
         if (ProgramStudi::where('jenjang_pendidikan_id', $id)->exists()) {
-            return redirect()->back()->with('error', 'Jenjang sudah terdaftar di Progam Studi');
+            return redirect()->back()->with('error', 'Jenjang sudah tertaut dengan salahsatu data Progam Studi');
         }
 
         // delete data
