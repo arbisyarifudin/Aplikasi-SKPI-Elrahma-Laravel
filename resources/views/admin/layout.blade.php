@@ -1,3 +1,19 @@
+<?php
+function isRouteName ($routeNames) {
+    if (is_array($routeNames)) {
+        foreach ($routeNames as $routeName) {
+            if (Route::currentRouteName() == $routeName) {
+                return true;
+            }
+        }
+    } else {
+        if (Route::currentRouteName() == $routeNames) {
+            return true;
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,9 +31,10 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
+    {{--
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
+        rel="stylesheet"> --}}
 
     <!-- Vendor CSS Files -->
     <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -28,6 +45,7 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
     <!-- =======================================================
   * Template Name: NiceAdmin
@@ -51,7 +69,7 @@
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
 
-        <div class="search-bar">
+        <div class="search-bar d-none">
             <form class="search-form d-flex align-items-center" method="POST" action="#">
                 <input type="text" name="query" placeholder="Search" title="Enter search keyword">
                 <button type="submit" title="Search"><i class="bi bi-search"></i></button>
@@ -145,14 +163,14 @@
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                        <img src="#" alt="foto" class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2">Arbi</span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>Kevin Anderson</h6>
-                            <span>Web Designer</span>
+                            <h6>Arbi S</h6>
+                            <span>Administrator</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -161,7 +179,7 @@
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                                 <i class="bi bi-person"></i>
-                                <span>My Profile</span>
+                                <span>Profil</span>
                             </a>
                         </li>
                         <li>
@@ -171,7 +189,7 @@
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                                 <i class="bi bi-gear"></i>
-                                <span>Account Settings</span>
+                                <span>Akun</span>
                             </a>
                         </li>
                         <li>
@@ -179,19 +197,10 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                                <i class="bi bi-question-circle"></i>
-                                <span>Need Help?</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
+                            <a class="dropdown-item d-flex align-items-center" href="#" data-bs-toggle="modal"
+                                data-bs-target="#logoutModal">
                                 <i class="bi bi-box-arrow-right"></i>
-                                <span>Sign Out</span>
+                                <span>Keluar</span>
                             </a>
                         </li>
 
@@ -209,54 +218,56 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link " href="index.html">
+                <a class="nav-link  {{isRouteName('admin.dashboard') ? '' : 'collapsed'}}" href="{{ route('admin.dashboard') }}">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
-            </li><!-- End Dashboard Nav -->
+            </li>
+
+            <li class="nav-heading">Menu Utama</li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Components</span><i
+                <a class="nav-link {{isRouteName(['admin.jenjang.index', 'admin.prodi.index']) ? '' : 'collapsed'}}"
+                    data-bs-target="#master-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-menu-button-wide"></i><span>Data Master</span><i
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <ul id="master-nav"
+                    class="nav-content collapse {{ isRouteName(['admin.jenjang.index', 'admin.prodi.index']) ? 'show' : '' }}"
+                    data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="components-alerts.html">
-                            <i class="bi bi-circle"></i><span>Alerts</span>
+                        <a href="{{ route('admin.jenjang.index') }}"
+                            class="{{ isRouteName('admin.jenjang.index') ? 'active' : ''  }}">
+                            <i class="bi bi-circle"></i><span>Jenjang</span>
                         </a>
                     </li>
                     <li>
-                        <a href="components-accordion.html">
-                            <i class="bi bi-circle"></i><span>Accordion</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="components-badges.html">
-                            <i class="bi bi-circle"></i><span>Badges</span>
+                        <a href="{{ route('admin.prodi.index') }}"
+                            class="{{ isRouteName('admin.prodi.index') ? 'active' : ''  }}">
+                            <i class="bi bi-circle"></i><span>Program Studi</span>
                         </a>
                     </li>
                 </ul>
-            </li><!-- End Components Nav -->
-
-            <li class="nav-heading">Menu</li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#">
-                    <i class="bi bi-person"></i>
-                    <span>Data Master</span>
-                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link {{ isRouteName('admin.mahasiswa.index') ? '' : 'collapsed'  }}" href="{{ route('admin.mahasiswa.index') }}" class="{{ isRouteName('admin.mahasiswa.index') ? 'active' : ''  }}">
                     <i class="bi bi-person"></i>
                     <span>Mahasiswa</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link {{ isRouteName('admin.dokumen.index') ? '' : 'collapsed'  }}" href="{{ route('admin.dokumen.index') }}" class="{{ isRouteName('admin.dokumen.index') ? 'active' : ''  }}">
                     <i class="bi bi-person"></i>
                     <span>Dokumen SKPI</span>
+                </a>
+            </li>
+
+            <li class="nav-heading">Menu Lain</li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ isRouteName('admin.pengaturan') ? '' : 'collapsed'  }}" href="{{ route('admin.pengaturan') }}" class="{{ isRouteName('admin.pengaturan') ? 'active' : ''  }}">
+                    <i class="bi bi-gear"></i>
+                    <span>Pengaturan</span>
                 </a>
             </li>
 
@@ -287,6 +298,22 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
 
+    {{-- Modal logout --}}
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h5 class="modal-title" id="logoutModalLabel">Keluar dari sistem?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-outline-secondary"
+                        data-bs-dismiss="modal">Batal</button>
+                    <a href="#" class="btn btn-sm btn-danger">Keluar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Vendor JS Files -->
     <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -296,6 +323,8 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+
+    @stack('scripts')
 
 </body>
 

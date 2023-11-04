@@ -1,13 +1,13 @@
 @extends('admin.layout')
-@section('title', 'Mahasiswa - ')
+@section('title', 'Program Studi - ')
 
 @section('content')
 <div class="pagetitle">
-    <h1>Mahasiswa</h1>
+    <h1>Program Studi</h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-            <li class="breadcrumb-item">Mahasiswa</li>
+            <li class="breadcrumb-item">Program Studi</li>
             <li class="breadcrumb-item active">List</li>
         </ol>
     </nav>
@@ -18,54 +18,40 @@
         <div class="col-12">
             <div class="card overflow-auto">
 
-                <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                        <li class="dropdown-header text-start">
-                            <h6>Filter</h6>
-                        </li>
-
-                        <li><a class="dropdown-item" href="#">Today</a></li>
-                        <li><a class="dropdown-item" href="#">This Month</a></li>
-                        <li><a class="dropdown-item" href="#">This Year</a></li>
-                    </ul>
-                </div>
-
                 <div class="card-body" style="min-height: 300px">
-                    <h5 class="card-title">Data Mahasiswa</h5>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="card-title">Data Program Studi</div>
+                        <a href="#" class="btn btn-sm btn-primary"><i class="bi bi-plus"></i> Tambah</a>
+                    </div>
 
                     <table class="table table-borderless datatable">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nama</th>
-                                <th scope="col">NIM</th>
-                                <th scope="col">Prodi</th>
-                                <th scope="col">Thn. Masuk</th>
-                                <th scope="col">Thn. Lulus</th>
+                                <th scope="col">Akreditasi</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($mahasiswa as $m)
-                            <tr data-id="{{ $m->id }}">
+                            @foreach ($prodi as $p)
+                            <tr data-id="{{ $p->id }}">
                                 <td scope="row">{{ $loop->iteration }}</td>
-                                <td>{{ $m->nama }}</td>
-                                <td>{{ $m->nim }}</td>
                                 <td>
-                                    <div>{{ $m->prodi_nama }}</div>
-                                    <div class="fst-italic small text-secondary">{{ $m->prodi_nama_en }}</div>
+                                    <div>{{ $p->nama }}</div>
+                                    <div class="fst-italic small text-secondary">{{ $p->nama_en }}</div>
                                 </td>
-                                <td>{{ $m->tahun_masuk }}</td>
-                                <td>{{ $m->tahun_lulus }}</td>
+                                <td>{{ $p->akreditasi }}</td>
                                 <td>
-                                    <a title="Detail" href="#" class="btn btn-sm btn-light"><i class="bi bi-search"></i> Detail</a>
-                                    {{-- <a href="#" class="btn btn-sm btn-light"><i class="bi bi-trash"></i></a> --}}
-                                    {{-- <button title="Hapus" type="button" class="btn btn-sm btn-light text-danger"
+                                    <a title="Detail" href="#" class="btn btn-sm btn-light"><i class="bi bi-search"></i>
+                                        Detail</a>
+                                    <button title="Hapus" type="button" class="btn btn-sm btn-light text-danger"
                                         data-bs-toggle="modal" data-bs-target="#hapusModal">
                                         <i class="bi bi-trash"></i>
-                                    </button> --}}
-                                    {{-- <a title="Ubah" href="#" class="btn btn-sm btn-light text-primary"><i class="bi bi-pencil"></i></a> --}}
+                                    </button>
+                                    <a title="Ubah" href="#" class="btn btn-sm btn-light text-primary"><i
+                                            class="bi bi-pencil"></i></a>
                                 </td>
                             </tr>
                             @endforeach
@@ -88,7 +74,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
             </div>
             <div class="modal-body">
-                Apakah Anda yakin ingin menghapus mahasiswa ini?
+                Apakah Anda yakin ingin menghapus program studi ini?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -115,7 +101,7 @@
             const namaItem = row.querySelector("td:nth-child(2)").textContent; // Mengambil teks dari kolom "Nama"
 
             // Setel data dinamis dalam modal
-            // modalTitle.textContent = "Konfirmasi Hapus Mahasiswa #" + dataId;
+            // modalTitle.textContent = "Konfirmasi Hapus Program Studi #" + dataId;
             hapusModal.querySelector(".modal-body").textContent = "Apakah Anda yakin ingin menghapus " + namaItem + "?";
         });
     });

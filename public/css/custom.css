@@ -1,0 +1,12 @@
+.sidebar-nav .nav-content a {
+    font-weight: 500;
+}
+
+.form-control::placeholder {
+    color: #b3b3b3;
+    font-size: 12px;
+}
+
+.input-group-text {
+    font-size: 13px;
+}

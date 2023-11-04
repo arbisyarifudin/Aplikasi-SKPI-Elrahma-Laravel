@@ -10,4 +10,11 @@ class ProgramStudi extends Model
     use HasFactory;
 
     public $table = 'program_studi';
+
+    protected $fillable = [
+        'jenjang_pendidikan_id',
+        'nama',
+        'nama_en',
+        'akreditasi',
+    ];
 }

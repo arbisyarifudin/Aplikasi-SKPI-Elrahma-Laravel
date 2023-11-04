@@ -11,6 +11,18 @@ class JenjangPendidikan extends Model
 
     public $table = 'jenjang_pendidikan';
 
+    protected $fillable = [
+        'nama',
+        'nama_en',
+        'singkatan',
+        'level_kkni',
+        'syarat_masuk',
+        'syarat_masuk_en',
+        'lama_studi_reguler',
+        'jenjang_lanjutan',
+        'jenjang_lanjutan_en',
+    ];
+
     /* RELATIONS */
     public function programStudi()
     {
