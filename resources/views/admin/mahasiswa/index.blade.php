@@ -18,7 +18,7 @@
         <div class="col-12">
             <div class="card overflow-auto">
 
-                <div class="filter">
+                <div class="filter d-none">
                     <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                         <li class="dropdown-header text-start">
@@ -32,7 +32,11 @@
                 </div>
 
                 <div class="card-body" style="min-height: 300px">
-                    <h5 class="card-title">Data Mahasiswa</h5>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="card-title">Data Mahasiswa</div>
+                        <button type="button" class="btn btn-sm btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Sinkronkan data</button>
+                    </div>
 
                     <table class="table table-borderless datatable">
                         <thead>
