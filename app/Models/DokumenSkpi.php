@@ -10,4 +10,12 @@ class DokumenSkpi extends Model
     use HasFactory;
 
     public $table = 'dokumen_skpi';
+
+    protected $fillable = [
+        'mahasiswa_id',
+        'program_studi_id',
+        'nomor',
+        'tanggal',
+        'file'
+    ];
 }

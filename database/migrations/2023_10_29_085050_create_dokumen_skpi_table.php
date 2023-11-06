@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nomor', 100);
             $table->date('tanggal');
             $table->string('file', 255);
+            $table->foreignId('dibuat_oleh')->nullable()->constrained('users', 'id')->nullOnDelete();
             $table->timestamps();
         });
     }

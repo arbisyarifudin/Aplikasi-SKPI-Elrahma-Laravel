@@ -35,7 +35,8 @@
 
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="card-title">Data Mahasiswa</div>
-                        <button type="button" class="btn btn-sm btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Sinkronkan data</button>
+                        <button type="button" class="btn btn-sm btn-primary"><i
+                                class="bi bi-arrow-counterclockwise"></i> Sinkronkan data</button>
                     </div>
 
                     <table class="table table-borderless datatable">
@@ -44,9 +45,11 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">NIM</th>
+                                <th scope="col">Jenjang</th>
                                 <th scope="col">Prodi</th>
                                 <th scope="col">Thn. Masuk</th>
                                 <th scope="col">Thn. Lulus</th>
+                                <th scope="col">Dokumen SKPI</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -57,19 +60,36 @@
                                 <td>{{ $m->nama }}</td>
                                 <td>{{ $m->nim }}</td>
                                 <td>
+                                    <div>{{ $m->jenjang_nama }}</div>
+                                    <div class="fst-italic small text-secondary">{{ $m->jenjang_nama_en }}</div>
+                                </td>
+                                <td>
                                     <div>{{ $m->prodi_nama }}</div>
                                     <div class="fst-italic small text-secondary">{{ $m->prodi_nama_en }}</div>
                                 </td>
                                 <td>{{ $m->tahun_masuk }}</td>
                                 <td>{{ $m->tahun_lulus }}</td>
                                 <td>
-                                    <a title="Detail" href="#" class="btn btn-sm btn-light"><i class="bi bi-search"></i> Detail</a>
+                                    <div class="d-flex justify-content-betweenx align-items-center">
+                                        @if ($m->has_dokumen_skpi)
+                                        <span class="btn btn-sm btn-success py-0" style="cursor: initial">Dibuat</span>
+                                        <a title="Unduh dokumen" href="{{ asset('storage/dokumen/'.$m->dokumen_skpi_file) }}" target="_blank"
+                                            class="btn btn-sm btn-outline-success py-0 ms-2"><i class="bi bi-download"></i></a>
+                                        @else
+                                        <span class="btn btn-sm btn-danger py-0" style="cursor: initial">Belum dibuat</span>
+                                        @endif
+                                    </div>
+                                </td>
+                                <td>
+                                    <a title="Detail" href="#" class="btn btn-sm btn-light"><i class="bi bi-search"></i>
+                                        Detail</a>
                                     {{-- <a href="#" class="btn btn-sm btn-light"><i class="bi bi-trash"></i></a> --}}
                                     {{-- <button title="Hapus" type="button" class="btn btn-sm btn-light text-danger"
                                         data-bs-toggle="modal" data-bs-target="#hapusModal">
                                         <i class="bi bi-trash"></i>
                                     </button> --}}
-                                    {{-- <a title="Ubah" href="#" class="btn btn-sm btn-light text-primary"><i class="bi bi-pencil"></i></a> --}}
+                                    {{-- <a title="Ubah" href="#" class="btn btn-sm btn-light text-primary"><i
+                                            class="bi bi-pencil"></i></a> --}}
                                 </td>
                             </tr>
                             @endforeach

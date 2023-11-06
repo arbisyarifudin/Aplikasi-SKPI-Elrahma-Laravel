@@ -23,4 +23,10 @@ class Mahasiswa extends Model
         'no_telepon',
     ];
 
+    /* RELATIONS */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

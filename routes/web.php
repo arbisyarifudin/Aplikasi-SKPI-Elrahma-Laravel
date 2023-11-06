@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\MahasiswaController as AdminMahasiswaController;
 use App\Http\Controllers\Admin\JenjangController as AdminJenjangController;
 use App\Http\Controllers\Admin\ProdiController as AdminProdiController;
+use App\Http\Controllers\Admin\DokumenController as AdminDokumenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,10 @@ Route::group(['prefix' => 'admin'], function () {
 
     // dokumen
     Route::get('/dokumen', [AdminDokumenController::class, 'index'])->name('admin.dokumen.index');
+    Route::get('/dokumen/buat', [AdminDokumenController::class, 'create'])->name('admin.dokumen.create');
+    Route::post('/dokumen', [AdminDokumenController::class, 'store'])->name('admin.dokumen.store');
+    Route::delete('/dokumen/{id}', [AdminDokumenController::class, 'destroy'])->name('admin.dokumen.destroy');
+
 
     // pengaturan
     Route::get('/pengaturan', [AdminPengaturanController::class, 'index'])->name('admin.pengaturan');
