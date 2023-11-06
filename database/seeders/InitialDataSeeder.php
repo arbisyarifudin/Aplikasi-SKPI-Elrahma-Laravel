@@ -13,9 +13,24 @@ class InitialDataSeeder extends Seeder
      */
     public function run(): void
     {
+        if (env('APP_ENV') === 'local' || env('APP_ENV') === 'testing') {
+            // truncate table
+            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+            DB::table('users')->truncate();
+            DB::table('jenjang_pendidikan')->truncate();
+            DB::table('program_studi')->truncate();
+            DB::table('mahasiswa')->truncate();
+            DB::table('mahasiswa_program_studi')->truncate();
+            DB::table('prestasi')->truncate();
+            DB::table('kategori_pengaturan')->truncate();
+            DB::table('pengaturan')->truncate();
+            DB::table('dokumen_skpi')->truncate();
+            DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        }
 
         try {
             DB::beginTransaction();
+
 
             // data admin
             $admins = [
@@ -28,13 +43,16 @@ class InitialDataSeeder extends Seeder
             ];
 
             foreach ($admins as $admin) {
-                \App\Models\User::create($admin);
+                \App\Models\User::firstOrCreate([
+                    'email' => $admin['email'],
+                    'role' => 'admin'
+                ], $admin);
             }
 
             // data jenjang pendidikan
             $jenjangPendidikan = [
                 [
-                    'nama' => 'Sarjana (Strata 1)',
+                    'nama' => 'Sarjana',
                     'nama_en' => 'Bachelor Degree',
                     'singkatan' => 'S1',
                     'level_kkni' => 6,
@@ -56,17 +74,44 @@ class InitialDataSeeder extends Seeder
                         ]
                     ]
                 ],
+                [
+                    'nama' => 'Magister (simulasi)',
+                    'nama_en' => 'Master Degree',
+                    'singkatan' => 'S2',
+                    'level_kkni' => 6,
+                    'syarat_masuk' => 'Lulusan Sarjana / S1 sederajat',
+                    'syarat_masuk_en' => 'Graduated Bachelor Degree / equivalent',
+                    'lama_studi_reguler' => '4 Semester',
+                    'jenjang_lanjutan' => 'Doktor',
+                    'jenjang_lanjutan_en' => 'Doctor',
+                    'program_studi' => [
+                        [
+                            'nama' => 'Manajemen Informasi',
+                            'nama_en' => 'Informatic Manajemen',
+                            'akreditasi' => 'B',
+                        ],
+                    ]
+                ]
             ];
 
             foreach ($jenjangPendidikan as $jenjang) {
                 $insertJenjang = $jenjang;
                 unset($insertJenjang['program_studi']);
-                $dataJenjang = \App\Models\JenjangPendidikan::create($insertJenjang);
+                $dataJenjang = \App\Models\JenjangPendidikan::firstOrCreate([
+                    'nama' => $jenjang['nama'],
+                    'singkatan' => $jenjang['singkatan'],
+                ], $insertJenjang);
 
                 if (isset($jenjang['program_studi'])) {
                     foreach ($jenjang['program_studi'] as $programStudi) {
                         $programStudi['jenjang_pendidikan_id'] = $dataJenjang->id;
-                        $dataProgramStudi = \App\Models\ProgramStudi::create($programStudi);
+                        $dataProgramStudi = \App\Models\ProgramStudi::firstOrCreate(
+                            [
+                                'nama' => $programStudi['nama'],
+                                'jenjang_pendidikan_id' => $dataJenjang->id,
+                            ],
+                            $programStudi
+                        );
                         $dataJenjang->programStudi()->save($dataProgramStudi);
                     }
                 }
@@ -104,11 +149,52 @@ class InitialDataSeeder extends Seeder
                         ]
                     ]
                 ],
+                [
+                    'nama' => 'Mahasiswa 2',
+                    'nim' => '1234567891',
+                    'jenis_kelamin' => 'L',
+                    'tempat_lahir' => 'Jakarta',
+                    'tanggal_lahir' => '1995-04-05',
+                    'alamat' => 'Jl. Sudirman',
+                    'no_telepon' => '081234567891',
+                    'email' => 'mahasiswa@mail.com',
+                    'jenjang_pendidikan' => 'S1',
+                    'program_studi' => 'Informatika',
+                    'tahun_masuk' => '2015',
+                    'tahun_lulus' => '2020',
+                    'nomor_ijazah' => '',
+                    'gelar' => [
+                        'Sarjana Komputer',
+                        'Bachelor of Computer Information Systems'
+                    ],
+                ],
+                [
+                    'nama' => 'Mahasiswa 2',
+                    'nim' => '1234567891',
+                    'jenis_kelamin' => 'L',
+                    'tempat_lahir' => 'Jakarta',
+                    'tanggal_lahir' => '1995-04-05',
+                    'alamat' => 'Jl. Sudirman',
+                    'no_telepon' => '081234567891',
+                    'email' => 'mahasiswa@mail.com',
+                    'jenjang_pendidikan' => 'S2',
+                    'program_studi' => 'Manajemen Informasi',
+                    'tahun_masuk' => '2020',
+                    'tahun_lulus' => '2024',
+                    'nomor_ijazah' => '',
+                    'gelar' => [
+                        'Magister Komputer',
+                        'Master of Computer Information Systems'
+                    ],
+                ]
             ];
 
             foreach ($mahasiswa as $mhs) {
 
-                $user = \App\Models\User::create([
+                $user = \App\Models\User::firstOrCreate([
+                    'email' => $mhs['email'],
+                    'role' => 'mahasiswa',
+                ], [
                     'name' => $mhs['nama'],
                     'email' => $mhs['email'],
                     'password' => bcrypt($mhs['nim']),
@@ -126,14 +212,24 @@ class InitialDataSeeder extends Seeder
                 unset($mhsData['prestasi']);
 
                 $mhsData['user_id'] = $user->id;
-                $dataMahasiswa = \App\Models\Mahasiswa::create($mhsData);
+                $dataMahasiswa = \App\Models\Mahasiswa::firstOrCreate(
+                    [
+                        'nim' => $mhs['nim'],
+                    ],
+                    $mhsData
+                );
 
-                $dataProgramStudi = \App\Models\ProgramStudi::join('jenjang_pendidikan', 'jenjang_pendidikan.id', '=', 'program_studi.jenjang_pendidikan_id')
+                $dataProgramStudi = \App\Models\ProgramStudi::select([
+                    'program_studi.*',
+                ])->join('jenjang_pendidikan', 'jenjang_pendidikan.id', '=', 'program_studi.jenjang_pendidikan_id')
                     ->where('program_studi.nama', $mhs['program_studi'])
                     ->where('jenjang_pendidikan.singkatan', $mhs['jenjang_pendidikan'])
                     ->first();
 
-                \App\Models\MahasiswaProgramStudi::create([
+                $mhsProgramStudi = \App\Models\MahasiswaProgramStudi::firstOrCreate([
+                    'mahasiswa_id' => $dataMahasiswa->id,
+                    'program_studi_id' => $dataProgramStudi->id,
+                ], [
                     'mahasiswa_id' => $dataMahasiswa->id,
                     'program_studi_id' => $dataProgramStudi->id,
                     'tahun_masuk' => $mhs['tahun_masuk'],
@@ -143,10 +239,17 @@ class InitialDataSeeder extends Seeder
                     'gelar_en' => @$mhs['gelar'][1],
                 ]);
 
+
                 if (isset($mhs['prestasi'])) {
                     foreach ($mhs['prestasi'] as $prestasi) {
                         $prestasi['mahasiswa_id'] = $dataMahasiswa->id;
-                        $dataPrestasi = \App\Models\Prestasi::create($prestasi);
+                        $dataPrestasi = \App\Models\Prestasi::firstOrCreate(
+                            [
+                                'nama' => $prestasi['nama'],
+                                'mahasiswa_id' => $dataMahasiswa->id,
+                            ],
+                            $prestasi
+                        );
                     }
                 }
             }
@@ -358,9 +461,36 @@ class InitialDataSeeder extends Seeder
                         if ($pengaturan['tipe'] == 'json') {
                             $pengaturan['nilai'] = json_encode($pengaturan['nilai']);
                         }
-                        $dataPengaturan = \App\Models\Pengaturan::create($pengaturan);
+                        $dataPengaturan = \App\Models\Pengaturan::create([
+                            'kategori_pengaturan_id' => $dataKategori->id,
+                            'nama' => $pengaturan['nama'],
+                            'nilai' => $pengaturan['nilai'],
+                            'tipe' => $pengaturan['tipe'],
+                        ], $pengaturan);
                     }
                 }
+            }
+
+            // data dokumen
+            $dokumen = [
+                [
+                    'mahasiswa_id' => 1,
+                    'program_studi_id' => 1,
+                    'nomor' => '1234567890',
+                    'tanggal' => '2024-01-01',
+                    'file' => 'dokumen/skpi1.pdf',
+                ]
+            ];
+
+            foreach ($dokumen as $dok) {
+                \App\Models\DokumenSkpi::firstOrCreate(
+                    [
+                        'mahasiswa_id' => $dok['mahasiswa_id'],
+                        'program_studi_id' => $dok['program_studi_id'],
+                        'nomor' => $dok['nomor'],
+                    ],
+                    $dok
+                );
             }
 
             // is transaction success
