@@ -44,9 +44,10 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">No. Dok</th>
-                                <th scope="col">Tgl. Dok</th>
+                                {{-- <th scope="col">Tgl. Dok</th> --}}
                                 <th scope="col">File</th>
                                 <th scope="col">Nama Mahasiswa</th>
+                                <th scope="col">Jenjang</th>
                                 <th scope="col">Prodi</th>
                                 <th scope="col">Thn. Lulus</th>
                                 <th scope="col">Dibuat pada</th>
@@ -57,15 +58,28 @@
                             @foreach ($dokumen as $d)
                             <tr>
                                 <td scope="row">{{ $loop->iteration }}</td>
-                                <td>{{ $d->nomor }}</td>
-                                <td>{{ $d->tanggal }}</td>
                                 <td>
-                                    <a href="{{ asset('storage/dokumen/' . $d->file) }}" target="_blank"
+                                    <div>{{ $d->nomor }}</div>
+                                    <div class="fst-italic small text-secondary">{{ $d->tanggal }}</div>
+                                </td>
+                                {{-- <td>{{ $d->tanggal }}</td> --}}
+                                <td>
+                                    @if ($d->file === 'proses')
+                                    <div class="text-secondary small">
+                                        <i class="bi bi-clock"></i> Proses
+                                    </div>
+                                    @else
+                                    <a href="{{ asset('storage/dokumen_skpi/' . $d->file) }}" target="_blank"
                                         class="btn btn-sm btn-light"><i class="bi bi-file-earmark"></i> Lihat</a>
+                                    @endif
                                 </td>
                                 <td>
                                     <div>{{ $d->nama_mahasiswa }}</div>
                                     <div class="fst-italic small text-secondary">NIM: {{ $d->nim_mahasiswa }}</div>
+                                </td>
+                                <td>
+                                    <div>{{ $d->nama_jenjang }}</div>
+                                    <div class="fst-italic small text-secondary">{{ $d->nama_jenjang_en }}</div>
                                 </td>
                                 <td>
                                     <div>{{ $d->nama_prodi }}</div>

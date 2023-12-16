@@ -17,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::prefix('v1')->group(function () {
+    // get prodi by jenjang pendidikan id
+    Route::get('/prodi', [App\Http\Controllers\Api\ProdiController::class, 'index']);
+
+    // get mahasiswa prodi by prodi id
+    Route::get('/mahasiswa-prodi', [App\Http\Controllers\Api\MahasiswaProdiController::class, 'index']);
+});

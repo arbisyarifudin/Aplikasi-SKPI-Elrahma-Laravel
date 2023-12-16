@@ -3,17 +3,30 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\GenerateSkpiFileJob;
 use App\Models\DokumenSkpi;
+use App\Models\JenjangPendidikan;
+use App\Models\Mahasiswa;
+use App\Models\Pengaturan;
+use App\Models\Prestasi;
+use App\Models\ProgramStudi;
+use App\Utils\Skpi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class DokumenController extends Controller
 {
     public function index()
     {
-        $data = DokumenSkpi::join('mahasiswa', 'dokumen_skpi.mahasiswa_id', '=', 'mahasiswa.id')
+        // join mahasiswa_program_studi where mahasiswa_id = dokumen_skpi.mahasiswa_id and program_studi_id = dokumen_skpi.program_studi_id
+        $data = DokumenSkpi::join('mahasiswa_program_studi as mps', function ($join) {
+            $join->on('dokumen_skpi.mahasiswa_id', '=', 'mps.mahasiswa_id');
+            $join->on('dokumen_skpi.program_studi_id', '=', 'mps.program_studi_id');
+        })
+            ->join('mahasiswa', 'dokumen_skpi.mahasiswa_id', '=', 'mahasiswa.id')
             ->join('program_studi', 'dokumen_skpi.program_studi_id', '=', 'program_studi.id')
             ->join('jenjang_pendidikan', 'program_studi.jenjang_pendidikan_id', '=', 'jenjang_pendidikan.id')
-            ->join('mahasiswa_program_studi', 'mahasiswa.id', '=', 'mahasiswa_program_studi.mahasiswa_id')
             ->select([
                 'dokumen_skpi.id',
                 'dokumen_skpi.nomor',
@@ -25,10 +38,11 @@ class DokumenController extends Controller
                 'program_studi.nama_en as nama_prodi_en',
                 'jenjang_pendidikan.nama as nama_jenjang',
                 'jenjang_pendidikan.nama_en as nama_jenjang_en',
-                'mahasiswa_program_studi.tahun_masuk',
-                'mahasiswa_program_studi.tahun_lulus',
+                'mps.tahun_masuk',
+                'mps.tahun_lulus',
                 'dokumen_skpi.created_at',
             ])
+            ->orderBy('dokumen_skpi.created_at', 'desc')
             ->get();
 
         // format date to indonesian
@@ -44,16 +58,130 @@ class DokumenController extends Controller
 
     public function create()
     {
-        $noDokumen = date('YmdHis'); // temporary
+        $noDokumen = date('YmdH') . '001'; // temporary
+        $jenjang = JenjangPendidikan::all();
+        // $pengaturanHasilCapaian = Pengaturan::where('nama', 'informasi_kualifikasi_dan_hasil_capaian')->first();
+        // $pengaturanHasilCapaian = isset($pengaturanHasilCapaian->nilai) ? json_decode($pengaturanHasilCapaian->nilai) : [];
+        $pengaturanHasilCapaian = Skpi::getSettingByName('informasi_kualifikasi_dan_hasil_capaian');
 
         return view('admin.dokumen.create', [
             'noDokumen' => $noDokumen,
+            'jenjang' => $jenjang,
+            'pengaturanHasilCapaian' => $pengaturanHasilCapaian
         ]);
     }
 
     public function store(Request $request)
     {
-        //
+        // validate request
+        $request->validate([
+            'dokumen_tanggal' => 'required',
+            'jenjang_id' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    $jenjang = JenjangPendidikan::find($value);
+                    if (!$jenjang) {
+                        $fail('Jenjang pendidikan tidak ditemukan.');
+                    }
+                }
+            ],
+            'program_studi_id' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    $programStudi = ProgramStudi::find($value);
+                    if (!$programStudi) {
+                        $fail('Program studi tidak ditemukan.');
+                    }
+                }
+            ],
+            'mahasiswa_ids' => [
+                'required',
+                'array',
+                function ($attribute, $value, $fail) {
+                    foreach ($value as $mahasiswaId) {
+                        $mahasiswa = Mahasiswa::find($mahasiswaId);
+                        if (!$mahasiswa) {
+                            $fail('Mahasiswa tidak ditemukan.');
+                        }
+                    }
+                }
+            ],
+        ], [
+            'dokumen_tanggal.required' => 'Tanggal dokumen harus diisi.',
+            'jenjang_id.required' => 'Jenjang pendidikan harus dipilih.',
+            'program_studi_id.required' => 'Program studi harus dipilih.',
+            'mahasiswa_ids.required' => 'Mahasiswa harus dipilih.',
+            'mahasiswa_ids.array' => 'Mahasiswa harus berupa array.',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+
+            // kode: yyyymmdd
+            // nomor: 001 (increment per hari)
+            $kode = date('Ymd');
+
+            $jenjangId = $request->jenjang_id;
+            $programStudiId = $request->program_studi_id;
+            $hasilCapaian = $request->pengaturan_hasil_capaian_data;
+
+            if (!$hasilCapaian) {
+                // $pengaturanHasilCapaian = Pengaturan::where('nama', 'informasi_kualifikasi_dan_hasil_capaian')->first();
+                // $hasilCapaian = isset($pengaturanHasilCapaian->nilai) ? json_decode($pengaturanHasilCapaian->nilai) : [];
+                $hasilCapaian = Skpi::getSettingByName('informasi_kualifikasi_dan_hasil_capaian');
+            }
+            // dd($hasilCapaian);
+
+            $mahasiswaIds = $request->mahasiswa_ids;
+            // dd($mahasiswaIds);
+
+            $dokumenSkpiIds = [];
+
+            // create dokumen skpi data
+            foreach ($mahasiswaIds as $mahasiswaId) {
+                $nomor = DokumenSkpi::where('nomor', 'like', $kode . '%')->count() + 1;
+                $nomor = str_pad($nomor, 3, '0', STR_PAD_LEFT);
+                $dokumenNomor = $kode . $nomor;
+
+                // $dokumenSkpi = new DokumenSkpi();
+                // $dokumenSkpi->mahasiswa_id = $mahasiswaId;
+                // $dokumenSkpi->program_studi_id = $programStudiId;
+                // $dokumenSkpi->nomor = $dokumenNomor;
+                // $dokumenSkpi->tanggal = $request->dokumen_tanggal;
+                // // $dokumenSkpi->dibuat_oleh = auth()->user()->id;
+                // $dokumenSkpi->file = '-';
+                // $dokumenSkpi->save();
+
+                $dokumenSkpi = DokumenSkpi::firstOrCreate([
+                    'mahasiswa_id' => $mahasiswaId,
+                    'program_studi_id' => $programStudiId,
+                    'nomor' => $dokumenNomor,
+                    'tanggal' => $request->dokumen_tanggal,
+                    'file' => 'proses'
+                ]);
+
+                $dokumenSkpiId = $dokumenSkpi->id;
+
+                // generate file
+                // $this->__generateFile($dokumenSkpiId, $hasilCapaian);
+
+                $dokumenSkpiIds[] = $dokumenSkpiId;
+            }
+
+            // run job
+            GenerateSkpiFileJob::dispatch($dokumenSkpiIds, $hasilCapaian);
+
+            DB::commit();
+
+            return redirect()->route('admin.dokumen.index')->with('success', 'Dokumen SKPI berhasil ditambahkan.');
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            throw $e;
+
+            return redirect()->route('admin.dokumen.index')->with('error', 'Dokumen SKPI gagal ditambahkan.');
+        }
     }
 
     public function show($id)
@@ -74,5 +202,46 @@ class DokumenController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    // private
+
+    /**
+     * Generate file dokumen SKPI (pdf)
+     */
+    private function __generateFile($dokumenSkpiId, $hasilCapaian)
+    {
+        $dokumenSkpi = DokumenSkpi::find($dokumenSkpiId);
+        $mahasiswa = Mahasiswa::find($dokumenSkpi->mahasiswa_id);
+        $programStudi = ProgramStudi::find($dokumenSkpi->program_studi_id);
+        $prestasi = Prestasi::where('mahasiswa_id', $mahasiswa->id)->get();
+
+        // $pdfPreview = view('admin.dokumen.pdf', [
+        //     'dokumenSkpi' => $dokumenSkpi,
+        //     'mahasiswa' => $mahasiswa,
+        //     'programStudi' => $programStudi,
+        //     'hasilCapaian' => $hasilCapaian,
+        //     'prestasi' => $prestasi
+        // ])->render();
+
+        // echo ($pdfPreview); die;
+
+        $pdf = Pdf::loadView('admin.dokumen.pdf', [
+            'dokumenSkpi' => $dokumenSkpi,
+            'mahasiswa' => $mahasiswa,
+            'programStudi' => $programStudi,
+            'hasilCapaian' => $hasilCapaian,
+            'prestasi' => $prestasi
+        ])->setPaper('a4', 'portrait');
+
+        $uploadPath = storage_path('app/public/dokumen_skpi');
+        if (!file_exists($uploadPath)) {
+            mkdir($uploadPath, 0777, true);
+        }
+
+        $pdf->save($uploadPath . '/' . $dokumenSkpi->nomor . '.pdf');
+
+        $dokumenSkpi->file = $dokumenSkpi->nomor . '.pdf';
+        $dokumenSkpi->save();
     }
 }
