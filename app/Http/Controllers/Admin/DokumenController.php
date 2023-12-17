@@ -153,13 +153,25 @@ class DokumenController extends Controller
                 // $dokumenSkpi->file = '-';
                 // $dokumenSkpi->save();
 
-                $dokumenSkpi = DokumenSkpi::firstOrCreate([
-                    'mahasiswa_id' => $mahasiswaId,
-                    'program_studi_id' => $programStudiId,
-                    'nomor' => $dokumenNomor,
-                    'tanggal' => $request->dokumen_tanggal,
-                    'file' => 'proses'
-                ]);
+                // is already have skpi
+                $isAlreadyHaveSkpi = DokumenSkpi::where('mahasiswa_id', $mahasiswaId)
+                    ->where('program_studi_id', $programStudiId);
+                if ($isAlreadyHaveSkpi->count() > 0) {
+                    $dokumenSkpi = $isAlreadyHaveSkpi->first();
+                    $dokumenSkpi->nomor = $dokumenNomor;
+                    $dokumenSkpi->tanggal = $request->dokumen_tanggal;
+                    $dokumenSkpi->file = 'proses';
+                    $dokumenSkpi->save();
+                } else {
+                    $dokumenSkpi = DokumenSkpi::create([
+                        'mahasiswa_id' => $mahasiswaId,
+                        'program_studi_id' => $programStudiId,
+                        'nomor' => $dokumenNomor,
+                        'tanggal' => $request->dokumen_tanggal,
+                        'file' => 'proses'
+                    ]);
+                }
+
 
                 $dokumenSkpiId = $dokumenSkpi->id;
 
@@ -201,7 +213,17 @@ class DokumenController extends Controller
 
     public function destroy($id)
     {
-        //
+        // delete dokumen skpi
+        $dokumenSkpi = DokumenSkpi::find($id);
+        $dokumenSkpi->delete();
+
+        // delete file
+        $uploadPath = storage_path('app/public/dokumen_skpi');
+        if (file_exists($uploadPath . '/' . $dokumenSkpi->file)) {
+            unlink($uploadPath . '/' . $dokumenSkpi->file);
+        }
+
+        return redirect()->route('admin.dokumen.index')->with('success', 'Dokumen SKPI berhasil dihapus.');
     }
 
     // private

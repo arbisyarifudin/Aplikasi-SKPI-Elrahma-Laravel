@@ -24,6 +24,16 @@
                         <span class="text-danger small">Bertanda *) wajib diisi</span>
                     </div>
 
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                            <li class="small">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+
                     <form action="{{ route('admin.dokumen.store') }}" method="post">
                         @csrf
                         <div class="row">
@@ -102,13 +112,13 @@
                                             class="text-danger">*</span></div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="d-flex justify-content-between mb-2">
+                                            <div class="d-flex justify-content-start mb-2">
                                                 <div class="spinner-border spinner-border-sm text-primary" role="status"
                                                     v-if="loadingMahasiswa">
                                                     <span class="visually-hidden">Loading...</span>
                                                 </div>
-                                                <div class="text-secondary small" v-else></div>
-                                                <div class="form-check">
+                                                <div class="text-secondary small" v-else style="flex: 1"></div>
+                                                <div class="form-check" v-if="!checkAllMahasiswa && mahasiswaData.length">
                                                     <input class="form-check-input" type="checkbox" value=""
                                                         name="semua_mahasiswa" id="semua_mahasiswa"
                                                         v-model="checkAllMahasiswa">
@@ -116,21 +126,61 @@
                                                         Pilih Semua
                                                     </label>
                                                 </div>
+                                                <button v-if="selectedMahasiswa.length" type="button"
+                                                    class="btn btn-sm btn-outline-primary ms-2 p-1 py-0"
+                                                    @click="selectedMahasiswa = []">
+                                                    <i class="bi bi-x"></i> Hapus Semua
+                                                </button>
                                             </div>
                                             <div class="mb-3">
                                                 <select name="mahasiswa_ids[]" id="mahasiswa_ids"
-                                                    class="form-select @error('mahasiswa_ids') is-invalid @enderror"
+                                                    class="form-select d-none @error('mahasiswa_ids') is-invalid @enderror"
                                                     multiple v-model="selectedMahasiswa">
                                                     <option v-for="item in mahasiswaData" :value="item.id">
-                                                        @{{ item.nama }} (@{{ item.nim }})
+                                                        @{{ item.nama }} (@{{ item.nim }}) - @{{ item.is_have_skpi ?
+                                                        'SUDAH DIBUAT' : 'BELUM DIBUAT' }}
                                                     </option>
                                                     <option v-if="mahasiswaData.length == 0" value="" disabled>
                                                         Tidak ada mahasiswa
                                                     </option>
                                                 </select>
+
+                                                <!-- Create custom multiple select -->
+                                                <div class="mt-2 p-2" style="border: 1px solid #ddd">
+                                                    <div v-for="item in mahasiswaData" :key="item.id"
+                                                        class="form-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            :id="'mahasiswa_' + item.id" :value="item.id"
+                                                            v-model="selectedMahasiswa">
+                                                        <label class="form-check-label" :for="'mahasiswa_' + item.id">
+                                                            @{{ item.nama }} (@{{ item.nim }}) <span
+                                                                v-if="item.is_have_skpi" class="badge bg-success">Sudah
+                                                                dibuat</span>
+                                                        </label>
+                                                    </div>
+                                                    <div v-if="mahasiswaData.length == 0" class="text-secondary mt-2">
+                                                        Tidak ada mahasiswa
+                                                    </div>
+                                                    <select name="mahasiswa_ids[]" id="mahasiswa_ids" multiple
+                                                        v-model="selectedMahasiswa" style="display: none"></select>
+
+                                                    {{-- <div class="text-secondary mt-1"
+                                                        v-if="mahasiswaData.length > 0">
+                                                        <small style="font-size: 80%">Pilih mahasiswa yang akan
+                                                            ditambahkan. Gunakan tombol <strong>Ctrl</strong>
+                                                            untuk memilih lebih dari satu mahasiswa.</small>
+                                                    </div> --}}
+                                                </div>
+
                                                 @error('mahasiswa_ids')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
+
+                                                <div class="text-danger mt-1" v-if="isAlreadyHaveSkpiCount > 0">
+                                                    <small style="font-size: 80%">Terdapat @{{ isAlreadyHaveSkpiCount }}
+                                                        mahasiswa yang sudah dibuatkan SKPI. Jika Anda memilih mahasiswa
+                                                        tersebut, maka file yang sudah ada akan ditimpa.</small>
+                                                </div>
 
                                                 <div class="text-secondary mt-1" v-if="mahasiswaData.length > 0">
                                                     <small style="font-size: 80%">Pilih mahasiswa yang akan ditambahkan.
@@ -434,6 +484,9 @@
         computed: {
             isFormValid() {
                 return this.selectedJenjang == '' && this.selectedProdi == '' && this.selectedMahasiswa.length == 0;
+            },
+            isAlreadyHaveSkpiCount() {
+                return this.mahasiswaData.filter(item => item.is_have_skpi).length;
             }
         },
         watch: {
@@ -441,7 +494,14 @@
                 if (val) {
                     this.selectedMahasiswa = this.mahasiswaData.map(item => item.id);
                 } else {
-                    this.selectedMahasiswa = [];
+                    // this.selectedMahasiswa = [];
+                }
+            },
+            selectedMahasiswa (val) {
+                if (val.length == this.mahasiswaData.length) {
+                    this.checkAllMahasiswa = true;
+                } else {
+                    this.checkAllMahasiswa = false;
                 }
             }
         },
