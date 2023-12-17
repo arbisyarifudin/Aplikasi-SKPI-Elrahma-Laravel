@@ -17,4 +17,11 @@ class ProgramStudi extends Model
         'nama_en',
         'akreditasi',
     ];
+
+    /* RELATIONS */
+
+    public function jenjangPendidikan()
+    {
+        return $this->belongsTo(JenjangPendidikan::class, 'jenjang_pendidikan_id');
+    }
 }

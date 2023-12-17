@@ -8,8 +8,12 @@
     <title>Document</title>
     <style>
         @page {
-            margin: 0cm 0cm;
+            /* margin: 0cm 0cm; */
             /* margin: 1.75cm 1.47cm 2.39cm 1.42cm; */
+            margin-top: 1.75cm;
+            margin-bottom: 2.39cm;
+            margin-left: 1.47cm;
+            margin-right: 1.42cm;
         }
 
         body {
@@ -35,13 +39,16 @@
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
                         <strong><span style="font-family:'Times New Roman'; ">&#xa0;</span></strong>
                     </p>
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt">
+                    {{-- <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt">
                         <br><br><strong><span style="font-family:'Times New Roman'; ">SEKOLAH TINGGI MANAJEMEN
                                 INFORMATIKA
                                 DAN ILMU KOMPUTER</span></strong>
-                    </p>
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt">
+                    </p> --}}
+                    {{-- <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt">
                         <strong><span style="font-family:'Times New Roman'; ">EL RAHMA YOGYAKARTA</span></strong>
+                    </p> --}}
+                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt">
+                        <br><br><strong><span style="font-family:'Times New Roman'; ">{!! $pengaturan['nama_institusi'] !!} </span></strong>
                     </p>
                 </td>
             </tr>
@@ -88,10 +95,11 @@
                     </p>
                 </td>
             </tr>
+            {{ $dokumenSkpi }}
             <tr style="height:15pt">
                 <td colspan="17" style="width:505.45pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt">
-                        <strong><span style="font-family:'Times New Roman'; ">Nomor : 552012021000016</span></strong>
+                        <strong><span style="font-family:'Times New Roman'; ">Nomor : {{ $dokumenSkpi->nomor }}</span></strong>
                     </p>
                 </td>
             </tr>
@@ -235,7 +243,7 @@
                 <td colspan="4"
                     style="width:302.95pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">: *</span>
+                        <span style="font-family:'Times New Roman'">: {{ $mahasiswa->nama }}</span>
                     </p>
                 </td>
             </tr>
@@ -269,7 +277,8 @@
                 <td colspan="4"
                     style="width:302.95pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">: Pajar Bulan, 05 Agustus 1994</span>
+                        <span style="font-family:'Times New Roman'">: {{ $mahasiswa->tempat_lahir }},
+                            {{ $mahasiswa->tanggal_lahir }}</span>
                     </p>
                 </td>
             </tr>
@@ -285,7 +294,8 @@
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
                         <span style="font-family:'Times New Roman'">&#xa0;</span><span
                             style="font-family:'Times New Roman'">&#xa0;</span><em><span
-                                style="font-family:'Times New Roman'; ">Pajar Bulan, August 5, 1994</span></em>
+                                style="font-family:'Times New Roman'; ">{{ $mahasiswa->tempat_lahir }},
+                                {{ $mahasiswa->tanggal_lahir_en }}</span></em>
                     </p>
                 </td>
             </tr>
@@ -305,7 +315,7 @@
                 <td colspan="4"
                     style="width:302.95pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">: </span>
+                        <span style="font-family:'Times New Roman'">: {{ $mahasiswa->nim }} </span>
                     </p>
                 </td>
             </tr>
@@ -339,7 +349,7 @@
                 <td colspan="4"
                     style="width:302.95pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">: </span>
+                        <span style="font-family:'Times New Roman'">: {{ $mahasiswa->nik }}</span>
                     </p>
                 </td>
             </tr>
@@ -373,7 +383,7 @@
                 <td colspan="4"
                     style="width:302.95pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">: 2014</span>
+                        <span style="font-family:'Times New Roman'">: {{ $mahasiswaProdi->tahun_masuk }}</span>
                     </p>
                 </td>
             </tr>
@@ -407,7 +417,7 @@
                 <td colspan="4"
                     style="width:302.95pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">: 2021</span>
+                        <span style="font-family:'Times New Roman'">: {{ $mahasiswaProdi->tahun_lulus }}</span>
                     </p>
                 </td>
             </tr>
@@ -441,7 +451,7 @@
                 <td colspan="4"
                     style="width:302.95pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">: 552012021000016</span>
+                        <span style="font-family:'Times New Roman'">: {{ $mahasiswaProdi->nomor_ijazah  }}</span>
                     </p>
                 </td>
             </tr>
@@ -476,7 +486,7 @@
                     style="width:302.95pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
                         <span style="font-family:'Times New Roman'">&#xa0;</span><span
-                            style="font-family:'Times New Roman'">: Sarjana Komputer</span>
+                            style="font-family:'Times New Roman'">: {{ $programStudi->gelar }}</span>
                     </p>
                 </td>
             </tr>
@@ -492,8 +502,7 @@
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
                         <em><span style="font-family:'Times New Roman'; ">&#xa0;</span></em><em><span
                                 style="font-family:'Times New Roman'; ">&#xa0; </span></em><em><span
-                                style="font-family:'Times New Roman'; ">Bachelor of Computer Information
-                                Systems</span></em>
+                                style="font-family:'Times New Roman'; ">{{ $programStudi->gelar_en }}</span></em>
                     </p>
                 </td>
             </tr>
@@ -628,9 +637,7 @@
                 <td colspan="4"
                     style="width:302.95pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Sekolah Tinggi Manajemen Informatika dan Ilmu
-                            Komputer
-                            El Rahma</span>
+                        <span style="font-family:'Times New Roman'">{!! strip_tags($pengaturan['nama_institusi']) !!} </span>
                     </p>
                 </td>
             </tr>
@@ -644,8 +651,7 @@
                 <td colspan="4"
                     style="width:302.95pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <em><span style="font-family:'Times New Roman'; ">College of Information Management and Computer
-                                Science El Rahma</span></em>
+                        <em><span style="font-family:'Times New Roman'; ">{{ $pengaturan['nama_institusi_en'] }}</span></em>
                     </p>
                 </td>
             </tr>
@@ -665,7 +671,7 @@
                 <td colspan="4"
                     style="width:302.95pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Infomatika</span>
+                        <span style="font-family:'Times New Roman'">{{ $programStudi->nama }}</span>
                     </p>
                 </td>
             </tr>
@@ -679,7 +685,7 @@
                 <td colspan="4"
                     style="width:302.95pt; border-right-style:solid; border-right-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <em><span style="font-family:'Times New Roman'; ">Informatics</span></em>
+                        <em><span style="font-family:'Times New Roman'; ">{{ $programStudi->nama_en }}</span></em>
                     </p>
                 </td>
             </tr>
@@ -699,7 +705,7 @@
                 <td colspan="4"
                     style="width:302.95pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Sekolah Tinggi</span>
+                        <span style="font-family:'Times New Roman'">{{ $pengaturan['jenis_pendidikan'] }}</span>
                     </p>
                 </td>
             </tr>
@@ -713,8 +719,7 @@
                 <td colspan="4"
                     style="width:302.95pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <em><span style="font-family:'Times New Roman'; ">Graduate from High School or Similar level of
-                                Education</span></em>
+                        <em><span style="font-family:'Times New Roman'; ">{{ $pengaturan['jenis_pendidikan_en'] }}</span></em>
                     </p>
                 </td>
             </tr>
@@ -734,7 +739,7 @@
                 <td colspan="4"
                     style="width:302.95pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Sarjana (Strata 1)</span>
+                        <span style="font-family:'Times New Roman'">{{ $jenjangPendidikan->nama }}</span>
                     </p>
                 </td>
             </tr>
@@ -748,7 +753,7 @@
                 <td colspan="4"
                     style="width:302.95pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <em><span style="font-family:'Times New Roman'; ">Bachelor Degree</span></em>
+                        <em><span style="font-family:'Times New Roman'; ">{{ $jenjangPendidikan->nama_en }}</span></em>
                     </p>
                 </td>
             </tr>
@@ -768,7 +773,7 @@
                 <td colspan="4"
                     style="width:302.95pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Level 6</span>
+                        <span style="font-family:'Times New Roman'">{{ $jenjangPendidikan->level_kkni}}</span>
                     </p>
                 </td>
             </tr>
@@ -803,7 +808,7 @@
                 <td colspan="4"
                     style="width:302.95pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Lulus Sekolah Menengah Atas / Sederajat</span>
+                        <span style="font-family:'Times New Roman'">{{ $jenjangPendidikan->syarat_masuk }}</span>
                     </p>
                 </td>
             </tr>
@@ -817,8 +822,7 @@
                 <td colspan="4"
                     style="width:302.95pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <em><span style="font-family:'Times New Roman'; ">Graduated Senior High School /
-                                equivalent</span></em>
+                        <em><span style="font-family:'Times New Roman'; ">{{ $jenjangPendidikan->syarat_masuk_en }}</span></em>
                     </p>
                 </td>
             </tr>
@@ -906,7 +910,7 @@
                 <td colspan="4"
                     style="width:302.95pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">8 Semester</span>
+                        <span style="font-family:'Times New Roman'">{{ $jenjangPendidikan->lama_studi_reguler }}</span>
                     </p>
                 </td>
             </tr>
@@ -940,7 +944,7 @@
                 <td colspan="4"
                     style="width:302.95pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Pasca Sarjana</span>
+                        <span style="font-family:'Times New Roman'">{{ $jenjangPendidikan->jenjang_lanjutan }}</span>
                     </p>
                 </td>
             </tr>
@@ -954,7 +958,7 @@
                 <td colspan="4"
                     style="width:302.95pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <em><span style="font-family:'Times New Roman'; ">Post Graduate Study</span></em>
+                        <em><span style="font-family:'Times New Roman'; ">{{ $jenjangPendidikan->jenjang_lanjutan_en }}</span></em>
                     </p>
                 </td>
             </tr>

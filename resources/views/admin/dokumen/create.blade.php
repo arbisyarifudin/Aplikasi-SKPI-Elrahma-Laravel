@@ -118,7 +118,8 @@
                                                     <span class="visually-hidden">Loading...</span>
                                                 </div>
                                                 <div class="text-secondary small" v-else style="flex: 1"></div>
-                                                <div class="form-check" v-if="!checkAllMahasiswa && mahasiswaData.length">
+                                                <div class="form-check"
+                                                    v-if="!checkAllMahasiswa && mahasiswaData.length">
                                                     <input class="form-check-input" type="checkbox" value=""
                                                         name="semua_mahasiswa" id="semua_mahasiswa"
                                                         v-model="checkAllMahasiswa">
@@ -194,6 +195,13 @@
                             </div>
                         </div>
 
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary" :disabled="!isFormValid">Simpan & Buat
+                                SKPI</button>
+                        </div>
+
+                        <hr />
+
                         <div class="row mt-3">
                             <div class="col-md-12" v-if="pengaturanHasilCapaianData">
                                 <div class="mb-2">
@@ -261,6 +269,7 @@
                                         </template>
                                     </tbody>
                                 </table>
+
                                 <table class="table table-bordered" v-else>
                                     <tbody v-for="(item, index) in pengaturanHasilCapaianData">
                                         {{-- <tr>
@@ -423,7 +432,8 @@
 
 
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary" :disable="!isFormValid">Simpan</button>
+                            <button type="submit" class="btn btn-primary" :disabled="!isFormValid">Simpan & Buat
+                                SKPI</button>
                         </div>
 
                     </form>
@@ -483,7 +493,7 @@
         },
         computed: {
             isFormValid() {
-                return this.selectedJenjang == '' && this.selectedProdi == '' && this.selectedMahasiswa.length == 0;
+                return this.selectedJenjang != '' && this.selectedProdi != '' && this.selectedMahasiswa.length > 0;
             },
             isAlreadyHaveSkpiCount() {
                 return this.mahasiswaData.filter(item => item.is_have_skpi).length;
