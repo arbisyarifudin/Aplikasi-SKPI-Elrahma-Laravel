@@ -45,6 +45,7 @@
                                 <th scope="col">Nama</th>
                                 <th scope="col">Akreditasi</th>
                                 <th scope="col">Jenjang</th>
+                                <th scope="col">Gelar</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -58,6 +59,10 @@
                                 </td>
                                 <td>{{ $p->akreditasi }}</td>
                                 <td>{{ $p->jenjang_pendidikan_nama }}</td>
+                                <td>
+                                    <div>{{ $p->gelar }}</div>
+                                    <div class="fst-italic small text-secondary">{{ $p->gelar_en }}</div>
+                                </td>
                                 <td>
                                     <button title="Hapus" type="button" class="btn btn-sm btn-light text-danger"
                                         data-bs-toggle="modal" data-bs-target="#hapusModal" data-id="{{ $p->id }}">

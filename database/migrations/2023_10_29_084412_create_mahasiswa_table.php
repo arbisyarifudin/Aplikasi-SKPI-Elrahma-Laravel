@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users', 'id')->cascadeOnDelete();
             $table->bigInteger('user_siakad_id')->unsigned()->nullable();
             $table->string('nim', 10)->unique();
+            $table->string('nik', 20)->nullable();
             $table->string('nama', 100);
             $table->string('tempat_lahir', 100);
             $table->date('tanggal_lahir');

@@ -61,7 +61,7 @@
                                 <span class="input-group-text">EN</span>
                                 <input type="text" name="prodi_nama_en" class="form-control"
                                     aria-describedby="prodi_nama_en-addon" class="form-control"
-                                    value="{{ old('prodi_nama_en') }}" autofocus placeholder="Nama program studi">
+                                    value="{{ old('prodi_nama_en') }}" autofocus placeholder="Nama program studi (english)">
                             </div>
                             @error('prodi_nama_en')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -77,6 +77,32 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <div class="mb-3">
+                            <label for="prodi_gelar" class="form-label">Gelar <span
+                                    class="text-danger">*</span></label>
+                            <div class="input-group mb-3 @error('prodi_gelar') is-invalid @enderror">
+                                <span class="input-group-text">&nbsp;ID</span>
+                                <input type="text" name="prodi_gelar" class="form-control"
+                                    aria-describedby="prodi_gelar-addon" class="form-control"
+                                    value="{{ old('prodi_gelar') }}" autofocus placeholder="Gelar">
+                            </div>
+                            @error('prodi_gelar')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <div class="input-group mb-3 @error('prodi_gelar_en') is-invalid @enderror">
+                                <span class="input-group-text">EN</span>
+                                <input type="text" name="prodi_gelar_en" class="form-control"
+                                    aria-describedby="prodi_gelar_en-addon" class="form-control"
+                                    value="{{ old('prodi_gelar_en') }}" autofocus placeholder="Gelar (english)">
+                            </div>
+                            @error('prodi_gelar_en')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
 
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary">Simpan</button>

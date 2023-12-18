@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('nama', 100);
             $table->string('nama_en', 100)->nullable();
             $table->string('akreditasi', 10)->nullable();
+            $table->string('gelar', 100)->nullable();
+            $table->string('gelar_en', 100)->nullable();
             $table->timestamps();
         });
     }

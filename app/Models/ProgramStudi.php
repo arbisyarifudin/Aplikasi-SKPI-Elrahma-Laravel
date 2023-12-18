@@ -16,6 +16,8 @@ class ProgramStudi extends Model
         'nama',
         'nama_en',
         'akreditasi',
+        'gelar',
+        'gelar_en',
     ];
 
     /* RELATIONS */

@@ -66,11 +66,15 @@ class InitialDataSeeder extends Seeder
                             'nama' => 'Informatika',
                             'nama_en' => 'Informatics',
                             'akreditasi' => 'B',
+                            'gelar' => 'Sarjana Komputer',
+                            'gelar_en' => 'Bachelor of Computer Information Systems',
                         ],
                         [
                             'nama' => 'Sistem Informasi',
                             'nama_en' => 'Information System',
                             'akreditasi' => 'B',
+                            'gelar' => 'Sarjana Komputer',
+                            'gelar_en' => 'Bachelor of Computer Information Systems',
                         ]
                     ]
                 ],
@@ -89,6 +93,8 @@ class InitialDataSeeder extends Seeder
                             'nama' => 'Manajemen Informasi',
                             'nama_en' => 'Informatic Manajemen',
                             'akreditasi' => 'B',
+                            'gelar' => 'Magister Komputer',
+                            'gelar_en' => 'Master of Computer Information Systems',
                         ],
                     ]
                 ]
@@ -133,10 +139,6 @@ class InitialDataSeeder extends Seeder
                     'tahun_masuk' => '2018',
                     'tahun_lulus' => '2024',
                     'nomor_ijazah' => '',
-                    'gelar' => [
-                        'Sarjana Komputer',
-                        'Bachelor of Computer Information Systems'
-                    ],
                     'prestasi' => [
                         [
                             'nama' => 'Lomba 1',
@@ -163,10 +165,6 @@ class InitialDataSeeder extends Seeder
                     'tahun_masuk' => '2015',
                     'tahun_lulus' => '2020',
                     'nomor_ijazah' => '',
-                    'gelar' => [
-                        'Sarjana Komputer',
-                        'Bachelor of Computer Information Systems'
-                    ],
                 ],
                 [
                     'nama' => 'Mahasiswa 2',
@@ -182,10 +180,6 @@ class InitialDataSeeder extends Seeder
                     'tahun_masuk' => '2020',
                     'tahun_lulus' => '2024',
                     'nomor_ijazah' => '',
-                    'gelar' => [
-                        'Magister Komputer',
-                        'Master of Computer Information Systems'
-                    ],
                 ]
             ];
 
@@ -235,8 +229,6 @@ class InitialDataSeeder extends Seeder
                     'tahun_masuk' => $mhs['tahun_masuk'],
                     'tahun_lulus' => $mhs['tahun_lulus'],
                     'nomor_ijazah' => $mhs['nomor_ijazah'],
-                    'gelar' => @$mhs['gelar'][0],
-                    'gelar_en' => @$mhs['gelar'][1],
                 ]);
 
 
@@ -287,6 +279,16 @@ class InitialDataSeeder extends Seeder
                         [
                             'nama' => 'nama_institusi_singkat',
                             'nilai' => 'STMIK EL RAHMA YOGYAKARTA',
+                            'tipe' => 'text'
+                        ],
+                        [
+                            'nama' => 'sk_pendirian_institusi',
+                            'nilai' => 'SK Mendiknas No. 155/D/O/2001, Tanggal 30 Agustus 2001',
+                            'tipe' => 'text'
+                        ],
+                        [
+                            'nama' => 'sk_pendirian_institusi_en',
+                            'nilai' => 'SK Mendiknas No. 155/D/O/2001, Date August 30, 2001',
                             'tipe' => 'text'
                         ],
                         [

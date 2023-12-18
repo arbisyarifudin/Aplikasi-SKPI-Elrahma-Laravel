@@ -38,14 +38,18 @@ class ProdiController extends Controller
             'jenjang_pendidikan_id' => 'required|exists:jenjang_pendidikan,id',
             'prodi_nama' => 'required|unique:program_studi,nama',
             'prodi_nama_en' => 'required|unique:program_studi,nama_en',
-            'prodi_akreditasi' => 'required'
+            'prodi_akreditasi' => 'required',
+            'prodi_gelar' => 'required',
+            'prodi_gelar_en' => 'required'
         ], [
             'jenjang_pendidikan_id.required' => 'Jenjang pendidikan harus dipilih',
             'prodi_nama.required' => 'Nama program studi harus diisi',
             'prodi_nama.unique' => 'Nama program studi sudah terdaftar',
             'prodi_nama_en.required' => 'Nama program studi (English) harus diisi',
             'prodi_nama_en.unique' => 'Nama program studi (English) sudah terdaftar',
-            'prodi_akreditasi.required' => 'Akreditasi harus diisi'
+            'prodi_akreditasi.required' => 'Akreditasi harus diisi',
+            'prodi_gelar.required' => 'Gelar harus diisi',
+            'prodi_gelar_en.required' => 'Gelar (English) harus diisi'
         ]);
 
         // insert data
@@ -53,11 +57,13 @@ class ProdiController extends Controller
             'jenjang_pendidikan_id' => $request->jenjang_pendidikan_id,
             'nama' => $request->prodi_nama,
             'nama_en' => $request->prodi_nama_en,
-            'akreditasi' => $request->prodi_akreditasi
+            'akreditasi' => $request->prodi_akreditasi,
+            'gelar' => $request->prodi_gelar,
+            'gelar_en' => $request->prodi_gelar_en
         ]);
 
         // redirect back
-        return redirect()->back()->with('success', 'Program studi berhasil ditambahkan');
+        return redirect()->route('admin.prodi.index')->with('success', 'Program studi berhasil ditambahkan');
     }
 
     public function show($id)
@@ -88,14 +94,18 @@ class ProdiController extends Controller
             'jenjang_pendidikan_id' => 'required|exists:jenjang_pendidikan,id',
             'prodi_nama' => 'required|unique:program_studi,nama,' . $id,
             'prodi_nama_en' => 'required|unique:program_studi,nama_en,' . $id,
-            'prodi_akreditasi' => 'required'
+            'prodi_akreditasi' => 'required',
+            'prodi_gelar' => 'required',
+            'prodi_gelar_en' => 'required'
         ], [
             'jenjang_pendidikan_id.required' => 'Jenjang pendidikan harus dipilih',
             'prodi_nama.required' => 'Nama program studi harus diisi',
             'prodi_nama.unique' => 'Nama program studi sudah terdaftar',
             'prodi_nama_en.required' => 'Nama program studi (English) harus diisi',
             'prodi_nama_en.unique' => 'Nama program studi (English) sudah terdaftar',
-            'prodi_akreditasi.required' => 'Akreditasi harus diisi'
+            'prodi_akreditasi.required' => 'Akreditasi harus diisi',
+            'prodi_gelar.required' => 'Gelar harus diisi',
+            'prodi_gelar_en.required' => 'Gelar (English) harus diisi'
         ]);
 
         // update data
@@ -103,7 +113,9 @@ class ProdiController extends Controller
             'jenjang_pendidikan_id' => $request->jenjang_pendidikan_id,
             'nama' => $request->prodi_nama,
             'nama_en' => $request->prodi_nama_en,
-            'akreditasi' => $request->prodi_akreditasi
+            'akreditasi' => $request->prodi_akreditasi,
+            'gelar' => $request->prodi_gelar,
+            'gelar_en' => $request->prodi_gelar_en
         ]);
 
         // redirect back

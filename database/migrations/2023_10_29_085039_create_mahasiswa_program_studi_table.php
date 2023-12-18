@@ -18,8 +18,6 @@ return new class extends Migration
             $table->year('tahun_masuk');
             $table->year('tahun_lulus')->nullable();
             $table->string('nomor_ijazah', 100)->nullable();
-            $table->string('gelar', 100)->nullable();
-            $table->string('gelar_en', 100)->nullable();
             $table->timestamps();
         });
     }
