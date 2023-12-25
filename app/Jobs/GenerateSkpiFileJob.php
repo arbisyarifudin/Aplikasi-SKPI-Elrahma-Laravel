@@ -97,15 +97,19 @@ class GenerateSkpiFileJob implements ShouldQueue
                     'sk_pendirian_institusi_en' => Skpi::getSettingByName('sk_pendirian_institusi_en'),
                     'jenis_pendidikan' => Skpi::getSettingByName('jenis_pendidikan'),
                     'jenis_pendidikan_en' => Skpi::getSettingByName('jenis_pendidikan_en'),
+                    'logo' => 'data:image/jpeg;base64,' . base64_encode(file_get_contents(public_path('images/elrahma.jpeg'))),
                 ]
             ])->render();
 
             // echo ($pdfPreview); die;
 
             $pdf = Pdf::loadHTML($pdfView)
-                ->setPaper('a4', 'portrait')
+                // ->setPaper('a4', 'portrait')
+                // papersize custom (width: 21,59c m, height: 33,02 cm)
+                ->setPaper([0, 0, 612, 936], 'portrait')
                 ->setOptions([
                     'isPhpEnabled' => true,
+                    'isRemoteEnabled' => true,
                 ]);
 
             $uploadPath = storage_path('app/public/dokumen_skpi');

@@ -2,6 +2,7 @@
 @section('title', 'Buat Dokumen SKPI - ')
 
 @section('content')
+
 <div class="pagetitle">
     <h1>Buat Dokumen SKPI</h1>
     <nav>
@@ -19,8 +20,8 @@
             <div class="card overflow-auto">
                 <div class="card-body" style="min-height: 300px">
                     <div class="card-title d-flex justify-content-between">
-                        <a href="{{ route('admin.dokumen.index') }}" class="btn btn-sm btn-outline-primary"><i
-                                class="bi bi-arrow-left"></i> Kembali</a>
+                        <a href="{{ request()->query('ref') === 'mahasiswa' ? route('admin.mahasiswa.index') : route('admin.dokumen.index') }}"
+                            class="btn btn-sm btn-outline-primary"><i class="bi bi-arrow-left"></i> Kembali</a>
                         <span class="text-danger small">Bertanda *) wajib diisi</span>
                     </div>
 
@@ -462,9 +463,9 @@
     });
 
     const jenjangData = {!! json_encode($jenjang) !!};
-    const selectedJenjang = {!! json_encode(old('jenjang_id')) !!};
-    const selectedProdi = {!! json_encode(old('program_studi_id')) !!};
-    const selectedMahasiswa = {!! json_encode(old('mahasiswa_ids')) !!};
+    const selectedJenjang = {!! json_encode($selectedJenjangId) !!};
+    const selectedProdi = {!! json_encode($selectedProdiId) !!};
+    const selectedMahasiswa = {!! json_encode($selectedMahasiswaId) !!};
     const pengaturanHasilCapaianData = {!! json_encode($pengaturanHasilCapaian) !!};
     const pengaturanHasilCapaianInEditMode = false;
 
@@ -490,6 +491,10 @@
             if (this.selectedProdi) {
                 this.getMahasiswaData();
             }
+
+            if (this.selectedMahasiswa.length == this.mahasiswaData.length) {
+                this.checkAllMahasiswa = true;
+            }
         },
         computed: {
             isFormValid() {
@@ -501,6 +506,7 @@
         },
         watch: {
             checkAllMahasiswa (val) {
+                console.log('checkAllMahasiswa', val);
                 if (val) {
                     this.selectedMahasiswa = this.mahasiswaData.map(item => item.id);
                 } else {
@@ -546,6 +552,10 @@
                         .then(res => {
                             console.log(res.data);
                             this.mahasiswaData = res.data?.data ?? [];
+
+                            if (this.selectedMahasiswa.length == this.mahasiswaData.length) {
+                                this.checkAllMahasiswa = true;
+                            }
                         })
                         .catch(err => {
                             console.log(err);

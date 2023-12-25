@@ -10,26 +10,36 @@
         @page {
             /* margin: 0cm 0cm; */
             /* margin: 1.75cm 1.47cm 2.39cm 1.42cm; */
-            margin-top: 1.75cm;
+            /* margin-top: 1.75cm;
             margin-bottom: 2.39cm;
             margin-left: 1.47cm;
-            margin-right: 1.42cm;
+            margin-right: 1.42cm; */
+
+            margin: 0.75cm 0.75cm 0.75cm 0.75cm;
         }
 
         body {
             font-family: 'Times New Roman', Times, serif;
             font-size: 12pt;
+            border: 10pt solid black;
+            margin: 0cm 0cm;
+            padding-top: 0.5cm;
         }
+        .wrapper {
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
     </style>
 </head>
 
 <body>
 
-    <div>
-        <p style="margin-top:0pt; margin-bottom:10pt">
-            {{ asset('assets/img/logo.png') }}
+    <div class="wrapper">
+        <p style="margin-top: 0pt; margin-bottom:10pt">
             <span style="height:0pt; display:block; position:absolute; z-index:0">
-                <img src="{{ asset('assets/img/logo.png') }}" width="84" height="85" alt=""
+                <img src="{{ $pengaturan['logo'] }}" width="84" height="85" alt=""
                     style="margin-top:-7.7pt; margin-left:233.45pt; position:absolute"></span><span
                 style="font-family:'Times New Roman'">&#xa0;</span>
         </p>
@@ -48,7 +58,8 @@
                         <strong><span style="font-family:'Times New Roman'; ">EL RAHMA YOGYAKARTA</span></strong>
                     </p> --}}
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt">
-                        <br><br><strong><span style="font-family:'Times New Roman'; ">{!! $pengaturan['nama_institusi'] !!} </span></strong>
+                        <br><br><strong><span style="font-family:'Times New Roman'; ">{!! $pengaturan['nama_institusi']
+                                !!} </span></strong>
                     </p>
                 </td>
             </tr>
@@ -99,7 +110,8 @@
             <tr style="height:15pt">
                 <td colspan="17" style="width:505.45pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:12pt">
-                        <strong><span style="font-family:'Times New Roman'; ">Nomor : {{ $dokumenSkpi->nomor }}</span></strong>
+                        <strong><span style="font-family:'Times New Roman'; ">Nomor : {{ $dokumenSkpi->nomor
+                                }}</span></strong>
                     </p>
                 </td>
             </tr>
@@ -451,7 +463,7 @@
                 <td colspan="4"
                     style="width:302.95pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">: {{ $mahasiswaProdi->nomor_ijazah  }}</span>
+                        <span style="font-family:'Times New Roman'">: {{ $mahasiswaProdi->nomor_ijazah }}</span>
                     </p>
                 </td>
             </tr>
@@ -637,7 +649,8 @@
                 <td colspan="4"
                     style="width:302.95pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">{!! strip_tags($pengaturan['nama_institusi']) !!} </span>
+                        <span style="font-family:'Times New Roman'">{!! strip_tags($pengaturan['nama_institusi']) !!}
+                        </span>
                     </p>
                 </td>
             </tr>
@@ -651,7 +664,8 @@
                 <td colspan="4"
                     style="width:302.95pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <em><span style="font-family:'Times New Roman'; ">{{ $pengaturan['nama_institusi_en'] }}</span></em>
+                        <em><span style="font-family:'Times New Roman'; ">{{ $pengaturan['nama_institusi_en']
+                                }}</span></em>
                     </p>
                 </td>
             </tr>
@@ -719,7 +733,8 @@
                 <td colspan="4"
                     style="width:302.95pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <em><span style="font-family:'Times New Roman'; ">{{ $pengaturan['jenis_pendidikan_en'] }}</span></em>
+                        <em><span style="font-family:'Times New Roman'; ">{{ $pengaturan['jenis_pendidikan_en']
+                                }}</span></em>
                     </p>
                 </td>
             </tr>
@@ -822,7 +837,8 @@
                 <td colspan="4"
                     style="width:302.95pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <em><span style="font-family:'Times New Roman'; ">{{ $jenjangPendidikan->syarat_masuk_en }}</span></em>
+                        <em><span style="font-family:'Times New Roman'; ">{{ $jenjangPendidikan->syarat_masuk_en
+                                }}</span></em>
                     </p>
                 </td>
             </tr>
@@ -958,7 +974,8 @@
                 <td colspan="4"
                     style="width:302.95pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <em><span style="font-family:'Times New Roman'; ">{{ $jenjangPendidikan->jenjang_lanjutan_en }}</span></em>
+                        <em><span style="font-family:'Times New Roman'; ">{{ $jenjangPendidikan->jenjang_lanjutan_en
+                                }}</span></em>
                     </p>
                 </td>
             </tr>
@@ -1096,2075 +1113,216 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
-                <td colspan="4" style="width:41.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <strong><em><span style="font-family:'Times New Roman'; ">&#xa0;</span></em></strong>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.05pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="6" style="width:78.35pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td style="width:270.15pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="16"
-                    style="width:224.5pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">Sikap dan Tata Nilai</span></strong>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">Attitude and Value rule</span></strong>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="4" style="width:41.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">&#xa0;</span></strong>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.05pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="6" style="width:78.35pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td style="width:270.15pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:28.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">1</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Bertakwa kepada Tuhan Yang Maha Esa dan mampu
-                            menunjukkan sikap religius</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Be cautious of God Almighty and capable of showing a
-                            religious attitude</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:34.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">2</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Menjunjung tinggi nilai kemanusiaan dalam
-                            menjalankan
-                            tugas berdasarkan agama, moral, dan etika</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To Carry out the highest of humanity values in
-                            implementing the duty based on the religion, morality and norm</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:50.25pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">3</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Berkontribusi dalam peningkatan mutu kehidupan
-                            bermasyarakat, berbangsa, bernegara, kemajuan peradaban berdasarkan Pancasila</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To contribute in establishment of quality of life in
-                            society, nation, state, the progress of civilization</span><span
-                            style="font-family:'Times New Roman'">&#xa0; </span><span
-                            style="font-family:'Times New Roman'">based on Pancasila</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:48.75pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">4</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Berperan sebagai warga negara yang bangga dan cinta
-                            tanah air, memiliki nasionalisme serta rasa tanggungjawab pada negara dan bangsa</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To play the role as citizens that are proud of and
-                            love
-                            about fatherland, having nationalism and responsibility toward state and nation</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:51pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">5</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Menghargai keanekaragaman budaya, pandangan, agama,
-                            dan
-                            kepercayaan, serta pendapat atau temuan orisinal orang lain</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To respect the variety of culture, view, religion,
-                            belief, and opinion or original finding of others</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:38.25pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">6</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Bekerja sama dan memiliki kepekaan sosial serta
-                            kepedulian terhadap masyarakat lingkungan</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To work together and to have a social sensitivity
-                            and
-                            care toward the environment society</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:30.75pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">7</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Taat hukum dan disiplin dalam kehidupan
-                            bermasyarakat
-                            dan bernegara</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Loyal and devoted to the law and discipline in
-                            society
-                            and nation life</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:25.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">8</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Menginternalisasi nilai, norma, dan etika
-                            akademik</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To internationalize the value, norm and academic
-                            ethic</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:37.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">9</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Menunjukkan sikap bertanggungjawab atas pekerjaan di
-                            bidang keahliannya secara mandiri</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To show the responsible attitude for the own skill
-                            work
-                            itself</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:29.25pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">10</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Menginternalisasi semangat kemandirian, kejuangan,
-                            dan
-                            kewirausahaan</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To internationalize the own spirit, the struggle ,
-                            and
-                            entrepreneurship</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="4" style="width:41.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.05pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="6" style="width:78.35pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td style="width:270.15pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="16"
-                    style="width:224.5pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">Kemampuan Kerja</span></strong>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">Working Ability</span></strong>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">&#xa0;</span></strong>
-                    </p>
-                </td>
-                <td colspan="3"
-                    style="width:36.4pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="3"
-                    style="width:36.05pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="6"
-                    style="width:78.35pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="16"
-                    style="width:224.5pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">Umum</span></strong>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">General</span></strong>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-top-style:solid; border-top-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">&#xa0;</span></strong>
-                    </p>
-                </td>
-                <td colspan="3"
-                    style="width:36.4pt; border-top-style:solid; border-top-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="3"
-                    style="width:36.05pt; border-top-style:solid; border-top-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="6"
-                    style="width:78.35pt; border-top-style:solid; border-top-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:90.75pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">1</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu menerapkan pemikiran logis, kritis,
-                            sistematis,
-                            dan inovatif dalam konteks pengembangan atau implementasi ilmu pengetahuan dan teknologi
-                            yang
-                            memperhatikan dan menerapkan nilai humaniora yang sesuai dengan bidang keahliannya</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to apply the logic, critical, systematic,
-                            innovative thinking in the context of development and implementation of science and
-                            technology
-                            that concern and apply the humanism values that is suitable with the own ability
-                            field</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:27pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">2</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu menunjukkan kinerja mandiri, bermutu, dan
-                            terukur</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to show the own qualified and measured
-                            working</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:152.25pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">3</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu mengkaji implikasi pengembangan atau
-                            implementasi
-                            ilmu pengetahuan teknologi yang memperhatikan dan menerapkan nilai humaniora sesuai dengan
-                            keahliannya berdasarkan kaidah, tata cara dan etika ilmiah dalam rangka menghasilkan solusi,
-                            gagasan, desain atau kritik seni, menyusun deskripsi saintifik hasil kajiannya dalam bentuk
-                            skripsi atau</span><span style="font-family:'Times New Roman'">&#xa0; </span><span
-                            style="font-family:'Times New Roman'">laporan tugas akhir, dan mengunggahnya dalam laman
-                            perguruan tinggi</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to investigate the development
-                            implementation or
-                            implementation of science and technology that concerns and apply the humanism value that is
-                            compatible with the capability based on role, order and scientific ethics for the sake of
-                            the
-                            result for solution, opinion, design or an art criticism, then arrange the scientific
-                            description of study result on the s1 thesis or</span><span
-                            style="font-family:'Times New Roman'">&#xa0; </span><span
-                            style="font-family:'Times New Roman'">the last paper and upload them on the university
-                            page</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:63pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">4</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Menyusun deskripsi saintifik hasil kajian tersebut
-                            di
-                            atas dalam bentuk skripsi atau laporan tugas akhir dan mengunggahnya dalam laman perguruan
-                            tinggi</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To arrange the scientific description of study
-                            result on
-                            the s1 thesis or the last paper and upload them on the university page</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:22.25pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">5</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu mengambil keputusan secara tepat dalam konteks
-                            penyelesaian masalah di bidang keahliannya, berdasarkan hasil analisis informasi dan
-                            data</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to take the right decision on the context of
-                            solving the problem in the own ability field base on the information analysis result and
-                            data</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:50.25pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">6</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu memelihara dan mengembangkan jaringan kerja
-                            dengan
-                            pembimbing, kolega, sejawat baik di dalam maupun di luar lembaganya</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to take care and develop the working net
-                            with
-                            the guide, colleague, not only inside of college but outside college as well</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:74.25pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">7</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu bertanggungjawab atas pencapaian hasil kerja
-                            kelompok dan melakukan supervisi dan evaluasi terhadap penyelesaian pekerjaan yang
-                            ditugaskan
-                            kepada pekerja yang berada di bawah tanggungjawabnya</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to be responsible for the target of working
-                            result as group and do the supervision and evaluation toward solving the work that is
-                            assigned
-                            to the worker on his/her responsibility</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:54pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">8</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu melakukan proses evaluasi diri terhadap
-                            kelompok
-                            kerja yang berada dibawah tanggung jawabnya, dan mampu mengelola pembelajaran secara
-                            mandiri</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to do the process of self evaluation toward
-                            the
-                            working group under his/her responsibility, and capable to handle the study itself</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:53.25pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">9</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu mendokumentasikan, menyimpan, mengamankan, dan
-                            menemukan kembali data untuk menjamin kesahihan dan mencegah plagiasi</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to take documentation, to save, to hand over
-                            and
-                            find out the data to guarantee the originality and to prohibit plagiarism</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="3"
-                    style="width:36.4pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="3"
-                    style="width:36.05pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="6"
-                    style="width:78.35pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="16"
-                    style="width:224.5pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">Khusus</span></strong>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">Specific</span></strong>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-top-style:solid; border-top-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">&#xa0;</span></strong>
-                    </p>
-                </td>
-                <td colspan="3"
-                    style="width:36.4pt; border-top-style:solid; border-top-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="3"
-                    style="width:36.05pt; border-top-style:solid; border-top-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="6"
-                    style="width:78.35pt; border-top-style:solid; border-top-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:39.75pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">10</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Memiliki kemampuan menggunakan beberapa bahasa
-                            pemrograman komputer</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To have the ability to use several computer program
-                            languages</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:63.75pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">11</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Memiliki kemampuan membangun/ mengembangkan
-                            perangkat
-                            lunak terutama pada tahap konstruksi dengan melakukan </span><em><span
-                                style="font-family:'Times New Roman'; ">coding</span></em><span
-                            style="font-family:'Times New Roman'"> dengan bahasa pemrograman tertentu</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To have the ability to establish or to develop the
-                            software especially on the construction level by doing coding with certain program
-                            language</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:78pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">12</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Memiliki kemampuan untuk mengimplementasikan
-                            spesifikasi
-                            kebutuhan dan desain proses bisnis ke komputer dengan menggunakan algoritma /logika dan
-                            bahasa
-                            pemprograman</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To have the ability to implement the specification
-                            of
-                            need and business process design to computer by using the algorithm (logic) and program
-                            languages</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:37.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">13</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu menganalisis, merancang dan membangun sistem
-                            jaringan komputer dan sistem keamanannya</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to analyze, arrange and develop the computer
-                            net
-                            system and the safety system</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:37.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">14</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu membuat dan mengawasi penggunaan jaringan pada
-                            perusahaan atau institusi</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to make and supervise the use of net on the
-                            company or institution</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:39.75pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">15</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu</span><span
-                            style="font-family:'Times New Roman'">&#xa0; </span><span
-                            style="font-family:'Times New Roman'">merancang dan mengimplementasikan sistem keamanan
-                            database</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to design and implement the database safety
-                            system</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">16</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu memenejemen basis data</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to manage the database</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:28.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">17</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Memiliki kemampuan untuk melakukan testing terhadap
-                            perangkat lunak</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To have the ability to do the test toward the
-                            software</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:74.25pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">18</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu menganalisis, merancang mengimplementasikan
-                            suatu
-                            sistem berbasis komputer secara efisien untuk menyelesaikan masalah, menggunakan pemrograman
-                            prosedural dan berorientasi objek</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to analyze, design, implement a system based
-                            on
-                            the computer efficiently to solve the problem, to use the procedural program oriented the
-                            object</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:41.25pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">19</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu merekomendasikan dan menerapkan metodologi
-                            terbaik
-                            dalam sebuah proyek software development</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to recommend and apply the best methodology
-                            in
-                            development of software project</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:48.75pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">20</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu mengkaji, mendesain dan mengaplikasikan
-                            kebutuhan
-                            organisasi atau perusahan ke dalam suatu sistem komputerisasi</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to investigate, design and apply the
-                            organization need or the company into a computer system</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:40.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">21</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu memberikan rekomendasi pemilihan sistem sesuai
-                            dengan kebutuhan organisasi bisnis</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to give recommendation of system choice that
-                            is
-                            suitable with the business organization need</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:15pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">22</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu mengamankan transaksi data</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to save data transaction</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:51.75pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">23</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu menerapkan prinsip pengembangan perangkat
-                            lunak,
-                            analisis, desain, coding</span><span style="font-family:'Times New Roman'">&#xa0;
-                        </span><span style="font-family:'Times New Roman'">dan testing</span><span
-                            style="font-family:'Times New Roman'">&#xa0; </span><span
-                            style="font-family:'Times New Roman'">perangkat lunak</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to apply the development principal of
-                            software,
-                            then analyze, design, code and test the software</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:35.25pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">24</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu melakukan</span><span
-                            style="font-family:'Times New Roman'">&#xa0; </span><span
-                            style="font-family:'Times New Roman'">pembagian tugas sumber daya manusia dan memonitoring
-                            kinerja</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to do duty distribution of human resources
-                            and
-                            monitor the working</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:29.25pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">25</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu memasarkan produk teknologi informasi</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to market the product of information
-                            technology</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="4" style="width:41.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.05pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="6" style="width:78.35pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td style="width:270.15pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="16"
-                    style="width:224.5pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">Penguasaan Pengetahuan</span></strong>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">Mastery of Knowledge</span></strong>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="4" style="width:41.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">&#xa0;</span></strong>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.05pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="6" style="width:78.35pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td style="width:270.15pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:30pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">1</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Menguasai konsep teoretis ilmu
-                            komputer/informatika</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To master the theoretical concept of information or
-                            computer</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:33pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">2</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Menguasai konsep terkait algoritma dan logika
-                            pemrograman</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To master the concept related to algorithm or logic
-                            program</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:39pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">3</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Menguasai kaidah dan prinsip pemrograman komputer
-                            minimal salah satu bahasa pemrograman</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To master the rules and computer program principal
-                            at
-                            least one program language</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:40.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">4</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Menguasai konsep dasar matematika untuk memodelkan
-                            dan
-                            menganalisa jaringan komputer</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To master the basic concept of mathematic to model
-                            and
-                            to analyze the net of computer</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:31.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">5</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Memahami teori dasar arsitektur dan
-                            jaringan</span><span style="font-family:'Times New Roman'">&#xa0; </span><span
-                            style="font-family:'Times New Roman'">Komputer</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To comprehend the architecture basic theory and net
-                            of
-                            computer</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">6</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Menguasai teori dan konsep basis data </span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To master the theory and concept of data base</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:38.25pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">7</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Menguasai</span><span
-                            style="font-family:'Times New Roman'">&#xa0;&#xa0; </span><span
-                            style="font-family:'Times New Roman'">pengetahuan ilmu komputer dan mampu beradaptasi
-                            terhadap
-                            perkembangan teknologi basis data</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To master the knowledge of computer science and
-                            capable
-                            to adapt toward the development of data base technology</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:26.25pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">8</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Menguasai teknologi database serta teknologi server
-                            dan
-                            storage</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To master the data base technology and server
-                            technology
-                            and storage</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:42.75pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">9</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Menguasai SDLC berdasarkan SWEBOK (</span><em><span
-                                style="font-family:'Times New Roman'; ">requirement, design, implementation,
-                                testing</span></em><span style="font-family:'Times New Roman'"> dan </span><em><span
-                                style="font-family:'Times New Roman'; ">maintenance</span></em><span
-                            style="font-family:'Times New Roman'">)</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To master SDLC based on SWEBOK (requirement, design,
-                            implementation, testing and maintenance)</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:25.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">10</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Menguasai metodologi </span><em><span
-                                style="font-family:'Times New Roman'; ">software development</span></em>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To master the methodology of software
-                            development</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:30pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">11</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Menguasai analisis masalah dan memberikan
-                            solusi</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To master the problem analysis and give the
-                            solution</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:24pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">12</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mengetahui perkembangan teknologi informasi
-                            terbaru.</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To find out the development of newest information
-                            technology</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:28.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">13</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Menguasai proses pengembangan perangkat lunak</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To master the development process of software</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:27.75pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">14</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Menguasai teknik pengamanan transaksi data</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To master the safety technical of data
-                            transaction</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:39pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">15</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Menguasai prinsip pengembangan perangkat lunak,
-                            analisis, desain, coding</span><span style="font-family:'Times New Roman'">&#xa0;
-                        </span><span style="font-family:'Times New Roman'">dan testing</span><span
-                            style="font-family:'Times New Roman'">&#xa0; </span><span
-                            style="font-family:'Times New Roman'">perangkat lunak</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To master the development principal of software,
-                            analysis, design, coding, and testing of software</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">16</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Menguasai teori kepemimpinan </span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To mater leadership theory</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:25.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">17</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Menguasai strategi pemasaran teknologi
-                            informasi</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To master the marketing strategy of information
-                            technology</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="4" style="width:41.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.05pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="6" style="width:78.35pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td style="width:270.15pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="16"
-                    style="width:224.5pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">Hak/Wewenang dan Tanggung
-                                Jawab</span></strong>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">Right and Responsibility</span></strong>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="4" style="width:41.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">&#xa0;</span></strong>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.05pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="6" style="width:78.35pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td style="width:270.15pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="16"
-                    style="width:224.5pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">Umum</span></strong>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">General</span></strong>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="4" style="width:41.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">&#xa0;</span></strong>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.05pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="6" style="width:78.35pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td style="width:270.15pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:49.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">1</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu mempublikasikan hasil tugas akhir atau karya /
-                            desain / seni / model yang dapat diakses oleh masyarakatak akademik</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to publish the last work result or
-                            work/design/art/model that can be accessed by the academic society</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:44.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">2</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu bertanggungjawab atas pekerjaan dibidang
-                            keahliannya secara mandiri dan dapat diberi tanggung jawab atas pencapaian hasil kerja
-                            institusi
-                            atau organisasi dengan mengutamakan keselamatan dan keamanan kerja</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to be responsible for the work in own skill
-                            itself and can be responsible for the target of work result of institution or organization
-                            by
-                            giving priority of safety and safe working</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:51.75pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">3</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu mengambil keputusan yang tepat dalam melakukan
-                            supervise dan evaluasi terhadap pekerjaan yang menjadi tanggungjawabnya</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to take the appropriate decision in doing
-                            supervision and evaluation toward the work that becomes the responsibility</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:26.25pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">4</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu mengelola pembelajaran diri sendiri</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to manage the study himself</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:50.25pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">5</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu mengkomunikasikan informasi dan ide melalui
-                            berbagai media kepada masyarakat sesuai dengan bidang keahliannya</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to communicate information and idea through
-                            several media to the society related to his/her ability field</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="4" style="width:41.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.05pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="6" style="width:78.35pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td style="width:270.15pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="16"
-                    style="width:224.5pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">Khusus</span></strong>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">Specific</span></strong>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="4" style="width:41.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">&#xa0;</span></strong>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.05pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="6" style="width:78.35pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td style="width:270.15pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">1</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu mengelola tim kerja</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to manage the working team</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:53.25pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">2</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu mengelola sumber daya mulai dari perencanaan,
-                            pengadaan, pengawasan sampai pengoptimalan pemanfaatan</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to manage the sources beginning from
-                            planning,
-                            implementing, supervising till the giving the optimal use</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:25.5pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">3</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu berkomunikasi dengan baik secara lisan maupun
-                            tulisan</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to communicate well both spoken or
-                            written</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:26.25pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">4</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu bekerja sebagai perorangan dan bagian suatu
-                            tim</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to work as individual or team</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="4" style="width:41.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.05pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="6" style="width:78.35pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td style="width:270.15pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="16"
-                    style="width:224.5pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">Penciri Perguruan Tinggi</span></strong>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">Characteristic of
-                                University</span></strong>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:13.5pt">
-                <td colspan="4" style="width:41.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <strong><span style="font-family:'Times New Roman'; ">&#xa0;</span></strong>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="3" style="width:36.05pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td colspan="6" style="width:78.35pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td style="width:270.15pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:39pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">1</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Menguasai, menerapkan dan menyampaikan nilai-nilai
-                            keislaman dalam setiap aspek kehidupan</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To master, apply and extend the Islamic values in
-                            every
-                            life aspects</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:26.25pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">2</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Memiliki kemampuan mengembangkan ide</span><span
-                            style="font-family:'Times New Roman'">&#xa0; </span><span
-                            style="font-family:'Times New Roman'">dan menjalan usaha yang syar'i</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">To have the ability to develop idea and to do the
-                            syar’i/Islamic business</span>
-                    </p>
-                </td>
-            </tr>
-            <tr style="height:26.25pt">
-                <td colspan="4"
-                    style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">3</span>
-                    </p>
-                </td>
-                <td colspan="12"
-                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Mampu mengembangkan potensi diri dan peka terhadap
-                            peluang</span>
-                    </p>
-                </td>
-                <td
-                    style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Capable to develop the self potential and sensitive
-                            toward the chance</span>
-                    </p>
-                </td>
-            </tr>
+
+            hasilCapaian: {!! json_encode($hasilCapaian) !!};
+            @foreach ($hasilCapaian as $hc)
+                @if (isset($hc->subs))
+                    @foreach ($hc->subs as $sub)
+                        <tr style="height:13.5pt">
+                            <td colspan="4" style="width:41.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                                <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
+                                    <strong><em><span style="font-family:'Times New Roman'; ">&#xa0;</span></em></strong>
+                                </p>
+                            </td>
+                            <td colspan="3" style="width:36.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
+                                <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
+                                    <span style="font-family:'Times New Roman'">&#xa0;</span>
+                                </p>
+                            </td>
+                            <td colspan="3" style="width:36.05pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
+                                <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                    <span style="font-family:'Times New Roman'">&#xa0;</span>
+                                </p>
+                            </td>
+                            <td colspan="6" style="width:78.35pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
+                                <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                    <span style="font-family:'Times New Roman'">&#xa0;</span>
+                                </p>
+                            </td>
+                            <td style="width:270.15pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
+                                <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                    <span style="font-family:'Times New Roman'">&#xa0;</span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr style="height:13.5pt">
+                            <td colspan="16"
+                                style="width:224.5pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
+                                <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                    <strong><span style="font-family:'Times New Roman'; ">{{$sub->judul}}</span></strong>
+                                </p>
+                            </td>
+                            <td
+                                style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
+                                <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                    <strong><span style="font-family:'Times New Roman'; ">{{$sub->judul_en}}</span></strong>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr style="height:13.5pt">
+                            <td colspan="4" style="width:41.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                                <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                    <strong><span style="font-family:'Times New Roman'; ">&#xa0;</span></strong>
+                                </p>
+                            </td>
+                            <td colspan="3" style="width:36.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
+                                <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
+                                    <span style="font-family:'Times New Roman'">&#xa0;</span>
+                                </p>
+                            </td>
+                            <td colspan="3" style="width:36.05pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
+                                <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                    <span style="font-family:'Times New Roman'">&#xa0;</span>
+                                </p>
+                            </td>
+                            <td colspan="6" style="width:78.35pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
+                                <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                    <span style="font-family:'Times New Roman'">&#xa0;</span>
+                                </p>
+                            </td>
+                            <td style="width:270.15pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
+                                <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                    <span style="font-family:'Times New Roman'">&#xa0;</span>
+                                </p>
+                            </td>
+                        </tr>
+
+                        @if (isset($sub->list))
+                            @foreach ($sub->list as $listKey => $listItem)
+                                <tr style="height:28.5pt">
+                                    <td colspan="4"
+                                        style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
+                                        <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
+                                            <span style="font-family:'Times New Roman'">{{ $listKey + 1 }}</span>
+                                        </p>
+                                    </td>
+                                    <td colspan="12"
+                                        style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
+                                        <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                            <span style="font-family:'Times New Roman'">{{ $listItem->teks }}</span>
+                                        </p>
+                                    </td>
+                                    <td
+                                        style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
+                                        <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                            <span style="font-family:'Times New Roman'">{{ $listItem->teks_en }}</span>
+                                        </p>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @elseif (isset($sub->subs))
+                            @foreach ($sub->subs as $subKey => $subItem)
+                                @if ($subKey != 0)
+                                <tr style="height:13.5pt">
+                                    <td colspan="4"
+                                        style="width:41.3pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
+                                        <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                            <strong><span style="font-family:'Times New Roman'; ">&#xa0;</span></strong>
+                                        </p>
+                                    </td>
+                                    <td colspan="3"
+                                        style="width:36.4pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
+                                        <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                            <span style="font-family:'Times New Roman'">&#xa0;</span>
+                                        </p>
+                                    </td>
+                                    <td colspan="3"
+                                        style="width:36.05pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
+                                        <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                            <span style="font-family:'Times New Roman'">&#xa0;</span>
+                                        </p>
+                                    </td>
+                                    <td colspan="6"
+                                        style="width:78.35pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
+                                        <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                            <span style="font-family:'Times New Roman'">&#xa0;</span>
+                                        </p>
+                                    </td>
+                                    <td
+                                        style="width:270.15pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
+                                        <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                            <span style="font-family:'Times New Roman'">&#xa0;</span>
+                                        </p>
+                                    </td>
+                                </tr>
+                                @endif
+                                <tr style="height:13.5pt">
+                                    <td colspan="16"
+                                        style="width:224.5pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
+                                        <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                            <strong><span style="font-family:'Times New Roman'; ">{{ $subItem->judul }}</span></strong>
+                                        </p>
+                                    </td>
+                                    <td
+                                        style="width:270.15pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
+                                        <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                            <strong><span style="font-family:'Times New Roman'; ">{{ $subItem->judul_en }}</span></strong>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr style="height:13.5pt">
+                                    <td colspan="4"
+                                        style="width:41.3pt; border-top-style:solid; border-top-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
+                                        <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                            <strong><span style="font-family:'Times New Roman'; ">&#xa0;</span></strong>
+                                        </p>
+                                    </td>
+                                    <td colspan="3"
+                                        style="width:36.4pt; border-top-style:solid; border-top-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
+                                        <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                            <span style="font-family:'Times New Roman'">&#xa0;</span>
+                                        </p>
+                                    </td>
+                                    <td colspan="3"
+                                        style="width:36.05pt; border-top-style:solid; border-top-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
+                                        <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                            <span style="font-family:'Times New Roman'">&#xa0;</span>
+                                        </p>
+                                    </td>
+                                    <td colspan="6"
+                                        style="width:78.35pt; border-top-style:solid; border-top-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
+                                        <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                            <span style="font-family:'Times New Roman'">&#xa0;</span>
+                                        </p>
+                                    </td>
+                                    <td
+                                        style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
+                                        <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                            <span style="font-family:'Times New Roman'">&#xa0;</span>
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                @if (isset($subItem->list))
+                                    @foreach ($subItem->list as $subItemListKey => $subItemListItem)
+                                        <tr style="height:90.75pt">
+                                            <td colspan="4"
+                                                style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
+                                                <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
+                                                    <span style="font-family:'Times New Roman'">{{ $subItemListKey + 1 }}</span>
+                                                </p>
+                                            </td>
+                                            <td colspan="12"
+                                                style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
+                                                <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                                    <span style="font-family:'Times New Roman'">{{ $subItemListItem->teks }}</span>
+                                                </p>
+                                            </td>
+                                            <td
+                                                style="width:270.15pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:middle">
+                                                <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
+                                                    <span style="font-family:'Times New Roman'">{{ $subItemListItem->teks_en }}</span>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+                            @endforeach
+                        @endif
+                    @endforeach
+                @endif
+            @endforeach
+
             <tr style="height:26.25pt">
                 <td colspan="2"
                     style="width:35.9pt; border-top-style:solid; border-top-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
@@ -3502,10 +1660,6 @@
             <span style="font-family:'Times New Roman'">&#xa0;</span>
         </p>
     </div>
-    <p style="bottom: 10px; right: 10px; position: absolute;"><a href="https://wordtohtml.net" target="_blank"
-            style="font-size:11px; color: #d0d0d0">Converted to HTML with WordToHTML.net</a></p>
-
-
 </body>
 
 </html>

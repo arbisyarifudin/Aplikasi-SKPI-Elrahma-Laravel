@@ -20,6 +20,7 @@ class MahasiswaController extends Controller
                 'ps.nama as prodi_nama',
                 'ps.nama_en as prodi_nama_en',
                 'ps.akreditasi',
+                'jp.id as jenjang_id',
                 'jp.nama as jenjang_nama',
                 'jp.nama_en as jenjang_nama_en',
             ]

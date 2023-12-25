@@ -66,10 +66,25 @@ class DokumenController extends Controller
         // $pengaturanHasilCapaian = isset($pengaturanHasilCapaian->nilai) ? json_decode($pengaturanHasilCapaian->nilai) : [];
         $pengaturanHasilCapaian = Skpi::getSettingByName('informasi_kualifikasi_dan_hasil_capaian');
 
+        // get mhs, prodi, jenjang from query string
+        $mhsId = request()->get('mhs');
+        $prodiId = request()->get('prodi');
+        $jenjangId = request()->get('jenjang');
+        // dd($mhsId);
+
+        // get $selectedJenjangId, $selectedProdiId, $selectedMahasiswaId
+        $selectedJenjangId = $jenjangId ? $jenjangId : old('jenjang_id');
+        $selectedProdiId = $prodiId ? $prodiId : old('program_studi_id');
+        $selectedMahasiswaId = $mhsId ? [$mhsId] : old('mahasiswa_ids');
+
         return view('admin.dokumen.create', [
             'noDokumen' => $noDokumen,
             'jenjang' => $jenjang,
-            'pengaturanHasilCapaian' => $pengaturanHasilCapaian
+            'pengaturanHasilCapaian' => $pengaturanHasilCapaian,
+            'mhsId' => $mhsId,
+            'selectedJenjangId' => $selectedJenjangId,
+            'selectedProdiId' => $selectedProdiId,
+            'selectedMahasiswaId' => $selectedMahasiswaId,
         ]);
     }
 
