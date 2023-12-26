@@ -269,7 +269,7 @@ class InitialDataSeeder extends Seeder
                         [
                             'nama' => 'logo_institusi',
                             'nilai' => '',
-                            'tipe' => 'image'
+                            'tipe' => 'url'
                         ],
                         [
                             'nama' => 'nama_institusi',
