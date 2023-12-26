@@ -273,12 +273,14 @@ class InitialDataSeeder extends Seeder
                         ],
                         [
                             'nama' => 'nama_institusi',
-                            'nilai' => 'SEKOLAH TINGGI MANAJEMEN INFORMATIKA DAN ILMU KOMPUTER <br>EL RAHMA YOGYAKARTA',
+                            // 'nilai' => 'SEKOLAH TINGGI MANAJEMEN INFORMATIKA DAN ILMU KOMPUTER <br>EL RAHMA YOGYAKARTA',
+                            'nilai' => 'Sekolah Tinggi Manajemen Informatika dan Ilmu Komputer El Rahma Yogyakarta',
                             'tipe' => 'editor'
                         ],
                         [
                             'nama' => 'nama_institusi_en',
-                            'nilai' => 'EL RAHMA COLLEGE OF INFORMATICS MANAGEMENT AND COMPUTER SCIENCE',
+                            // 'nilai' => 'EL RAHMA COLLEGE OF INFORMATICS MANAGEMENT AND COMPUTER SCIENCE',
+                            'nilai' => 'El Rahma College of Informatics Management and Computer Science',
                             'tipe' => 'text'
                         ],
                         [
