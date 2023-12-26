@@ -16,6 +16,8 @@ if (!function_exists('isRouteName')) {
     }
 }
 
+$logoAplikasiUrl = asset('storage/' . App\Utils\Skpi::getSettingByName('logo_aplikasi'));
+
 ?>
 
 <!DOCTYPE html>
@@ -67,7 +69,7 @@ if (!function_exists('isRouteName')) {
 
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
-                <img src="assets/img/logo.png" alt="">
+                <img src="{{ $logoAplikasiUrl }}" alt="Logo" class="img-fluid">
                 <span class="d-none d-lg-block">SKPI ELRAHMA</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>

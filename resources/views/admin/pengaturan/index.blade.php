@@ -78,10 +78,12 @@
 
                                         <label for="logo_aplikasi_url" class="form-label">Logo Aplikasi</label>
                                         <div class="row">
+                                            @if (!empty($pengaturan['logo_aplikasi']))
                                             <div class="col-md-4">
                                                 <img src="{{ $pengaturan['logo_aplikasi_url'] }}"
                                                     class="img-fluid img-thumbnail" alt="Logo Aplikasi">
                                             </div>
+                                            @endif
                                             <div class="col-md-8">
                                                 <div
                                                     class="input-group mb-3 @error('logo_aplikasi_url') is-invalid @enderror @error('logo_aplikasi') is-invalid @enderror">
