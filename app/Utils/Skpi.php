@@ -20,6 +20,27 @@ class Skpi {
         return $settingValue;
     }
 
+    static function updateSettingByName ($name, $value) {
+        $setting = \App\Models\Pengaturan::where('nama', $name)->first();
+        if (!$setting) {
+            return null;
+        }
+
+        $settingType = $setting->tipe;
+
+        if ($settingType == 'json') {
+            $value = json_encode($value);
+        }
+
+        var_dump($value);
+
+        $setting->update([
+            'nilai' => $value
+        ]);
+
+        return $setting;
+    }
+
     /**
      * @param $date
      * @return false|string

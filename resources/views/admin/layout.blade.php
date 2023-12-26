@@ -1,14 +1,17 @@
 <?php
-function isRouteName ($routeNames) {
-    if (is_array($routeNames)) {
-        foreach ($routeNames as $routeName) {
-            if (Route::currentRouteName() == $routeName) {
+
+if (!function_exists('isRouteName')) {
+    function isRouteName ($routeNames) {
+        if (is_array($routeNames)) {
+            foreach ($routeNames as $routeName) {
+                if (Route::currentRouteName() == $routeName) {
+                    return true;
+                }
+            }
+        } else {
+            if (Route::currentRouteName() == $routeNames) {
                 return true;
             }
-        }
-    } else {
-        if (Route::currentRouteName() == $routeNames) {
-            return true;
         }
     }
 }
@@ -80,13 +83,13 @@ function isRouteName ($routeNames) {
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
 
-                <li class="nav-item d-block d-lg-none">
+                <li class="nav-item d-blockx d-lg-none d-none">
                     <a class="nav-link nav-icon search-bar-toggle " href="#">
                         <i class="bi bi-search"></i>
                     </a>
                 </li><!-- End Search Icon-->
 
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown d-none">
 
                     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                         <i class="bi bi-bell"></i>
@@ -219,7 +222,8 @@ function isRouteName ($routeNames) {
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link  {{isRouteName('admin.dashboard') ? '' : 'collapsed'}}" href="{{ route('admin.dashboard') }}">
+                <a class="nav-link  {{isRouteName('admin.dashboard') ? '' : 'collapsed'}}"
+                    href="{{ route('admin.dashboard') }}">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
@@ -251,13 +255,17 @@ function isRouteName ($routeNames) {
                 </ul>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ isRouteName('admin.mahasiswa.index') ? '' : 'collapsed'  }}" href="{{ route('admin.mahasiswa.index') }}" class="{{ isRouteName('admin.mahasiswa.index') ? 'active' : ''  }}">
+                <a class="nav-link {{ isRouteName('admin.mahasiswa.index') ? '' : 'collapsed'  }}"
+                    href="{{ route('admin.mahasiswa.index') }}"
+                    class="{{ isRouteName('admin.mahasiswa.index') ? 'active' : ''  }}">
                     <i class="bi bi-person"></i>
                     <span>Mahasiswa</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ isRouteName('admin.dokumen.index') ? '' : 'collapsed'  }}" href="{{ route('admin.dokumen.index') }}" class="{{ isRouteName('admin.dokumen.index') ? 'active' : ''  }}">
+                <a class="nav-link {{ isRouteName('admin.dokumen.index') ? '' : 'collapsed'  }}"
+                    href="{{ route('admin.dokumen.index') }}"
+                    class="{{ isRouteName('admin.dokumen.index') ? 'active' : ''  }}">
                     <i class="bi bi-person"></i>
                     <span>Dokumen SKPI</span>
                 </a>
@@ -266,7 +274,9 @@ function isRouteName ($routeNames) {
             <li class="nav-heading">Menu Lain</li>
 
             <li class="nav-item">
-                <a class="nav-link {{ isRouteName('admin.pengaturan') ? '' : 'collapsed'  }}" href="{{ route('admin.pengaturan') }}" class="{{ isRouteName('admin.pengaturan') ? 'active' : ''  }}">
+                <a class="nav-link {{ isRouteName('admin.pengaturan.index') ? '' : 'collapsed'  }}"
+                    href="{{ route('admin.pengaturan.index') }}"
+                    class="{{ isRouteName('admin.pengaturan.index') ? 'active' : ''  }}">
                     <i class="bi bi-gear"></i>
                     <span>Pengaturan</span>
                 </a>

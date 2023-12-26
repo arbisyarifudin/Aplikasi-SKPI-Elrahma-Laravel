@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\JenjangController as AdminJenjangController;
 use App\Http\Controllers\Admin\ProdiController as AdminProdiController;
 use App\Http\Controllers\Admin\DokumenController as AdminDokumenController;
 
+use App\Http\Controllers\Admin\PengaturanController as AdminPengaturanController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,5 +62,6 @@ Route::group(['prefix' => 'admin'], function () {
 
 
     // pengaturan
-    Route::get('/pengaturan', [AdminPengaturanController::class, 'index'])->name('admin.pengaturan');
+    Route::get('/pengaturan', [AdminPengaturanController::class, 'index'])->name('admin.pengaturan.index');
+    Route::post('/pengaturan', [AdminPengaturanController::class, 'update'])->name('admin.pengaturan.update');
 });

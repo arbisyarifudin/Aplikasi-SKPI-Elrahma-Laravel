@@ -10,4 +10,9 @@ class Pengaturan extends Model
     use HasFactory;
 
     public $table = 'pengaturan';
+    public $fillable = [
+        'nama',
+        'tipe',
+        'nilai'
+    ];
 }

@@ -246,16 +246,21 @@ class InitialDataSeeder extends Seeder
                 }
             }
 
-            // data kategori pengaturan
+            // data kategori pengaturan dan pengaturan
             $kategoriPengaturan = [
                 [
-                    'nama' => 'Umum',
+                    'nama' => 'Dasar',
                     'pengaturan' => [
                         [
                             'nama' => 'nama_aplikasi',
                             'nilai' => 'Sistem Informasi SKPI',
                             'tipe' => 'text'
                         ],
+                        [
+                            'nama' => 'logo_aplikasi',
+                            'nilai' => '',
+                            'tipe' => 'url'
+                        ]
                     ],
                 ],
                 [
@@ -298,7 +303,8 @@ class InitialDataSeeder extends Seeder
                         ],
                         [
                             'nama' => 'jenis_pendidikan_en',
-                            'nilai' => 'Graduate from High School or Similar level of Education',
+                            // 'nilai' => 'Graduate from High School or Similar level of Education',
+                            'nilai' => 'College',
                             'tipe' => 'text'
                         ],
                         [
