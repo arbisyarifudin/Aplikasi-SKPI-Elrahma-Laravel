@@ -35,8 +35,6 @@ class Skpi
             $value = json_encode($value);
         }
 
-        var_dump($value);
-
         $setting->update([
             'nilai' => $value
         ]);
