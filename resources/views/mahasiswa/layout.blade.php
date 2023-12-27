@@ -178,25 +178,25 @@ $namaInstitusiSingkat = \App\Utils\Skpi::getSettingByName('nama_institusi_singka
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
                             <h6>{{ auth()->user()->name }}</h6>
-                            <span>Mahasiswaistrator</span>
+                            <span>Mahasiswa</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="{{ route('admin.user.profile') }}">
+                        {{-- <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('mahasiswa.user.profile') }}">
                                 <i class="bi bi-person"></i>
                                 <span>Profil</span>
                             </a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
-                        </li>
+                        </li> --}}
 
                         <li>
                             <a class="dropdown-item d-flex align-items-center"
-                                href="{{ route('admin.user.password') }}">
+                                href="{{ route('mahasiswa.user.password') }}">
                                 <i class="bi bi-gear"></i>
                                 <span>Akun</span>
                             </a>
