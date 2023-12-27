@@ -147,22 +147,34 @@
                                                 <span class="input-group-text">&nbsp;ID</span>
                                                 <input type="text" name="nama_institusi" class="form-control"
                                                     aria-describedby="nama_institusi-addon" class="form-control"
-                                                    value="{{ old('nama_institusi', $pengaturan['nama_institusi']) }}" autofocus
-                                                    placeholder="Nama program studi">
+                                                    value="{{ old('nama_institusi', $pengaturan['nama_institusi']) }}"
+                                                    autofocus placeholder="Nama program studi">
                                             </div>
                                             @error('nama_institusi')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
-                                            <div class="input-group mb-3 @error('nama_institusi_en') is-invalid @enderror">
+                                            <div
+                                                class="input-group mb-3 @error('nama_institusi_en') is-invalid @enderror">
                                                 <span class="input-group-text">EN</span>
                                                 <input type="text" name="nama_institusi_en" class="form-control"
                                                     aria-describedby="nama_institusi_en-addon" class="form-control"
-                                                    value="{{ old('nama_institusi_en', $pengaturan['nama_institusi_en']) }}" autofocus
-                                                    placeholder="Nama program studi (english)">
+                                                    value="{{ old('nama_institusi_en', $pengaturan['nama_institusi_en']) }}"
+                                                    autofocus placeholder="Nama program studi (english)">
                                             </div>
                                             @error('nama_institusi_en')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="nama_institusi_singkat" class="form-label">Nama Institusi
+                                                (singkat) <span class="text-danger">*</span></label>
+                                            <input type="text" name="nama_institusi_singkat" id="nama_institusi_singkat"
+                                                class="form-control @error('nama_institusi_singkat') is-invalid @enderror"
+                                                value="{{ old('nama_institusi_singkat', $pengaturan['nama_institusi_singkat']) }}" />
+                                            @error('nama_institusi_singkat')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -190,6 +202,93 @@
                                                     </button>
                                                 </div>
                                             </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="alamat_institusi" class="form-label">Alamat <span class="text-danger">*</span></label>
+                                            <textarea name="alamat_institusi" id="alamat_institusi"
+                                                class="form-control @error('alamat_institusi') is-invalid @enderror">{{ old('alamat_institusi', $pengaturan['alamat_institusi']) }}</textarea>
+                                            @error('alamat_institusi')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="email_institusi" class="form-label">Email <span class="text-danger">*</span></label>
+                                            <input type="text" name="email_institusi" id="email_institusi"
+                                                class="form-control @error('email_institusi') is-invalid @enderror"
+                                                value="{{ old('email_institusi', $pengaturan['email_institusi']) }}" />
+                                            @error('email_institusi')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="telepon_institusi" class="form-label">No. Telp <span class="text-danger">*</span></label>
+                                            <input type="text" name="telepon_institusi" id="telepon_institusi"
+                                                class="form-control @error('telepon_institusi') is-invalid @enderror"
+                                                value="{{ old('telepon_institusi', $pengaturan['telepon_institusi']) }}" />
+                                            @error('telepon_institusi')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="sk_pendirian_institusi" class="form-label">SK Pendirian <span class="text-danger">*</span></label>
+                                            <div
+                                                class="input-group mb-3 @error('sk_pendirian_institusi') is-invalid @enderror">
+                                                <span class="input-group-text">&nbsp;ID</span>
+                                                <input type="text" name="sk_pendirian_institusi" class="form-control"
+                                                    aria-describedby="sk_pendirian_institusi-addon" class="form-control"
+                                                    value="{{ old('sk_pendirian_institusi', $pengaturan['sk_pendirian_institusi']) }}"
+                                                    autofocus placeholder="Nama program studi">
+                                            </div>
+                                            @error('sk_pendirian_institusi')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3">
+                                            <div
+                                                class="input-group mb-3 @error('sk_pendirian_institusi_en') is-invalid @enderror">
+                                                <span class="input-group-text">EN</span>
+                                                <input type="text" name="sk_pendirian_institusi_en" class="form-control"
+                                                    aria-describedby="sk_pendirian_institusi_en-addon"
+                                                    class="form-control"
+                                                    value="{{ old('sk_pendirian_institusi_en', $pengaturan['sk_pendirian_institusi_en']) }}"
+                                                    autofocus placeholder="Nama program studi (english)">
+                                            </div>
+                                            @error('sk_pendirian_institusi_en')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="jenis_pendidikan" class="form-label">Jenis Pendidikan <span
+                                                    class="text-danger">*</span></label>
+                                            <div
+                                                class="input-group mb-3 @error('jenis_pendidikan') is-invalid @enderror">
+                                                <span class="input-group-text">&nbsp;ID</span>
+                                                <input type="text" name="jenis_pendidikan" class="form-control"
+                                                    aria-describedby="jenis_pendidikan-addon" class="form-control"
+                                                    value="{{ old('jenis_pendidikan', $pengaturan['jenis_pendidikan']) }}"
+                                                    autofocus placeholder="Nama program studi">
+                                            </div>
+                                            @error('jenis_pendidikan')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3">
+                                            <div
+                                                class="input-group mb-3 @error('jenis_pendidikan_en') is-invalid @enderror">
+                                                <span class="input-group-text">EN</span>
+                                                <input type="text" name="jenis_pendidikan_en" class="form-control"
+                                                    aria-describedby="jenis_pendidikan_en-addon" class="form-control"
+                                                    value="{{ old('jenis_pendidikan_en', $pengaturan['jenis_pendidikan_en']) }}"
+                                                    autofocus placeholder="Nama program studi (english)">
+                                            </div>
+                                            @error('jenis_pendidikan_en')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
 
                                         <hr />
