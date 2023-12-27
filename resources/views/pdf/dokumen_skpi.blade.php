@@ -39,8 +39,8 @@
     <div class="wrapper">
         <p style="margin-top: 0pt; margin-bottom:10pt">
             <span style="height:0pt; display:block; position:absolute; z-index:0">
-                <img src="{{ $pengaturan['logo'] }}" width="84" height="85" alt=""
-                    style="margin-top:-7.7pt; margin-left:233.45pt; position:absolute"></span><span
+                <img src="{{ $pengaturan['logo_institusi'] }}" width="84" height="85" alt=""
+                    style="margin-top:-7.7pt; margin-left:233.45pt; position:absolute;"></span><span
                 style="font-family:'Times New Roman'">&#xa0;</span>
         </p>
         <table cellspacing="0" cellpadding="0" style="width:516.25pt; margin-left:14.4pt; border-collapse:collapse">
@@ -63,7 +63,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td style="width:20.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
                         <strong><span style="font-family:'Times New Roman'; ">&#xa0;</span></strong>
@@ -115,7 +115,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td style="width:20.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt">
                         <strong><span style="font-family:'Times New Roman'; ">&#xa0;</span></strong>
@@ -161,7 +161,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td style="width:20.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt">
                         <em><span style="font-family:'Times New Roman'; ">&#xa0;</span></em>
@@ -188,7 +188,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td rowspan="2"
                     style="width:20.8pt; border-top-style:solid; border-top-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.4pt; padding-left:5.03pt; vertical-align:middle; background-color:#92d050">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -203,7 +203,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td colspan="16"
                     style="width:473.85pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom; background-color:#92d050">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -212,7 +212,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td style="width:20.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt">
                         <strong><em><span style="font-family:'Times New Roman'; ">&#xa0;</span></em></strong>
@@ -239,7 +239,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td rowspan="2"
                     style="width:20.8pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -259,7 +259,8 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
+                <td></td>
                 <td colspan="12"
                     style="width:160.1pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -273,7 +274,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td rowspan="2"
                     style="width:20.8pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -294,7 +295,8 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
+                <td></td>
                 <td colspan="12"
                     style="width:160.1pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -311,7 +313,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td rowspan="2"
                     style="width:20.8pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -331,7 +333,8 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
+                <td></td>
                 <td colspan="12"
                     style="width:160.1pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -345,7 +348,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td rowspan="2"
                     style="width:20.8pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -365,7 +368,8 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
+                <td></td>
                 <td colspan="12"
                     style="width:160.1pt; border-right-style:solid; border-right-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -379,7 +383,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td rowspan="2"
                     style="width:20.8pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -399,7 +403,8 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
+                <td></td>
                 <td colspan="12"
                     style="width:160.1pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -413,7 +418,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td rowspan="2"
                     style="width:20.8pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -433,7 +438,8 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
+                <td></td>
                 <td colspan="12"
                     style="width:160.1pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -447,7 +453,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td rowspan="2"
                     style="width:20.8pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -467,7 +473,8 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
+                <td></td>
                 <td colspan="12"
                     style="width:160.1pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -481,7 +488,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td rowspan="2"
                     style="width:20.8pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -502,7 +509,8 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
+                <td></td>
                 <td colspan="12"
                     style="width:160.1pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -518,7 +526,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td style="width:20.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt">
                         <span style="font-family:'Times New Roman'">&#xa0;</span>
@@ -545,7 +553,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td rowspan="2"
                     style="width:20.8pt; border-top-style:solid; border-top-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.4pt; padding-left:5.03pt; vertical-align:middle; background-color:#92d050">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -560,7 +568,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td colspan="16"
                     style="width:473.85pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom; background-color:#92d050">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -570,7 +578,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td style="width:20.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt">
                         <strong><em><span style="font-family:'Times New Roman'; ">&#xa0;</span></em></strong>
@@ -597,7 +605,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td rowspan="2"
                     style="width:20.8pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -618,7 +626,8 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
+                <td></td>
                 <td colspan="12"
                     style="width:160.1pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -633,7 +642,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td rowspan="2"
                     style="width:20.8pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -654,7 +663,8 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
+                <td></td>
                 <td colspan="12"
                     style="width:160.1pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -669,7 +679,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td rowspan="2"
                     style="width:20.8pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -689,7 +699,8 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
+                <td></td>
                 <td colspan="12"
                     style="width:160.1pt; border-right-style:solid; border-right-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -703,7 +714,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td rowspan="2"
                     style="width:20.8pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -723,7 +734,8 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
+                <td></td>
                 <td colspan="12"
                     style="width:160.1pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -738,7 +750,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td rowspan="2"
                     style="width:20.8pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -758,7 +770,8 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
+                <td></td>
                 <td colspan="12"
                     style="width:160.1pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -772,7 +785,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td rowspan="2"
                     style="width:20.8pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -792,7 +805,8 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
+                <td></td>
                 <td colspan="12"
                     style="width:160.1pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -807,7 +821,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td rowspan="2"
                     style="width:20.8pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -827,7 +841,8 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
+                <td></td>
                 <td colspan="12"
                     style="width:160.1pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -842,7 +857,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td rowspan="2"
                     style="width:20.8pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -862,7 +877,8 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
+                <td></td>
                 <td colspan="12"
                     style="width:160.1pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -876,7 +892,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td rowspan="2"
                     style="width:20.8pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -896,7 +912,8 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
+                <td></td>
                 <td colspan="12"
                     style="width:160.1pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -910,7 +927,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td rowspan="2"
                     style="width:20.8pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -930,7 +947,8 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
+                <td></td>
                 <td colspan="12"
                     style="width:160.1pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -944,7 +962,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td rowspan="2"
                     style="width:20.8pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -964,7 +982,8 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
+                <td></td>
                 <td colspan="12"
                     style="width:160.1pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -979,7 +998,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td rowspan="2"
                     style="width:20.8pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -999,7 +1018,8 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
+                <td></td>
                 <td colspan="12"
                     style="width:160.1pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -1013,7 +1033,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td style="width:20.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt">
                         <span style="font-family:'Times New Roman'">&#xa0;</span>
@@ -1040,7 +1060,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td colspan="4" rowspan="2"
                     style="width:41.3pt; border-top-style:solid; border-top-width:0.75pt; border-left-style:solid; border-left-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.4pt; padding-left:5.03pt; vertical-align:middle; background-color:#92d050">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -1056,7 +1076,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td colspan="13"
                     style="width:453.35pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom; background-color:#92d050">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -1066,7 +1086,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td colspan="4" style="width:41.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt">
                         <strong><em><span style="font-family:'Times New Roman'; ">&#xa0;</span></em></strong>
@@ -1093,7 +1113,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td colspan="4"
                     style="width:41.3pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -1114,11 +1134,10 @@
                 </td>
             </tr>
 
-            hasilCapaian: {!! json_encode($hasilCapaian) !!};
             @foreach ($hasilCapaian as $hc)
                 @if (isset($hc->subs))
                     @foreach ($hc->subs as $sub)
-                        <tr style="height:13.5pt">
+                        <tr style="height:13.5pt; page-break-inside: avoid;">
                             <td colspan="4" style="width:41.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                                 <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
                                     <strong><em><span style="font-family:'Times New Roman'; ">&#xa0;</span></em></strong>
@@ -1145,7 +1164,7 @@
                                 </p>
                             </td>
                         </tr>
-                        <tr style="height:13.5pt">
+                        <tr style="height:13.5pt; page-break-inside: avoid;">
                             <td colspan="16"
                                 style="width:224.5pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                                 <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -1159,7 +1178,7 @@
                                 </p>
                             </td>
                         </tr>
-                        <tr style="height:13.5pt">
+                        <tr style="height:13.5pt; page-break-inside: avoid;">
                             <td colspan="4" style="width:41.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                                 <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
                                     <strong><span style="font-family:'Times New Roman'; ">&#xa0;</span></strong>
@@ -1213,7 +1232,7 @@
                         @elseif (isset($sub->subs))
                             @foreach ($sub->subs as $subKey => $subItem)
                                 @if ($subKey != 0)
-                                <tr style="height:13.5pt">
+                                <tr style="height:13.5pt; page-break-inside: avoid;">
                                     <td colspan="4"
                                         style="width:41.3pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
                                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -1246,7 +1265,7 @@
                                     </td>
                                 </tr>
                                 @endif
-                                <tr style="height:13.5pt">
+                                <tr style="height:13.5pt; page-break-inside: avoid;">
                                     <td colspan="16"
                                         style="width:224.5pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -1260,7 +1279,7 @@
                                         </p>
                                     </td>
                                 </tr>
-                                <tr style="height:13.5pt">
+                                <tr style="height:13.5pt; page-break-inside: avoid;">
                                     <td colspan="4"
                                         style="width:41.3pt; border-top-style:solid; border-top-width:0.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle">
                                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
@@ -1364,7 +1383,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td colspan="3" style="width:36.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
                         <strong><em><span style="font-family:'Times New Roman'; ">&#xa0;</span></em></strong>
@@ -1395,7 +1414,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td colspan="3"
                     style="width:36.4pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                     <ol type="1" style="margin:0pt; padding-left:0pt">
@@ -1476,7 +1495,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td colspan="4" style="width:41.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt">
                         <span style="font-family:'Times New Roman'">&#xa0;</span>
@@ -1506,7 +1525,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td colspan="4" style="width:41.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt">
                         <span style="font-family:'Times New Roman'">&#xa0;</span>
@@ -1539,7 +1558,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td colspan="4" style="width:41.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt">
                         <span style="font-family:'Times New Roman'">&#xa0;</span>
@@ -1566,7 +1585,7 @@
                     </p>
                 </td>
             </tr>
-            <tr style="height:13.5pt">
+            <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td colspan="4" style="width:41.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt">
                         <span style="font-family:'Times New Roman'">&#xa0;</span>

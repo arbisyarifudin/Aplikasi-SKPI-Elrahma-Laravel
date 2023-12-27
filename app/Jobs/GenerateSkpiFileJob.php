@@ -82,6 +82,17 @@ class GenerateSkpiFileJob implements ShouldQueue
             $mahasiswa->tanggal_lahir = $tanggalLahirIndo;
             $mahasiswa->tanggal_lahir_en = $tanggalLahirEn;
 
+            $logoInstitusi = Skpi::getSettingByName('logo_institusi');
+            $logoInstitusiUrl = asset('storage/' . $logoInstitusi);
+            $logoInstitusiExtension = pathinfo($logoInstitusiUrl, PATHINFO_EXTENSION);
+            $logoInstitusiMimeType = 'image/jpeg';
+
+            if ($logoInstitusiExtension === 'png') {
+                $logoInstitusiMimeType = 'image/png';
+            }
+
+            $logoInstitusiBase64String = 'data:' . $logoInstitusiMimeType . ';base64,' . base64_encode(file_get_contents($logoInstitusiUrl));
+
             $pdfView = view('pdf.dokumen_skpi', [
                 'dokumenSkpi' => $dokumenSkpi,
                 'mahasiswa' => $mahasiswa,
@@ -97,7 +108,8 @@ class GenerateSkpiFileJob implements ShouldQueue
                     'sk_pendirian_institusi_en' => Skpi::getSettingByName('sk_pendirian_institusi_en'),
                     'jenis_pendidikan' => Skpi::getSettingByName('jenis_pendidikan'),
                     'jenis_pendidikan_en' => Skpi::getSettingByName('jenis_pendidikan_en'),
-                    'logo' => 'data:image/jpeg;base64,' . base64_encode(file_get_contents(public_path('images/elrahma.jpeg'))),
+                    // 'logo_institusi' => 'data:image/jpeg;base64,' . base64_encode(file_get_contents(public_path('images/elrahma.jpeg'))),
+                    'logo_institusi' => $logoInstitusiBase64String,
                 ]
             ])->render();
 
