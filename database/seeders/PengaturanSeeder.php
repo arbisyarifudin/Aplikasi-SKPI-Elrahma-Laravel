@@ -27,12 +27,12 @@ class PengaturanSeeder extends Seeder
                 'pengaturan' => [
                     [
                         'nama' => 'nama_aplikasi',
-                        'nilai' => 'Sistem Informasi SKPI',
+                        'nilai' => 'SKPI ELRAHMA',
                         'tipe' => 'text'
                     ],
                     [
                         'nama' => 'logo_aplikasi',
-                        'nilai' => '',
+                        'nilai' => 'images/elrahma.jpeg',
                         'tipe' => 'url'
                     ]
                 ],
@@ -42,7 +42,7 @@ class PengaturanSeeder extends Seeder
                 'pengaturan' => [
                     [
                         'nama' => 'logo_institusi',
-                        'nilai' => '',
+                        'nilai' => 'images/elrahma.jpeg',
                         'tipe' => 'url'
                     ],
                     [
