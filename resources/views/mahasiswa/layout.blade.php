@@ -72,7 +72,7 @@ $namaInstitusiSingkat = \App\Utils\Skpi::getSettingByName('nama_institusi_singka
         <div class="d-flex align-items-center justify-content-between">
             <a href="index.html" class="logo d-flex align-items-center">
                 <img src="{{ $logoAplikasiUrl }}" alt="Logo" class="img-fluid">
-                <span class="d-none d-lg-block">SKPI ELRAHMA</span>
+                <span class="d-none d-lg-block">{{ $namaAplikasi }}</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
@@ -195,7 +195,8 @@ $namaInstitusiSingkat = \App\Utils\Skpi::getSettingByName('nama_institusi_singka
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="{{ route('admin.user.password') }}">
+                            <a class="dropdown-item d-flex align-items-center"
+                                href="{{ route('admin.user.password') }}">
                                 <i class="bi bi-gear"></i>
                                 <span>Akun</span>
                             </a>
@@ -239,7 +240,7 @@ $namaInstitusiSingkat = \App\Utils\Skpi::getSettingByName('nama_institusi_singka
                     href="{{ route('admin.dokumen.index') }}"
                     class="{{ isRouteName('admin.dokumen.index') ? 'active' : ''  }}">
                     <i class="bi bi-person"></i>
-                    <span>Dokumen SKPI</span>
+                    <span>Profil</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -250,8 +251,16 @@ $namaInstitusiSingkat = \App\Utils\Skpi::getSettingByName('nama_institusi_singka
                     <span>Prestasi</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ isRouteName('admin.dokumen.index') ? '' : 'collapsed'  }}"
+                    href="{{ route('admin.dokumen.index') }}"
+                    class="{{ isRouteName('admin.dokumen.index') ? 'active' : ''  }}">
+                    <i class="bi bi-person"></i>
+                    <span>Dokumen SKPI</span>
+                </a>
+            </li>
 
-            <li class="nav-heading">Menu Lain</li>
+            {{-- <li class="nav-heading">Menu Lain</li>
             <li class="nav-item">
                 <a class="nav-link {{ isRouteName('admin.pengaturan.index') ? '' : 'collapsed'  }}"
                     href="{{ route('admin.pengaturan.index') }}"
@@ -259,7 +268,7 @@ $namaInstitusiSingkat = \App\Utils\Skpi::getSettingByName('nama_institusi_singka
                     <i class="bi bi-gear"></i>
                     <span>Pengaturan</span>
                 </a>
-            </li>
+            </li> --}}
 
         </ul>
 

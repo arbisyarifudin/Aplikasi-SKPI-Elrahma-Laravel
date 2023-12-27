@@ -85,12 +85,18 @@ class PengaturanSeeder extends Seeder
                     ],
                     [
                         'nama' => 'alamat_institusi',
-                        'nilai' => 'Jl. Kaliurang KM. 100 No. 1, Sinduadi, Mlati, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55284',
+                        'nilai' => 'Jalan Sisingamangaraja No.76, Brontokusuman, Kota Yogyakarta, DIY, Indonesia
+                        Kodepos 55153',
                         'tipe' => 'textarea'
                     ],
                     [
                         'nama' => 'telepon_institusi',
                         'nilai' => '(0274) 486664',
+                        'tipe' => 'text'
+                    ],
+                    [
+                        'nama' => 'hp_institusi',
+                        'nilai' => '+62-8112929757',
                         'tipe' => 'text'
                     ],
                     [
