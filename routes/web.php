@@ -36,7 +36,7 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 /* ADMIN */
-Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth','role:admin'], 'prefix' => 'admin'], function () {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
 
@@ -84,6 +84,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
 });
 
 /* MAHASISWA */
-Route::group(['middleware' => 'auth', 'prefix' => 'mahasiswa'], function () {
+Route::group(['middleware' => ['auth', 'role:mahasiswa'], 'prefix' => 'mahasiswa'], function () {
     Route::get('/', [MahasiswaDashboardController::class, 'index'])->name('mahasiswa.dashboard');
 });
