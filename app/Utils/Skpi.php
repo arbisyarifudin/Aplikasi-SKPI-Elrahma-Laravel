@@ -2,9 +2,11 @@
 
 namespace App\Utils;
 
-class Skpi {
+class Skpi
+{
 
-    static function getSettingByName ($name) {
+    static function getSettingByName($name)
+    {
         $setting = \App\Models\Pengaturan::where('nama', $name)->first();
         if (!$setting) {
             return null;
@@ -20,7 +22,8 @@ class Skpi {
         return $settingValue;
     }
 
-    static function updateSettingByName ($name, $value) {
+    static function updateSettingByName($name, $value)
+    {
         $setting = \App\Models\Pengaturan::where('nama', $name)->first();
         if (!$setting) {
             return null;
@@ -41,14 +44,22 @@ class Skpi {
         return $setting;
     }
 
-    static function getAssetUrl ($path) {
+    static function getAssetUrl($path)
+    {
 
         // is valid url
         if (filter_var($path, FILTER_VALIDATE_URL)) {
             return $path;
         }
 
-        // is local asset?
+        // if not valid url?
+
+        // check if path is storage
+        if (strpos($path, 'storage') !== false) {
+            return asset($path);
+        }
+
+        // if not storage
         return asset($path);
     }
 
@@ -57,7 +68,8 @@ class Skpi {
      * @return false|string
      * @example 2021-10-29-> 29 Oktober 2021
      */
-    static function dateIndo ($date) {
+    static function dateIndo($date)
+    {
 
         // $date = '2021-10-29';
         $date = strtotime($date);
@@ -79,5 +91,4 @@ class Skpi {
 
         return $date;
     }
-
 }

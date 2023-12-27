@@ -16,7 +16,7 @@ if (!function_exists('isRouteName')) {
     }
 }
 
-$logoAplikasiUrl = asset('storage/' . \App\Utils\Skpi::getSettingByName('logo_aplikasi'));
+$logoAplikasiUrl =  \App\Utils\Skpi::getAssetUrl(\App\Utils\Skpi::getSettingByName('logo_aplikasi'));
 $namaAplikasi = \App\Utils\Skpi::getSettingByName('nama_aplikasi');
 $namaInstitusiSingkat = \App\Utils\Skpi::getSettingByName('nama_institusi_singkat');
 

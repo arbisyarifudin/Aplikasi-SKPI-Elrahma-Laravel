@@ -31,11 +31,13 @@ class PengaturanController extends Controller
         ];
 
         if (isset($dataPengaturan['logo_aplikasi']) && $dataPengaturan['logo_aplikasi'] != '') {
-            $dataPengaturan['logo_aplikasi_url'] = asset('storage/' . $dataPengaturan['logo_aplikasi']);
+            // $dataPengaturan['logo_aplikasi_url'] = asset('storage/' . $dataPengaturan['logo_aplikasi']);
+            $dataPengaturan['logo_aplikasi_url'] = \App\Utils\Skpi::getAssetUrl($dataPengaturan['logo_aplikasi']);
         }
 
         if (isset($dataPengaturan['logo_institusi']) && $dataPengaturan['logo_institusi'] != '') {
-            $dataPengaturan['logo_institusi_url'] = asset('storage/' . $dataPengaturan['logo_institusi']);
+            // $dataPengaturan['logo_institusi_url'] = asset('storage/' . $dataPengaturan['logo_institusi']);
+            $dataPengaturan['logo_institusi_url'] = \App\Utils\Skpi::getAssetUrl($dataPengaturan['logo_institusi']);
         }
 
         // dd($dataPengaturan);
@@ -54,7 +56,7 @@ class PengaturanController extends Controller
             return $this->__updateDasar($request);
         } else if ($category == 'institusi') {
             return $this->__updateInstitusi($request);
-        }  else {
+        } else {
             return redirect()->route('admin.pengaturan.index')->with('error', 'Kategori pengaturan tidak ditemukan');
         }
     }
@@ -97,7 +99,7 @@ class PengaturanController extends Controller
 
             $namaFile = time() . '.' . $logoAplikasi->getClientOriginalExtension();
             $logoAplikasi->storeAs('public/settings', $namaFile);
-            $dataPengaturan['logo_aplikasi'] = 'settings/' . $namaFile;
+            $dataPengaturan['logo_aplikasi'] = 'storage/settings/' . $namaFile;
         }
 
         foreach ($dataPengaturan as $key => $value) {
@@ -107,7 +109,8 @@ class PengaturanController extends Controller
         return redirect()->route('admin.pengaturan.index')->with('success', 'Pengaturan berhasil diperbarui');
     }
 
-    private function __updateInstitusi(Request $request) {
+    private function __updateInstitusi(Request $request)
+    {
         $request->validate([
             'nama_institusi' => 'required',
             'nama_institusi_en' => 'required',
@@ -171,7 +174,7 @@ class PengaturanController extends Controller
 
             $namaFile = time() . '.' . $logoInstitusi->getClientOriginalExtension();
             $logoInstitusi->storeAs('public/settings', $namaFile);
-            $dataPengaturan['logo_institusi'] = 'settings/' . $namaFile;
+            $dataPengaturan['logo_institusi'] = 'storage/settings/' . $namaFile;
         }
 
         foreach ($dataPengaturan as $key => $value) {
@@ -180,5 +183,4 @@ class PengaturanController extends Controller
 
         return redirect()->route('admin.pengaturan.index')->with('success', 'Pengaturan berhasil diperbarui');
     }
-
 }
