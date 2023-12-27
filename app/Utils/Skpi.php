@@ -41,6 +41,17 @@ class Skpi {
         return $setting;
     }
 
+    static function getAssetUrl ($path) {
+
+        // is valid url
+        if (filter_var($path, FILTER_VALIDATE_URL)) {
+            return $path;
+        }
+
+        // is local asset?
+        return asset($path);
+    }
+
     /**
      * @param $date
      * @return false|string

@@ -13,6 +13,9 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         //
+        if (env('APP_ENV') === 'local') {
+            // $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+        }
     }
 
     /**
@@ -21,7 +24,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
-
         Schema::defaultStringLength(191);
     }
 }

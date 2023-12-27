@@ -29,7 +29,7 @@ $namaInstitusiSingkat = \App\Utils\Skpi::getSettingByName('nama_institusi_singka
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>@yield('title')Admin Sistem Informasi SKPI</title>
+    <title>@yield('title')Mahasiswa Sistem Informasi SKPI</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -56,7 +56,7 @@ $namaInstitusiSingkat = \App\Utils\Skpi::getSettingByName('nama_institusi_singka
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
     <!-- =======================================================
-  * Template Name: NiceAdmin
+  * Template Name: NiceMahasiswa
   * Updated: Sep 18 2023 with Bootstrap v5.3.2
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
   * Author: BootstrapMade.com
@@ -178,7 +178,7 @@ $namaInstitusiSingkat = \App\Utils\Skpi::getSettingByName('nama_institusi_singka
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
                             <h6>{{ auth()->user()->name }}</h6>
-                            <span>Administrator</span>
+                            <span>Mahasiswaistrator</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -234,38 +234,6 @@ $namaInstitusiSingkat = \App\Utils\Skpi::getSettingByName('nama_institusi_singka
             </li>
 
             <li class="nav-heading">Menu Utama</li>
-
-            <li class="nav-item">
-                <a class="nav-link {{isRouteName(['admin.jenjang.index', 'admin.prodi.index']) ? '' : 'collapsed'}}"
-                    data-bs-target="#master-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>Data Master</span><i
-                        class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="master-nav"
-                    class="nav-content collapse {{ isRouteName(['admin.jenjang.index', 'admin.prodi.index']) ? 'show' : '' }}"
-                    data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="{{ route('admin.jenjang.index') }}"
-                            class="{{ isRouteName('admin.jenjang.index') ? 'active' : ''  }}">
-                            <i class="bi bi-circle"></i><span>Jenjang</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.prodi.index') }}"
-                            class="{{ isRouteName('admin.prodi.index') ? 'active' : ''  }}">
-                            <i class="bi bi-circle"></i><span>Program Studi</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ isRouteName('admin.mahasiswa.index') ? '' : 'collapsed'  }}"
-                    href="{{ route('admin.mahasiswa.index') }}"
-                    class="{{ isRouteName('admin.mahasiswa.index') ? 'active' : ''  }}">
-                    <i class="bi bi-person"></i>
-                    <span>Mahasiswa</span>
-                </a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link {{ isRouteName('admin.dokumen.index') ? '' : 'collapsed'  }}"
                     href="{{ route('admin.dokumen.index') }}"
@@ -274,9 +242,16 @@ $namaInstitusiSingkat = \App\Utils\Skpi::getSettingByName('nama_institusi_singka
                     <span>Dokumen SKPI</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ isRouteName('admin.dokumen.index') ? '' : 'collapsed'  }}"
+                    href="{{ route('admin.dokumen.index') }}"
+                    class="{{ isRouteName('admin.dokumen.index') ? 'active' : ''  }}">
+                    <i class="bi bi-award"></i>
+                    <span>Prestasi</span>
+                </a>
+            </li>
 
             <li class="nav-heading">Menu Lain</li>
-
             <li class="nav-item">
                 <a class="nav-link {{ isRouteName('admin.pengaturan.index') ? '' : 'collapsed'  }}"
                     href="{{ route('admin.pengaturan.index') }}"

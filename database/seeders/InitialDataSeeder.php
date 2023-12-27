@@ -36,8 +36,9 @@ class InitialDataSeeder extends Seeder
             $admins = [
                 [
                     'name' => 'Admin',
+                    'uid' => 'admin',
                     'email' => 'admin@mail.com',
-                    'password' => bcrypt('admin'),
+                    'password' => \Hash::make('admin'),
                     'role' => 'admin',
                 ]
             ];
@@ -159,7 +160,7 @@ class InitialDataSeeder extends Seeder
                     'tanggal_lahir' => '1995-04-05',
                     'alamat' => 'Jl. Sudirman',
                     'no_telepon' => '081234567891',
-                    'email' => 'mahasiswa@mail.com',
+                    'email' => 'mahasiswa2@mail.com',
                     'jenjang_pendidikan' => 'S1',
                     'program_studi' => 'Informatika',
                     'tahun_masuk' => '2015',
@@ -174,7 +175,7 @@ class InitialDataSeeder extends Seeder
                     'tanggal_lahir' => '1995-04-05',
                     'alamat' => 'Jl. Sudirman',
                     'no_telepon' => '081234567891',
-                    'email' => 'mahasiswa@mail.com',
+                    'email' => 'mahasiswa2@mail.com',
                     'jenjang_pendidikan' => 'S2',
                     'program_studi' => 'Manajemen Informasi',
                     'tahun_masuk' => '2020',
@@ -187,11 +188,12 @@ class InitialDataSeeder extends Seeder
 
                 $user = \App\Models\User::firstOrCreate([
                     'email' => $mhs['email'],
+                    'uid' => $mhs['nim'], // uid = nim
                     'role' => 'mahasiswa',
                 ], [
                     'name' => $mhs['nama'],
                     'email' => $mhs['email'],
-                    'password' => bcrypt($mhs['nim']),
+                    'password' => \Hash::make($mhs['nim']),
                     'role' => 'mahasiswa',
                 ]);
 
@@ -258,7 +260,7 @@ class InitialDataSeeder extends Seeder
                         ],
                         [
                             'nama' => 'logo_aplikasi',
-                            'nilai' => '',
+                            'nilai' => 'images/elrahma.jpeg',
                             'tipe' => 'url'
                         ]
                     ],
@@ -268,7 +270,7 @@ class InitialDataSeeder extends Seeder
                     'pengaturan' => [
                         [
                             'nama' => 'logo_institusi',
-                            'nilai' => '',
+                            'nilai' => 'images/elrahma.jpeg',
                             'tipe' => 'url'
                         ],
                         [

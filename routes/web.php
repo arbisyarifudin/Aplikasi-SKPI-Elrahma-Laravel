@@ -2,13 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AuthController as AuthController;
+
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\MahasiswaController as AdminMahasiswaController;
 use App\Http\Controllers\Admin\JenjangController as AdminJenjangController;
 use App\Http\Controllers\Admin\ProdiController as AdminProdiController;
 use App\Http\Controllers\Admin\DokumenController as AdminDokumenController;
-
 use App\Http\Controllers\Admin\PengaturanController as AdminPengaturanController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+
+use App\Http\Controllers\Mahasiswa\DashboardController as MahasiswaDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,11 +27,24 @@ use App\Http\Controllers\Admin\PengaturanController as AdminPengaturanController
 
 Route::get('/', function () {
     return view('home');
+})->name('home');
+
+/* AUTH */
+Route::group(['prefix' => 'auth'], function () {
+    Route::post('login', [AuthController::class, 'postLogin'])->name('auth.post-login');
+    Route::get('logout', [AuthController::class, 'logout'])->name('auth.logout');
 });
 
 /* ADMIN */
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
+
+    // user
+    Route::get('/user/profil', [AdminUserController::class, 'profile'])->name('admin.user.profile');
+    Route::put('/user/profil', [AdminUserController::class, 'updateProfile'])->name('admin.user.update-profile');
+    Route::get('/user/kata-sandi', [AdminUserController::class, 'password'])->name('admin.user.password');
+    Route::put('/user/kata-sandi', [AdminUserController::class, 'updatePassword'])->name('admin.user.update-password');
 
     // mahasiswa
     Route::get('/mahasiswa', [AdminMahasiswaController::class, 'index'])->name('admin.mahasiswa.index');
@@ -64,4 +81,9 @@ Route::group(['prefix' => 'admin'], function () {
     // pengaturan
     Route::get('/pengaturan', [AdminPengaturanController::class, 'index'])->name('admin.pengaturan.index');
     Route::post('/pengaturan', [AdminPengaturanController::class, 'update'])->name('admin.pengaturan.update');
+});
+
+/* MAHASISWA */
+Route::group(['middleware' => 'auth', 'prefix' => 'mahasiswa'], function () {
+    Route::get('/', [MahasiswaDashboardController::class, 'index'])->name('mahasiswa.dashboard');
 });
