@@ -96,8 +96,8 @@ Route::group(['middleware' => ['auth', 'role:mahasiswa'], 'prefix' => 'mahasiswa
     Route::put('/user/kata-sandi', [MahasiswaUserController::class, 'updatePassword'])->name('mahasiswa.user.update-password');
 
     // mahasiswa profile
-    Route::get('/profil-diri', [MahasiswaProfileController::class, 'index'])->name('mahasiswa.profile.index');
-    Route::put('/profil-diri', [MahasiswaProfileController::class, 'update'])->name('mahasiswa.profile.update');
+    Route::get('/profil', [MahasiswaProfileController::class, 'index'])->name('mahasiswa.profile.index');
+    Route::put('/profil', [MahasiswaProfileController::class, 'update'])->name('mahasiswa.profile.update');
 
     // mahasiswa prestasi
     Route::get('/prestasi', [MahasiswaPrestasiController::class, 'index'])->name('mahasiswa.prestasi.index');
