@@ -105,5 +105,5 @@ Route::group(['middleware' => ['auth', 'role:mahasiswa'], 'prefix' => 'mahasiswa
     Route::post('/prestasi', [MahasiswaPrestasiController::class, 'store'])->name('mahasiswa.prestasi.store');
     Route::get('/prestasi/{id}/ubah', [MahasiswaPrestasiController::class, 'edit'])->name('mahasiswa.prestasi.edit');
     Route::put('/prestasi/{id}', [MahasiswaPrestasiController::class, 'update'])->name('mahasiswa.prestasi.update');
-    Route::delete('/prestasi/{id}', [MahasiswaPrestasiController::class, 'destroy'])->name('mahasiswa.jenjang.destroy');
+    Route::delete('/prestasi/{id}', [MahasiswaPrestasiController::class, 'destroy'])->name('mahasiswa.prestasi.destroy');
 });

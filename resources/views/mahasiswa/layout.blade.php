@@ -227,8 +227,8 @@ $namaInstitusiSingkat = \App\Utils\Skpi::getSettingByName('nama_institusi_singka
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link  {{isRouteName('admin.dashboard') ? '' : 'collapsed'}}"
-                    href="{{ route('admin.dashboard') }}">
+                <a class="nav-link  {{isRouteName('mahasiswa.dashboard') ? '' : 'collapsed'}}"
+                    href="{{ route('mahasiswa.dashboard') }}">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
@@ -236,25 +236,25 @@ $namaInstitusiSingkat = \App\Utils\Skpi::getSettingByName('nama_institusi_singka
 
             <li class="nav-heading">Menu Utama</li>
             <li class="nav-item">
-                <a class="nav-link {{ isRouteName('admin.dokumen.index') ? '' : 'collapsed'  }}"
-                    href="{{ route('admin.dokumen.index') }}"
-                    class="{{ isRouteName('admin.dokumen.index') ? 'active' : ''  }}">
+                <a class="nav-link {{ isRouteName('mahasiswa.profile.index') ? '' : 'collapsed'  }}"
+                    href="{{ route('mahasiswa.profile.index') }}"
+                    class="{{ isRouteName('mahasiswa.profile.index') ? 'active' : ''  }}">
                     <i class="bi bi-person"></i>
                     <span>Profil</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ isRouteName('admin.dokumen.index') ? '' : 'collapsed'  }}"
-                    href="{{ route('admin.dokumen.index') }}"
-                    class="{{ isRouteName('admin.dokumen.index') ? 'active' : ''  }}">
+                <a class="nav-link {{ isRouteName('mahasiswa.prestasi.index') ? '' : 'collapsed'  }}"
+                    href="{{ route('mahasiswa.prestasi.index') }}"
+                    class="{{ isRouteName('mahasiswa.prestasi.index') ? 'active' : ''  }}">
                     <i class="bi bi-award"></i>
                     <span>Prestasi</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ isRouteName('admin.dokumen.index') ? '' : 'collapsed'  }}"
-                    href="{{ route('admin.dokumen.index') }}"
-                    class="{{ isRouteName('admin.dokumen.index') ? 'active' : ''  }}">
+                <a class="nav-link {{ isRouteName('mahasiswa.prestasi.index') ? '' : 'collapsed'  }}"
+                    href="{{ route('mahasiswa.prestasi.index') }}"
+                    class="{{ isRouteName('mahasiswa.prestasi.index') ? 'active' : ''  }}">
                     <i class="bi bi-person"></i>
                     <span>Dokumen SKPI</span>
                 </a>
