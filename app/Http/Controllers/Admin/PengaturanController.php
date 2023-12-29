@@ -92,14 +92,14 @@ class PengaturanController extends Controller
         if (isset($logoAplikasi)) {
             // delete old logo
             if (isset($dataPengaturan['logo_aplikasi']) && $dataPengaturan['logo_aplikasi'] != '') {
-                if (file_exists(storage_path('app/public/' . $dataPengaturan['logo_aplikasi']))) {
-                    unlink(storage_path('app/public/' . $dataPengaturan['logo_aplikasi']));
+                if (\Storage::exists('public/'.$dataPengaturan['logo_aplikasi'])) {
+                    \Storage::delete('public/'.$dataPengaturan['logo_aplikasi']);
                 }
             }
 
             $namaFile = time() . '.' . $logoAplikasi->getClientOriginalExtension();
-            $logoAplikasi->storeAs('public/settings', $namaFile);
-            $dataPengaturan['logo_aplikasi'] = 'storage/settings/' . $namaFile;
+            $filePath = $logoAplikasi->storeAs('settings', $namaFile, 'public');
+            $dataPengaturan['logo_aplikasi'] = $filePath;
         }
 
         foreach ($dataPengaturan as $key => $value) {
@@ -167,14 +167,14 @@ class PengaturanController extends Controller
         if (isset($logoInstitusi)) {
             // delete old logo
             if (isset($dataPengaturan['logo_institusi']) && $dataPengaturan['logo_institusi'] != '') {
-                if (file_exists(storage_path('app/public/' . $dataPengaturan['logo_institusi']))) {
-                    unlink(storage_path('app/public/' . $dataPengaturan['logo_institusi']));
+                if (\Storage::exists('public/'.$dataPengaturan['logo_institusi'])) {
+                    \Storage::delete('public/'.$dataPengaturan['logo_institusi']);
                 }
             }
 
             $namaFile = time() . '.' . $logoInstitusi->getClientOriginalExtension();
-            $logoInstitusi->storeAs('public/settings', $namaFile);
-            $dataPengaturan['logo_institusi'] = 'storage/settings/' . $namaFile;
+            $filePath = $logoInstitusi->storeAs('settings', $namaFile, 'public');
+            $dataPengaturan['logo_institusi'] = $filePath;
         }
 
         foreach ($dataPengaturan as $key => $value) {

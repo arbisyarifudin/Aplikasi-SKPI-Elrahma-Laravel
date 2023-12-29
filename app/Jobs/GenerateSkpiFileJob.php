@@ -147,7 +147,7 @@ class GenerateSkpiFileJob implements ShouldQueue
 
             $dokumenSkpi->update([
                 'nomor' => $dokumenNomor,
-                'file' => $dokumenNomor . '.pdf'
+                'file' => 'storage/dokumen_skpi/' . $dokumenNomor . '.pdf',
             ]);
 
             // echo "Generate file SKPI {$dokumenSkpi->nomor} berhasil" . PHP_EOL;

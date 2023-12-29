@@ -52,9 +52,9 @@ class Skpi
 
         // if not valid url?
 
-        // check if path is storage
-        if (strpos($path, 'storage') !== false) {
-            return asset($path);
+        // check if path is exists in storage
+        if (\Storage::exists('public/'.$path)) {
+            return \Storage::url('public/'.$path);
         }
 
         // if not storage
