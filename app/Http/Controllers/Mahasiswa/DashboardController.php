@@ -12,16 +12,6 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $data = [
-            'totalMahasiswa' => 0,
-            'totalJenjang' => 0,
-            'totalProdi' => 0,
-        ];
-
-        $data['totalMahasiswa'] = Mahasiswa::count();
-        $data['totalJenjang'] = JenjangPendidikan::count();
-        $data['totalProdi'] = ProgramStudi::count();
-
-        return view('mahasiswa.dashboard.index', $data);
+        return view('mahasiswa.dashboard.index');
     }
 }

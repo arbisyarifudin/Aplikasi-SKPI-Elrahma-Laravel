@@ -22,7 +22,8 @@
 
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="card-title">Data Dokumen SKPI</div>
-                        {{-- <a href="#" class="btn btn-sm btn-primary"><i class="bi bi-plus"></i> Tambah</a> --}}
+                        <a href="{{ route('mahasiswa.pengajuan.index') }}" class="btn btn-sm btn-primary"><i
+                            class="bi bi-file-earmark"></i> Lihat Pengajuan</a>
                     </div>
 
                     @if (session('success'))

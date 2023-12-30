@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Mahasiswa;
 use App\Http\Controllers\Controller;
 use App\Models\DokumenSkpi;
 use App\Models\MahasiswaProgramStudi;
+use App\Models\PengajuanSkpi;
 use App\Models\Prestasi;
 use Illuminate\Http\Request;
 
@@ -105,10 +106,37 @@ class DokumenController extends Controller
             'mahasiswa_prodi_id.exists' => 'Program studi tidak ditemukan',
         ]);
 
-        $mhsDetail = MahasiswaProgramStudi::find($request->mahasiswa_prodi_id);
+        $mahasiswaProdiDetail = MahasiswaProgramStudi::find($request->mahasiswa_prodi_id);
 
-        dd($mhsDetail);
+        // dd($mahasiswaProdiDetail);
 
-        return redirect()->route('mahasiswa.prestasi.index')->with('success', 'Prestasi berhasil ditambahkan');
+        if (!$mahasiswaProdiDetail) {
+            return redirect()->back()->with('error', 'Program studi tidak ditemukan');
+        }
+
+        // is there any pengajuan skpi that is not finished?
+        $pengajuanSkpi = PengajuanSkpi::where('mahasiswa_id', $mahasiswaProdiDetail->mahasiswa_id)
+            ->where('program_studi_id', $mahasiswaProdiDetail->program_studi_id)
+            // ->where('status', '!=', 'selesai')
+            ->first();
+
+        if ($pengajuanSkpi) {
+            return redirect()->route('mahasiswa.pengajuan.index')->with('error', 'Anda sudah mengirim pengajuan SKPI');
+        }
+
+        $code = \Str::random(10);
+
+        while (PengajuanSkpi::where('kode', $code)->first()) {
+            $code = \Str::random(10);
+        }
+
+        $pengajuanSkpi = PengajuanSkpi::create([
+            'mahasiswa_id' => $mahasiswaProdiDetail->mahasiswa_id,
+            'program_studi_id' => $mahasiswaProdiDetail->program_studi_id,
+            'kode' => $code,
+            'status' => 'pending'
+        ]);
+
+        return redirect()->route('mahasiswa.pengajuan.index')->with('success', 'Pengajuan SKPI berhasil dikirim');
     }
 }

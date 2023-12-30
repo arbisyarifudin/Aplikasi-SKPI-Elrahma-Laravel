@@ -17,6 +17,7 @@ use App\Http\Controllers\Mahasiswa\UserController as MahasiswaUserController;
 use App\Http\Controllers\Mahasiswa\ProfileController as MahasiswaProfileController;
 use App\Http\Controllers\Mahasiswa\PrestasiController as MahasiswaPrestasiController;
 use App\Http\Controllers\Mahasiswa\DokumenController as MahasiswaDokumenController;
+use App\Http\Controllers\Mahasiswa\PengajuanController as MahasiswaPengajuanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -111,6 +112,9 @@ Route::group(['middleware' => ['auth', 'role:mahasiswa'], 'prefix' => 'mahasiswa
     // mahasiswa dokumen skpi
     Route::get('/dokumen', [MahasiswaDokumenController::class, 'index'])->name('mahasiswa.dokumen.index');
     Route::post('/dokumen/request', [MahasiswaDokumenController::class, 'request'])->name('mahasiswa.dokumen.request');
+
+    // mahasiswa request skpi
+    Route::get('/pengajuan', [MahasiswaPengajuanController::class, 'index'])->name('mahasiswa.pengajuan.index');
 
 
 });

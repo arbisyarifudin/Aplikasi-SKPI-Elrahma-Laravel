@@ -256,7 +256,7 @@ $namaInstitusiSingkat = \App\Utils\Skpi::getSettingByName('nama_institusi_singka
                 <a class="nav-link {{ isRouteName('mahasiswa.dokumen.index') ? '' : 'collapsed'  }}"
                     href="{{ route('mahasiswa.dokumen.index') }}"
                     class="{{ isRouteName('mahasiswa.dokumen.index') ? 'active' : ''  }}">
-                    <i class="bi bi-file"></i>
+                    <i class="bi bi-file-earmark"></i>
                     <span>Dokumen SKPI</span>
                 </a>
             </li>
