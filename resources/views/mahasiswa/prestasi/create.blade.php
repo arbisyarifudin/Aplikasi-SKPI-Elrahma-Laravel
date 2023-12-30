@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('mahasiswa.layout')
 @section('title', 'Tambah Prestasi - ')
 
 @section('content')

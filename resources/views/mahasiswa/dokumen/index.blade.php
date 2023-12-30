@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('mahasiswa.layout')
 @section('title', 'Dokumen SKPI - ')
 
 @section('content')
@@ -22,8 +22,7 @@
 
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="card-title">Data Dokumen SKPI</div>
-                        <a href="{{ route('admin.dokumen.create') }}" class="btn btn-sm btn-primary"><i
-                                class="bi bi-plus"></i> Tambah</a>
+                        {{-- <a href="#" class="btn btn-sm btn-primary"><i class="bi bi-plus"></i> Tambah</a> --}}
                     </div>
 
                     @if (session('success'))
@@ -45,8 +44,6 @@
                                 <th scope="col">#</th>
                                 <th scope="col">No. Dok</th>
                                 {{-- <th scope="col">Tgl. Dok</th> --}}
-                                <th scope="col">File</th>
-                                <th scope="col">Nama Mahasiswa</th>
                                 <th scope="col">Jenjang</th>
                                 <th scope="col">Prodi</th>
                                 <th scope="col">Thn. Lulus</th>
@@ -64,20 +61,6 @@
                                 </td>
                                 {{-- <td>{{ $d->tanggal }}</td> --}}
                                 <td>
-                                    @if ($d->file === 'proses')
-                                    <div class="text-secondary small">
-                                        <i class="bi bi-clock"></i> Proses
-                                    </div>
-                                    @else
-                                    <a href="{{ asset('storage/dokumen_skpi/' . $d->file) }}" target="_blank"
-                                        class="btn btn-sm btn-light"><i class="bi bi-file-earmark"></i> Lihat</a>
-                                    @endif
-                                </td>
-                                <td>
-                                    <div>{{ $d->nama_mahasiswa }}</div>
-                                    <div class="fst-italic small text-secondary">NIM: {{ $d->nim_mahasiswa }}</div>
-                                </td>
-                                <td>
                                     <div>{{ $d->nama_jenjang }}</div>
                                     <div class="fst-italic small text-secondary">{{ $d->nama_jenjang_en }}</div>
                                 </td>
@@ -86,16 +69,33 @@
                                     <div class="fst-italic small text-secondary">{{ $d->nama_prodi_en }}</div>
                                 </td>
                                 <td>{{ $d->tahun_lulus }}</td>
-                                <td>{{ $d->dibuat_pada }}</td>
                                 <td>
-                                    {{-- <a title="Detail" href="#" class="btn btn-sm btn-light"><i class="bi bi-search"></i>
-                                        Detail</a> --}}
-                                    <button title="Hapus" type="button" class="btn btn-sm btn-light text-danger"
-                                        data-bs-toggle="modal" data-bs-target="#hapusModal" data-id="{{ $d->id }}">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                    {{-- <a title="Ubah" href="{{ route('admin.dokumen.edit', ['id' => $d->id]) }}" class="btn btn-sm btn-light text-primary"><i
-                                            class="bi bi-pencil"></i></a> --}}
+                                    @if ($d->dibuat_pada)
+                                    <div>{{ $d->dibuat_pada }}</div>
+                                    @elseif ($d->file === 'proses')
+                                    <div class="text-secondary small">
+                                        <i class="bi bi-clock"></i> Dokumen diproses
+                                    </div>
+                                    @else
+                                    <div class="text-secondary small">
+                                        <i class="bi bi-x-circle"></i> Belum dibuat
+                                    </div>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if (!empty($d->file))
+                                    <a href="{{ $d->file_url }}" target="_blank" class="btn btn-sm btn-light"><i
+                                            class="bi bi-file-earmark"></i> Lihat</a>
+                                    @else
+                                    <form action="{{ route('mahasiswa.dokumen.request') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="mahasiswa_prodi_id" value="{{ $d->mps_id }}">
+                                        <button type="submit" class="btn btn-sm btn-primary" title="Ajukan Pembuatan">
+                                            <i class="bi bi-check-circle"></i>
+                                            Ajukan
+                                        </button>
+                                    </form>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
@@ -137,47 +137,5 @@
 @endsection
 
 @push('scripts')
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const hapusButton = document.querySelectorAll("button[data-bs-target='#hapusModal']");
-        const hapusModal = document.getElementById("hapusModal");
-        const modalTitle = hapusModal.querySelector(".modal-title");
-
-        hapusButton.forEach(btn => {
-            btn.addEventListener("click", function (e) {
-            const dataId = this.dataset.id;
-            console.log('dataId',dataId)
-
-            const row = e.target.closest("tr");
-            // const dataId = row.getAttribute("data-id");
-            const namaItem = row.querySelector("td:nth-child(2) > div").textContent; // Mengambil teks dari kolom "Nama"
-            const form = hapusModal.querySelector("form");
-            // const inputId = form.querySelector("input[name='id']");
-            const buttonHapus = hapusModal.querySelector("button[type='button']");
-            const url = "{{ route('admin.dokumen.destroy', ':id') }}";
-            const urlDelete = url.replace(":id", dataId);
-
-            // Setel URL form hapus
-            form.setAttribute("action", urlDelete);
-
-            // Setel data dinamis dalam form
-            // inputId.value = dataId;
-
-            // Setel data dinamis dalam modal
-            // modalTitle.textContent = "Konfirmasi Hapus Dokumen SKPI #" + dataId;
-            hapusModal.querySelector(".modal-body").textContent = "Apakah Anda yakin ingin menghapus " + namaItem + "?";
-
-            // Setel event click pada tombol hapus
-            // buttonHapus.addEventListener("click", function () {
-            //     form.submit();
-            // });
-
-            });
-        });
-    });
-
-
-</script>
 
 @endpush

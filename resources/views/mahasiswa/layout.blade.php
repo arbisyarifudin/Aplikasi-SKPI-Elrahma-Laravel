@@ -185,7 +185,8 @@ $namaInstitusiSingkat = \App\Utils\Skpi::getSettingByName('nama_institusi_singka
                         </li>
 
                         {{-- <li>
-                            <a class="dropdown-item d-flex align-items-center" href="{{ route('mahasiswa.user.profile') }}">
+                            <a class="dropdown-item d-flex align-items-center"
+                                href="{{ route('mahasiswa.user.profile') }}">
                                 <i class="bi bi-person"></i>
                                 <span>Profil</span>
                             </a>
@@ -244,18 +245,18 @@ $namaInstitusiSingkat = \App\Utils\Skpi::getSettingByName('nama_institusi_singka
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ isRouteName('mahasiswa.prestasi.index') ? '' : 'collapsed'  }}"
+                <a class="nav-link {{ isRouteName(['mahasiswa.prestasi.index', 'mahasiswa.prestasi.create', 'mahasiswa.prestasi.edit']) ? '' : 'collapsed'  }}"
                     href="{{ route('mahasiswa.prestasi.index') }}"
-                    class="{{ isRouteName('mahasiswa.prestasi.index') ? 'active' : ''  }}">
+                    class="{{ isRouteName(['mahasiswa.prestasi.index', 'mahasiswa.prestasi.create', 'mahasiswa.prestasi.edit']) ? 'active' : ''  }}">
                     <i class="bi bi-award"></i>
                     <span>Prestasi</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ isRouteName('mahasiswa.prestasi.index') ? '' : 'collapsed'  }}"
-                    href="{{ route('mahasiswa.prestasi.index') }}"
-                    class="{{ isRouteName('mahasiswa.prestasi.index') ? 'active' : ''  }}">
-                    <i class="bi bi-person"></i>
+                <a class="nav-link {{ isRouteName('mahasiswa.dokumen.index') ? '' : 'collapsed'  }}"
+                    href="{{ route('mahasiswa.dokumen.index') }}"
+                    class="{{ isRouteName('mahasiswa.dokumen.index') ? 'active' : ''  }}">
+                    <i class="bi bi-file"></i>
                     <span>Dokumen SKPI</span>
                 </a>
             </li>

@@ -16,6 +16,7 @@ use App\Http\Controllers\Mahasiswa\DashboardController as MahasiswaDashboardCont
 use App\Http\Controllers\Mahasiswa\UserController as MahasiswaUserController;
 use App\Http\Controllers\Mahasiswa\ProfileController as MahasiswaProfileController;
 use App\Http\Controllers\Mahasiswa\PrestasiController as MahasiswaPrestasiController;
+use App\Http\Controllers\Mahasiswa\DokumenController as MahasiswaDokumenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,4 +107,10 @@ Route::group(['middleware' => ['auth', 'role:mahasiswa'], 'prefix' => 'mahasiswa
     Route::get('/prestasi/{id}/ubah', [MahasiswaPrestasiController::class, 'edit'])->name('mahasiswa.prestasi.edit');
     Route::put('/prestasi/{id}', [MahasiswaPrestasiController::class, 'update'])->name('mahasiswa.prestasi.update');
     Route::delete('/prestasi/{id}', [MahasiswaPrestasiController::class, 'destroy'])->name('mahasiswa.prestasi.destroy');
+
+    // mahasiswa dokumen skpi
+    Route::get('/dokumen', [MahasiswaDokumenController::class, 'index'])->name('mahasiswa.dokumen.index');
+    Route::post('/dokumen/request', [MahasiswaDokumenController::class, 'request'])->name('mahasiswa.dokumen.request');
+
+
 });
