@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\MahasiswaController as AdminMahasiswaController;
 use App\Http\Controllers\Admin\JenjangController as AdminJenjangController;
 use App\Http\Controllers\Admin\ProdiController as AdminProdiController;
 use App\Http\Controllers\Admin\DokumenController as AdminDokumenController;
+use App\Http\Controllers\Admin\PengajuanController as AdminPengajuanController;
 use App\Http\Controllers\Admin\PengaturanController as AdminPengaturanController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 
@@ -75,11 +76,14 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], func
     Route::put('/prodi/{id}', [AdminProdiController::class, 'update'])->name('admin.prodi.update');
     Route::delete('/prodi/{id}', [AdminProdiController::class, 'destroy'])->name('admin.prodi.destroy');
 
-    // dokumen
+    // dokumen skpi
     Route::get('/dokumen', [AdminDokumenController::class, 'index'])->name('admin.dokumen.index');
     Route::get('/dokumen/buat', [AdminDokumenController::class, 'create'])->name('admin.dokumen.create');
     Route::post('/dokumen', [AdminDokumenController::class, 'store'])->name('admin.dokumen.store');
     Route::delete('/dokumen/{id}', [AdminDokumenController::class, 'destroy'])->name('admin.dokumen.destroy');
+
+    // pengajuan skpi
+    Route::get('/pengajuan', [AdminPengajuanController::class, 'index'])->name('admin.pengajuan.index');
 
 
     // pengaturan
@@ -115,6 +119,4 @@ Route::group(['middleware' => ['auth', 'role:mahasiswa'], 'prefix' => 'mahasiswa
 
     // mahasiswa request skpi
     Route::get('/pengajuan', [MahasiswaPengajuanController::class, 'index'])->name('mahasiswa.pengajuan.index');
-
-
 });

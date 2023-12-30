@@ -3,6 +3,23 @@
 
 @section('content')
 
+<?php
+
+if (!function_exists('getBackUrl')) {
+    function getBackUrl () {
+        $ref = request()->query('ref');
+        // request()->query('ref') === 'mahasiswa' ? route('admin.mahasiswa.index') : route('admin.dokumen.index')
+        if ($ref == 'mahasiswa') {
+            return route('admin.mahasiswa.index');
+        } else if ($ref == 'pengajuan') {
+            return route('admin.pengajuan.index');
+        }
+        return route('admin.dokumen.index');
+    }
+}
+
+?>
+
 <div class="pagetitle">
     <h1>Buat Dokumen SKPI</h1>
     <nav>
@@ -20,7 +37,7 @@
             <div class="card overflow-auto">
                 <div class="card-body" style="min-height: 300px">
                     <div class="card-title d-flex justify-content-between">
-                        <a href="{{ request()->query('ref') === 'mahasiswa' ? route('admin.mahasiswa.index') : route('admin.dokumen.index') }}"
+                        <a href="{{ getBackUrl() }}"
                             class="btn btn-sm btn-outline-primary"><i class="bi bi-arrow-left"></i> Kembali</a>
                         <span class="text-danger small">Bertanda *) wajib diisi</span>
                     </div>
@@ -185,7 +202,7 @@
                                                 </div>
 
                                                 <div class="text-secondary mt-1" v-if="mahasiswaData.length > 0">
-                                                    <small style="font-size: 80%">Pilih mahasiswa yang akan ditambahkan.
+                                                    <small style="font-size: 80%">Pilih mahasiswa yang ingin dibuatkan dokumen.
                                                         Gunakan tombol <strong>Ctrl</strong> untuk memilih lebih dari
                                                         satu mahasiswa.</small>
                                                 </div>

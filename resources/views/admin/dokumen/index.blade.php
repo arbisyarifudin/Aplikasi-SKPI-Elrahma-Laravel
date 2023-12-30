@@ -69,7 +69,7 @@
                                         <i class="bi bi-clock"></i> Proses
                                     </div>
                                     @else
-                                    <a href="{{ asset('storage/dokumen_skpi/' . $d->file) }}" target="_blank"
+                                    <a href="{{ $d->file_url }}" target="_blank"
                                         class="btn btn-sm btn-light"><i class="bi bi-file-earmark"></i> Lihat</a>
                                     @endif
                                 </td>

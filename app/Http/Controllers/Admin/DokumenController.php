@@ -7,6 +7,7 @@ use App\Jobs\GenerateSkpiFileJob;
 use App\Models\DokumenSkpi;
 use App\Models\JenjangPendidikan;
 use App\Models\Mahasiswa;
+use App\Models\PengajuanSkpi;
 use App\Models\Pengaturan;
 use App\Models\Prestasi;
 use App\Models\ProgramStudi;
@@ -50,6 +51,8 @@ class DokumenController extends Controller
         foreach ($data as $key => $value) {
             $value->tanggal = date('d M Y', strtotime($value->tanggal));
             $value->dibuat_pada = $value->updated_at ? date('d M Y H:i:s', strtotime($value->updated_at)) : date('d M Y H:i:s', strtotime($value->created_at));
+
+            $value->file_url = \App\Utils\Skpi::getAssetUrl($value->file);
         }
 
 
@@ -70,6 +73,7 @@ class DokumenController extends Controller
         $mhsId = request()->get('mhs');
         $prodiId = request()->get('prodi');
         $jenjangId = request()->get('jenjang');
+        $ref = request()->get('ref');
         // dd($mhsId);
 
         // get $selectedJenjangId, $selectedProdiId, $selectedMahasiswaId
@@ -209,6 +213,23 @@ class DokumenController extends Controller
                         'file' => 'proses'
                     ]);
                     $dokumenSkpiId = $dokumenSkpi->id;
+                }
+
+                // cek apakah ada data pengajuan?
+                $pengajuanSkpi = PengajuanSkpi::where('mahasiswa_id', $mahasiswaId)
+                    ->where('program_studi_id', $programStudiId)
+                    // ->where('status', '!=', 'selesai')
+                    ->first();
+
+                if ($pengajuanSkpi) {
+                    $pengajuanSkpi->status = 'siap diambil';
+                    $pengajuanSkpi->save();
+                } else {
+                    $pengajuanSkpi = PengajuanSkpi::create([
+                        'mahasiswa_id' => $mahasiswaId,
+                        'program_studi_id' => $programStudiId,
+                        'status' => 'siap diambil'
+                    ]);
                 }
 
 

@@ -24,6 +24,10 @@ class GenerateSkpiFileJob implements ShouldQueue
     private $dokumenSkpiIds;
     private $hasilCapaian;
 
+    // retry 3x, 5s interval
+    public $tries = 3;
+    public $retryAfter = 5;
+
     /**
      * Create a new job instance.
      */
@@ -83,7 +87,8 @@ class GenerateSkpiFileJob implements ShouldQueue
             $mahasiswa->tanggal_lahir_en = $tanggalLahirEn;
 
             $logoInstitusi = Skpi::getSettingByName('logo_institusi');
-            $logoInstitusiUrl = asset('storage/' . $logoInstitusi);
+            // $logoInstitusiUrl = asset('storage/' . $logoInstitusi);
+            $logoInstitusiUrl = Skpi::getAssetUrl($logoInstitusi);
             $logoInstitusiExtension = pathinfo($logoInstitusiUrl, PATHINFO_EXTENSION);
             $logoInstitusiMimeType = 'image/jpeg';
 
@@ -147,7 +152,7 @@ class GenerateSkpiFileJob implements ShouldQueue
 
             $dokumenSkpi->update([
                 'nomor' => $dokumenNomor,
-                'file' => 'storage/dokumen_skpi/' . $dokumenNomor . '.pdf',
+                'file' => 'dokumen_skpi/' . $dokumenNomor . '.pdf',
             ]);
 
             // echo "Generate file SKPI {$dokumenSkpi->nomor} berhasil" . PHP_EOL;

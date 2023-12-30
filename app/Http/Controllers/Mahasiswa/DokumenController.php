@@ -49,6 +49,13 @@ class DokumenController extends Controller
             ->join('mahasiswa', 'mahasiswa_program_studi.mahasiswa_id', '=', 'mahasiswa.id')
             ->join('program_studi', 'mahasiswa_program_studi.program_studi_id', '=', 'program_studi.id')
             ->join('jenjang_pendidikan', 'program_studi.jenjang_pendidikan_id', '=', 'jenjang_pendidikan.id')
+
+            // join with pengajuan_skpi where mahasiswa_id = mahasiswa.id and program_studi_id = program_studi.id
+            ->leftJoin('pengajuan_skpi', function ($join) {
+                $join->on('mahasiswa.id', '=', 'pengajuan_skpi.mahasiswa_id');
+                $join->on('program_studi.id', '=', 'pengajuan_skpi.program_studi_id');
+            })
+
             ->select([
                 'mahasiswa_program_studi.id as mps_id',
                 'dokumen_skpi.id',
@@ -64,7 +71,10 @@ class DokumenController extends Controller
                 'mahasiswa_program_studi.tahun_masuk',
                 'mahasiswa_program_studi.tahun_lulus',
                 'dokumen_skpi.created_at',
-                'dokumen_skpi.updated_at'
+                'dokumen_skpi.updated_at',
+
+                'pengajuan_skpi.id as pengajuan_id',
+                'pengajuan_skpi.status as pengajuan_status',
             ])
             ->where('mahasiswa_program_studi.mahasiswa_id', $mahasiswa->id)
             ->orderBy('mahasiswa_program_studi.created_at', 'desc');

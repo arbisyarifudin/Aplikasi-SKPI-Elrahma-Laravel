@@ -233,7 +233,7 @@ $namaInstitusiSingkat = \App\Utils\Skpi::getSettingByName('nama_institusi_singka
                 </a>
             </li>
 
-            <li class="nav-heading">Menu Utama</li>
+            <li class="nav-heading">Menu Dasar</li>
 
             <li class="nav-item">
                 <a class="nav-link {{isRouteName(['admin.jenjang.index', 'admin.prodi.index']) ? '' : 'collapsed'}}"
@@ -266,11 +266,21 @@ $namaInstitusiSingkat = \App\Utils\Skpi::getSettingByName('nama_institusi_singka
                     <span>Mahasiswa</span>
                 </a>
             </li>
+
+            <li class="nav-heading">Menu SKPI</li>
+            <li class="nav-item">
+                <a class="nav-link {{ isRouteName('admin.pengajuan.index') ? '' : 'collapsed'  }}"
+                    href="{{ route('admin.pengajuan.index') }}"
+                    class="{{ isRouteName('admin.pengajuan.index') ? 'active' : ''  }}">
+                    <i class="bi bi-file-break"></i>
+                    <span>Pengajuan SKPI</span>
+                </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link {{ isRouteName('admin.dokumen.index') ? '' : 'collapsed'  }}"
                     href="{{ route('admin.dokumen.index') }}"
                     class="{{ isRouteName('admin.dokumen.index') ? 'active' : ''  }}">
-                    <i class="bi bi-person"></i>
+                    <i class="bi bi-file-earmark"></i>
                     <span>Dokumen SKPI</span>
                 </a>
             </li>

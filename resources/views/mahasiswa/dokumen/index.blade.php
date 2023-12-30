@@ -2,6 +2,29 @@
 @section('title', 'Dokumen SKPI - ')
 
 @section('content')
+
+<?php
+
+if (!function_exists('getJenjangStatus')) {
+    function getJenjangStatus ($status) {
+        if ($status == 'pending') {
+            return '<span class="badge bg-warning">Menunggu</span>';
+        } else if ($status == 'diproses') {
+            return '<span class="badge bg-info">Diproses</span>';
+        } else if ($status == 'ditolak') {
+            return '<span class="badge bg-danger">Ditolak</span>';
+        } else if ($status == 'selesai') {
+            return '<span class="badge bg-secondary">Selesai</span>';
+        } else if ($status == 'siap diambil') {
+            return '<span class="badge bg-success">Siap Diambil</span>';
+        } else {
+            return '<span class="badge bg-secondary">Tidak diketahui</span>';
+        }
+    }
+}
+
+?>
+
 <div class="pagetitle">
     <h1>Dokumen SKPI</h1>
     <nav>
@@ -23,7 +46,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="card-title">Data Dokumen SKPI</div>
                         <a href="{{ route('mahasiswa.pengajuan.index') }}" class="btn btn-sm btn-primary"><i
-                            class="bi bi-file-earmark"></i> Lihat Pengajuan</a>
+                            class="bi bi-file-break"></i> Lihat Pengajuan</a>
                     </div>
 
                     @if (session('success'))
@@ -85,8 +108,13 @@
                                 </td>
                                 <td>
                                     @if (!empty($d->file))
-                                    <a href="{{ $d->file_url }}" target="_blank" class="btn btn-sm btn-light"><i
-                                            class="bi bi-file-earmark"></i> Lihat</a>
+                                        <div>{!! getJenjangStatus($d->pengajuan_status) !!}</div>
+                                        @if ($d->file !== 'proses')
+                                        <div class="mt-2">
+                                            <a href="{{ $d->file_url }}" target="_blank" class="btn btn-sm btn-light"><i
+                                                class="bi bi-file-earmark"></i> Lihat</a>
+                                        </div>
+                                        @endif
                                     @else
                                     <form action="{{ route('mahasiswa.dokumen.request') }}" method="post">
                                         @csrf
