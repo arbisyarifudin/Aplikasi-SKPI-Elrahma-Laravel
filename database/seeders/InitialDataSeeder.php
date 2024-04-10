@@ -249,26 +249,26 @@ class InitialDataSeeder extends Seeder
             }
 
             // data dokumen
-            $dokumen = [
-                [
-                    'mahasiswa_id' => 1,
-                    'program_studi_id' => 1,
-                    'nomor' => '1234567890',
-                    'tanggal' => '2024-01-01',
-                    'file' => 'dokumen/skpi1.pdf',
-                ]
-            ];
+            // $dokumen = [
+            //     [
+            //         'mahasiswa_id' => 1,
+            //         'program_studi_id' => 1,
+            //         'nomor' => '1234567890',
+            //         'tanggal' => '2024-01-01',
+            //         'file' => 'dokumen/skpi1.pdf',
+            //     ]
+            // ];
 
-            foreach ($dokumen as $dok) {
-                \App\Models\DokumenSkpi::firstOrCreate(
-                    [
-                        'mahasiswa_id' => $dok['mahasiswa_id'],
-                        'program_studi_id' => $dok['program_studi_id'],
-                        'nomor' => $dok['nomor'],
-                    ],
-                    $dok
-                );
-            }
+            // foreach ($dokumen as $dok) {
+            //     \App\Models\DokumenSkpi::firstOrCreate(
+            //         [
+            //             'mahasiswa_id' => $dok['mahasiswa_id'],
+            //             'program_studi_id' => $dok['program_studi_id'],
+            //             'nomor' => $dok['nomor'],
+            //         ],
+            //         $dok
+            //     );
+            // }
 
             // is transaction success
             if (DB::transactionLevel() > 0) {

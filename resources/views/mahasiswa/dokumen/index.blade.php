@@ -8,7 +8,7 @@
 if (!function_exists('getJenjangStatus')) {
     function getJenjangStatus ($status) {
         if ($status == 'pending') {
-            return '<span class="badge bg-warning">Menunggu</span>';
+            return '<span class="badge bg-warning">Menunggu Diproses</span>';
         } else if ($status == 'diproses') {
             return '<span class="badge bg-info">Diproses</span>';
         } else if ($status == 'ditolak') {
@@ -107,14 +107,8 @@ if (!function_exists('getJenjangStatus')) {
                                     @endif
                                 </td>
                                 <td>
-                                    @if (!empty($d->file))
-                                        <div>{!! getJenjangStatus($d->pengajuan_status) !!}</div>
-                                        @if ($d->file !== 'proses')
-                                        <div class="mt-2">
-                                            <a href="{{ $d->file_url }}" target="_blank" class="btn btn-sm btn-light"><i
-                                                class="bi bi-file-earmark"></i> Lihat</a>
-                                        </div>
-                                        @endif
+                                    @if ($d->pengajuan_status)
+                                    <div>{!! getJenjangStatus($d->pengajuan_status) !!}</div>
                                     @else
                                     <form action="{{ route('mahasiswa.dokumen.request') }}" method="post">
                                         @csrf
@@ -124,6 +118,14 @@ if (!function_exists('getJenjangStatus')) {
                                             Ajukan
                                         </button>
                                     </form>
+                                    @endif
+                                    @if (!empty($d->file))
+                                        @if ($d->file !== 'proses')
+                                        <div class="mt-2">
+                                            <a href="{{ $d->file_url }}" target="_blank" class="btn btn-sm btn-light"><i
+                                                class="bi bi-file-earmark"></i> Lihat</a>
+                                        </div>
+                                        @endif
                                     @endif
                                 </td>
                             </tr>

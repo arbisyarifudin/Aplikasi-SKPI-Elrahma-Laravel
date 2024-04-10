@@ -152,7 +152,7 @@ if (!function_exists('getBackUrl')) {
                                                 </button>
                                             </div>
                                             <div class="mb-3">
-                                                <select name="mahasiswa_ids[]" id="mahasiswa_ids"
+                                                {{-- <select name="mahasiswa_ids[]" id="mahasiswa_ids"
                                                     class="form-select d-none @error('mahasiswa_ids') is-invalid @enderror"
                                                     multiple v-model="selectedMahasiswa">
                                                     <option v-for="item in mahasiswaData" :value="item.id">
@@ -162,14 +162,14 @@ if (!function_exists('getBackUrl')) {
                                                     <option v-if="mahasiswaData.length == 0" value="" disabled>
                                                         Tidak ada mahasiswa
                                                     </option>
-                                                </select>
+                                                </select> --}}
 
                                                 <!-- Create custom multiple select -->
                                                 <div class="mt-2 p-2" style="border: 1px solid #ddd">
                                                     <div v-for="item in mahasiswaData" :key="item.id"
                                                         class="form-check">
                                                         <input class="form-check-input" type="checkbox"
-                                                            :id="'mahasiswa_' + item.id" :value="item.id"
+                                                            :id="'mahasiswa_' + item.id" :name="'mahasiswa_ids[]'" :value="item.id"
                                                             v-model="selectedMahasiswa">
                                                         <label class="form-check-label" :for="'mahasiswa_' + item.id">
                                                             @{{ item.nama }} (@{{ item.nim }}) <span
@@ -180,8 +180,8 @@ if (!function_exists('getBackUrl')) {
                                                     <div v-if="mahasiswaData.length == 0" class="text-secondary mt-2">
                                                         Tidak ada mahasiswa
                                                     </div>
-                                                    <select name="mahasiswa_ids[]" id="mahasiswa_ids" multiple
-                                                        v-model="selectedMahasiswa" style="display: none"></select>
+                                                    {{-- <select name="mahasiswa_ids[]" id="mahasiswa_ids" multiple
+                                                        v-model="selectedMahasiswa" style="display: none"></select> --}}
 
                                                     {{-- <div class="text-secondary mt-1"
                                                         v-if="mahasiswaData.length > 0">
