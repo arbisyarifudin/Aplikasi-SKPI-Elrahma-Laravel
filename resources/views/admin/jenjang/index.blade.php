@@ -58,8 +58,8 @@
                                 </td>
                                 <td>{{ $j->singkatan }}</td>
                                 <td>
-                                    <a title="Detail" href="#" class="btn btn-sm btn-light"><i class="bi bi-search"></i>
-                                        Detail</a>
+                                    {{-- <a title="Detail" href="#" class="btn btn-sm btn-light"><i class="bi bi-search"></i>
+                                        Detail</a> --}}
                                     <button title="Hapus" type="button" class="btn btn-sm btn-light text-danger"
                                         data-bs-toggle="modal" data-bs-target="#hapusModal" data-id="{{ $j->id }}">
                                         <i class="bi bi-trash"></i>
