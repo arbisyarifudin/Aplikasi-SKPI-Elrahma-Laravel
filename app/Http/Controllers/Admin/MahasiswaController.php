@@ -64,7 +64,22 @@ class MahasiswaController extends Controller
 
     public function show($id)
     {
-        return view('admin.mahasiswa.show');
+        $data = Mahasiswa::findOrFail($id);
+        if ($data) {
+            // $data->prestasis;
+            // $data->prodis;
+            $data = Mahasiswa::with([
+                'prestasis',
+                'programStudis',
+                'programStudis.programStudi',
+                'programStudis.programStudi.jenjangPendidikan',
+            ])->where('id', $id)->first();
+
+            // dd($data);
+        }
+        return view('admin.mahasiswa.show', [
+            'mahasiswa' => $data,
+        ]);
     }
 
     public function edit($id)

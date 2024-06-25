@@ -55,7 +55,7 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], func
     Route::get('/mahasiswa', [AdminMahasiswaController::class, 'index'])->name('admin.mahasiswa.index');
     Route::get('/mahasiswa/tambah', [AdminMahasiswaController::class, 'create']);
     Route::post('/mahasiswa', [AdminMahasiswaController::class, 'store']);
-    Route::get('/mahasiswa/{id}', [AdminMahasiswaController::class, 'show']);
+    Route::get('/mahasiswa/{id}', [AdminMahasiswaController::class, 'show'])->name('admin.mahasiswa.show');
     Route::get('/mahasiswa/{id}/ubah', [AdminMahasiswaController::class, 'edit']);
     Route::put('/mahasiswa/{id}', [AdminMahasiswaController::class, 'update']);
     Route::delete('/mahasiswa/{id}', [AdminMahasiswaController::class, 'destroy']);

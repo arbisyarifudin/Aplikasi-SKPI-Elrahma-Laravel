@@ -29,4 +29,12 @@ class Mahasiswa extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function prestasis () {
+        return $this->hasMany(Prestasi::class);
+    }
+
+    public function programStudis () {
+        return $this->hasMany(MahasiswaProgramStudi::class, 'mahasiswa_id');
+    }
+
 }

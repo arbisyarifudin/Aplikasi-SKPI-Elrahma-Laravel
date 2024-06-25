@@ -130,7 +130,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <a title="Detail" href="#" class="btn btn-sm btn-light"><i class="bi bi-search"></i>
+                                    <a title="Detail" href="{{ route('admin.mahasiswa.show', ['id' => $m->id]) }}" class="btn btn-sm btn-light"><i class="bi bi-search"></i>
                                         Detail</a>
                                     {{-- <a href="#" class="btn btn-sm btn-light"><i class="bi bi-trash"></i></a> --}}
                                     {{-- <button title="Hapus" type="button" class="btn btn-sm btn-light text-danger"

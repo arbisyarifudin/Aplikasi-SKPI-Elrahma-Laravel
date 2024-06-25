@@ -20,4 +20,11 @@ class MahasiswaProgramStudi extends Model
         'gelar',
         'gelar_en',
     ];
+
+    public function mahasiswa () {
+        return $this->belongsTo(Mahasiswa::class);
+    }
+    public function programStudi () {
+        return $this->belongsTo(ProgramStudi::class, 'program_studi_id');
+    }
 }
