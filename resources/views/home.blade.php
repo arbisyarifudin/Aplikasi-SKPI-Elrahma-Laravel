@@ -136,6 +136,19 @@ $authUser = auth()->user();
                                         </div> --}}
                                     </form>
 
+                                    <div class="mt-3">
+                                        <div class="alert alert-info">
+                                            <div class="mb-1">Akun Demo Admin:</div>
+                                            <div>User ID: <strong>admin</strong></div>
+                                            <div>divassword: <strong>admin</strong></div>
+                                        </div>
+                                        <div class="alert alert-info">
+                                            <div class="mb-1">Akun Demo Mahasiswa:</div>
+                                            <div>User ID: <strong>1234567890</strong></div>
+                                            <div>divassword: <strong>1234567890</strong></div>
+                                        </div>
+                                    </div>
+
                                 </div>
                                 @else
                                 <div class="card-body" style="padding: 0 75px 35px">
