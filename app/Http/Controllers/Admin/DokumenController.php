@@ -228,7 +228,8 @@ class DokumenController extends Controller
                     $pengajuanSkpi = PengajuanSkpi::create([
                         'mahasiswa_id' => $mahasiswaId,
                         'program_studi_id' => $programStudiId,
-                        'status' => 'siap diambil'
+                        'status' => 'siap diambil',
+                        'kode' => \Str::random(10),
                     ]);
                 }
 
