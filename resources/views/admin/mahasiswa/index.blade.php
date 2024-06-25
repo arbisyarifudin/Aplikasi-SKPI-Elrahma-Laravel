@@ -39,6 +39,47 @@
                                 class="bi bi-arrow-counterclockwise"></i> Sinkronkan data</button>
                     </div>
 
+                    <div class="table-filter mb-3">
+                        <div class="row align-items-end">
+                            <div class="col-md-3">
+                                <label for="" class="form-label text-small text-semibold">Thn Masuk</label>
+                                <select id="" class="form-control">
+                                    <option>2018</option>
+                                    <option>2019</option>
+                                    <option>2020</option>
+                                    <option>2021</option>
+                                    <option>2022</option>
+                                    <option>2023</option>
+                                    <option>2024</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label text-small text-semibold">Thn Lulus</label>
+                                <select id="" class="form-control">
+                                    <option>2018</option>
+                                    <option>2019</option>
+                                    <option>2020</option>
+                                    <option>2021</option>
+                                    <option>2022</option>
+                                    <option>2023</option>
+                                    <option>2024</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label text-small text-semibold">Jenjang</label>
+                                <select id="" class="form-control">
+                                    <option>Sarjana</option>
+                                    <option>Magister</option>
+                                </select>
+                            </div>
+                            <div class="col-1">
+                                <label for="" class="form-label text-small text-semibold block">&nbsp;</label>
+                                <button type="submit" class="btn btn-sm btn-primary">Terapkan</button>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <table class="table table-borderless datatable">
                         <thead>
                             <tr>

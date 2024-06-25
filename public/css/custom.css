@@ -14,3 +14,11 @@
 .input-group-text {
     font-size: 13px;
 }
+
+.text-small {
+    font-size: 85%;
+}
+
+.text-semibold {
+    font-weight: 600;
+}
