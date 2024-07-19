@@ -242,7 +242,9 @@ class PengaturanSeeder extends Seeder
         foreach ($kategoriPengaturan as $kategori) {
             $insertKategori = $kategori;
             unset($insertKategori['pengaturan']);
-            $dataKategori = \App\Models\KategoriPengaturan::create($insertKategori);
+            $dataKategori = \App\Models\KategoriPengaturan::firstOrCreate([
+                'nama' => $insertKategori['nama'],
+            ], $insertKategori);
 
             if (isset($kategori['pengaturan'])) {
                 foreach ($kategori['pengaturan'] as $pengaturan) {
@@ -251,14 +253,24 @@ class PengaturanSeeder extends Seeder
                     if ($pengaturan['tipe'] == 'json') {
                         $pengaturan['nilai'] = json_encode($pengaturan['nilai']);
                     }
-                    $dataPengaturan = \App\Models\Pengaturan::create([
+                    $dataPengaturan = \App\Models\Pengaturan::firstOrCreate([
+                        'nama' => $pengaturan['nama'],
+                    ], [
                         'kategori_pengaturan_id' => $dataKategori->id,
                         'nama' => $pengaturan['nama'],
                         'nilai' => $pengaturan['nilai'],
                         'tipe' => $pengaturan['tipe'],
-                    ], $pengaturan);
+                    ]);
                 }
             }
+        }
+
+        // get all prodi, and set setting 'informasi_kualifikasi_dan_hasil_capaian' for each prodi
+        $prodis = \App\Models\ProgramStudi::all();
+        foreach ($prodis as $prodi) {
+            $pengaturan = \App\Models\Pengaturan::where('nama', 'informasi_kualifikasi_dan_hasil_capaian')->first();
+            $prodi->kualifikasi_cpl = $pengaturan ? $pengaturan->nilai : json_encode([]);
+            $prodi->save();
         }
     }
 }
