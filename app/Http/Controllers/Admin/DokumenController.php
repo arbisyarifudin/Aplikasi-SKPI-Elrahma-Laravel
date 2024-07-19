@@ -67,7 +67,8 @@ class DokumenController extends Controller
         $jenjang = JenjangPendidikan::all();
         // $pengaturanHasilCapaian = Pengaturan::where('nama', 'informasi_kualifikasi_dan_hasil_capaian')->first();
         // $pengaturanHasilCapaian = isset($pengaturanHasilCapaian->nilai) ? json_decode($pengaturanHasilCapaian->nilai) : [];
-        $pengaturanHasilCapaian = Skpi::getSettingByName('informasi_kualifikasi_dan_hasil_capaian');
+        // $pengaturanHasilCapaian = Skpi::getSettingByName('informasi_kualifikasi_dan_hasil_capaian');
+        $pengaturanHasilCapaian = [];
 
         // get mhs, prodi, jenjang from query string
         $mhsId = request()->get('mhs');
@@ -75,6 +76,13 @@ class DokumenController extends Controller
         $jenjangId = request()->get('jenjang');
         $ref = request()->get('ref');
         // dd($mhsId);
+
+        if ($prodiId) {
+            $programStudi = ProgramStudi::find($prodiId);
+            if ($programStudi) {
+                $pengaturanHasilCapaian = json_decode($programStudi->kualifikasi_cpl);
+            }
+        }
 
         // get $selectedJenjangId, $selectedProdiId, $selectedMahasiswaId
         $selectedJenjangId = $jenjangId ? $jenjangId : old('jenjang_id');

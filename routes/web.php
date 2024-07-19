@@ -76,6 +76,10 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], func
     Route::put('/prodi/{id}', [AdminProdiController::class, 'update'])->name('admin.prodi.update');
     Route::delete('/prodi/{id}', [AdminProdiController::class, 'destroy'])->name('admin.prodi.destroy');
 
+    // prodi CPL (capaian pembelajaran)
+    Route::get('/prodi/{id}/cpl', [AdminProdiController::class, 'editCpl'])->name('admin.prodi.edit-cpl');
+    Route::put('/prodi/{id}/cpl', [AdminProdiController::class, 'updateCpl'])->name('admin.prodi.update-cpl');
+
     // dokumen skpi
     Route::get('/dokumen', [AdminDokumenController::class, 'index'])->name('admin.dokumen.index');
     Route::get('/dokumen/buat', [AdminDokumenController::class, 'create'])->name('admin.dokumen.create');

@@ -83,8 +83,6 @@ class ProdiController extends Controller
             'jenjangPendidikan' => $jenjangPendidikan,
             'detailData' => $detailData
         ]);
-
-        return view('admin.prodi.edit');
     }
 
     public function update(Request $request, $id)
@@ -134,5 +132,29 @@ class ProdiController extends Controller
 
         // redirect back
         return redirect()->back()->with('success', 'Program studi berhasil dihapus');
+    }
+
+    /* CPL (capaian pembelajaran) */
+
+    public function editCpl($id)
+    {
+        // get detail data
+        $detailData = ProgramStudi::findOrFail($id);
+
+        return view('admin.prodi.cpl', [
+            'detailData' => $detailData
+        ]);
+    }
+
+    public function updateCpl (Request $request, $id) {
+        // dd($request->cpl);
+
+        // update data
+        ProgramStudi::where('id', $id)->update([
+            'kualifikasi_cpl' => $request->cpl
+        ]);
+
+        // redirect back
+        return redirect()->back()->with('success', 'CPL berhasil diperbarui');
     }
 }

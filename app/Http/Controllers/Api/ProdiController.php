@@ -18,4 +18,19 @@ class ProdiController extends Controller
             'data' => $prodi
         ]);
     }
+
+    public function show ($id) {
+        $prodi = ProgramStudi::find($id);
+        if ($prodi) {
+            return response()->json([
+                'status' => 'success',
+                'data' => $prodi
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'error',
+            'data' => null
+        ], 404);
+    }
 }

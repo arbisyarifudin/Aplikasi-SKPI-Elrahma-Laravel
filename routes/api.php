@@ -23,6 +23,9 @@ Route::prefix('v1')->group(function () {
     // get prodi by jenjang pendidikan id
     Route::get('/prodi', [App\Http\Controllers\Api\ProdiController::class, 'index']);
 
+    // get prodi by id
+    Route::get('/prodi/{id}', [App\Http\Controllers\Api\ProdiController::class, 'show']);
+
     // get mahasiswa prodi by prodi id
     Route::get('/mahasiswa-prodi', [App\Http\Controllers\Api\MahasiswaProdiController::class, 'index']);
 });
