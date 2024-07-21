@@ -64,12 +64,11 @@
                                     <div class="fst-italic small text-secondary">{{ $p->gelar_en }}</div>
                                 </td>
                                 <td>
-                                    <button title="Hapus" type="button" class="btn btn-sm btn-light text-danger"
-                                        data-bs-toggle="modal" data-bs-target="#hapusModal" data-id="{{ $p->id }}">
+                                    <a title="Ubah" href="{{ route('admin.prodi.edit-cpl', ['id' => $p->id]) }}" class="btn btn-sm btn-light text-success fw-bold"><i class="bi bi-card-heading"></i> CPL</a>
+                                    <button title="Hapus" type="button" class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#hapusModal" data-id="{{ $p->id }}">
                                         <i class="bi bi-trash"></i>
                                     </button>
-                                    <a title="Ubah" href="{{ route('admin.prodi.edit', ['id' => $p->id]) }}"
-                                        class="btn btn-sm btn-light text-primary"><i class="bi bi-pencil"></i></a>
+                                    <a title="Ubah" href="{{ route('admin.prodi.edit', ['id' => $p->id]) }}" class="btn btn-sm btn-light text-primary"><i class="bi bi-pencil"></i></a>
                                 </td>
                             </tr>
                             @endforeach
@@ -113,45 +112,43 @@
 @push('scripts')
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         const hapusButton = document.querySelectorAll("button[data-bs-target='#hapusModal']");
         const hapusModal = document.getElementById("hapusModal");
         const modalTitle = hapusModal.querySelector(".modal-title");
 
         hapusButton.forEach(btn => {
-            btn.addEventListener("click", function (e) {
-            const dataId = this.dataset.id;
-            console.log('dataId',dataId)
+            btn.addEventListener("click", function(e) {
+                const dataId = this.dataset.id;
+                console.log('dataId', dataId)
 
-            const row = e.target.closest("tr");
-            // const dataId = row.getAttribute("data-id");
-            const namaItem = row.querySelector("td:nth-child(2) > div").textContent; // Mengambil teks dari kolom "Nama"
-            const form = hapusModal.querySelector("form");
-            // const inputId = form.querySelector("input[name='id']");
-            const buttonHapus = hapusModal.querySelector("button[type='button']");
-            const url = "{{ route('admin.prodi.destroy', ':id') }}";
-            const urlDelete = url.replace(":id", dataId);
+                const row = e.target.closest("tr");
+                // const dataId = row.getAttribute("data-id");
+                const namaItem = row.querySelector("td:nth-child(2) > div").textContent; // Mengambil teks dari kolom "Nama"
+                const form = hapusModal.querySelector("form");
+                // const inputId = form.querySelector("input[name='id']");
+                const buttonHapus = hapusModal.querySelector("button[type='button']");
+                const url = "{{ route('admin.prodi.destroy', ':id') }}";
+                const urlDelete = url.replace(":id", dataId);
 
-            // Setel URL form hapus
-            form.setAttribute("action", urlDelete);
+                // Setel URL form hapus
+                form.setAttribute("action", urlDelete);
 
-            // Setel data dinamis dalam form
-            // inputId.value = dataId;
+                // Setel data dinamis dalam form
+                // inputId.value = dataId;
 
-            // Setel data dinamis dalam modal
-            // modalTitle.textContent = "Konfirmasi Hapus Jenjang #" + dataId;
-            hapusModal.querySelector(".modal-body").textContent = "Apakah Anda yakin ingin menghapus " + namaItem + "?";
+                // Setel data dinamis dalam modal
+                // modalTitle.textContent = "Konfirmasi Hapus Jenjang #" + dataId;
+                hapusModal.querySelector(".modal-body").textContent = "Apakah Anda yakin ingin menghapus " + namaItem + "?";
 
-            // Setel event click pada tombol hapus
-            // buttonHapus.addEventListener("click", function () {
-            //     form.submit();
-            // });
+                // Setel event click pada tombol hapus
+                // buttonHapus.addEventListener("click", function () {
+                //     form.submit();
+                // });
 
             });
         });
     });
-
-
 </script>
 
 @endpush

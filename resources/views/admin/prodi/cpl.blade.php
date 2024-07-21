@@ -222,6 +222,13 @@
                                 </table>
 
                             </div>
+                            <div class="col-md-12" v-if="loading">
+                                <div class="d-flex justify-content-center align-items-center" style="height: 200px">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <textarea name="cpl" :value="kualifikasiCplDataStringify" style="display: none;"></textarea>
@@ -256,16 +263,19 @@
     });
 
     const cplEditMode = true;
+    const cplData = @json($detailData->kualifikasi_cpl);
 
     const app = Vue.createApp({
         data() {
             return {
-                kualifikasiCplData: @json($detailData->kualifikasi_cpl),
+                kualifikasiCplData: JSON.parse(cplData),
                 cplEditMode: true,
+                loading: true,
             }
         },
         mounted() {
             console.log('kualifikasiCplData', this.kualifikasiCplData)
+            this.loading = false;
         },
         computed: {
             kualifikasiCplDataStringify() {

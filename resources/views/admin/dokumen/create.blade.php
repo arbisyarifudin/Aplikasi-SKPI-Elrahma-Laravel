@@ -180,8 +180,8 @@ if (!function_exists('getBackUrl')) {
 
 												<div class="text-secondary mt-1" v-if="mahasiswaData.length > 0">
 													<small style="font-size: 80%">Pilih mahasiswa yang ingin dibuatkan dokumen.
-														Gunakan tombol <strong>Ctrl</strong> untuk memilih lebih dari
-														satu mahasiswa.</small>
+														Gunakan tombol <!-- <strong>Ctrl</strong> untuk memilih lebih dari
+														satu mahasiswa. --></small>
 												</div>
 											</div>
 										</div>
