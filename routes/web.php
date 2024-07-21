@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\DokumenController as AdminDokumenController;
 use App\Http\Controllers\Admin\PengajuanController as AdminPengajuanController;
 use App\Http\Controllers\Admin\PengaturanController as AdminPengaturanController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\ElrahmaController as AdminElrahmaController;
 
 use App\Http\Controllers\Mahasiswa\DashboardController as MahasiswaDashboardController;
 use App\Http\Controllers\Mahasiswa\UserController as MahasiswaUserController;
@@ -89,10 +90,12 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], func
     // pengajuan skpi
     Route::get('/pengajuan', [AdminPengajuanController::class, 'index'])->name('admin.pengajuan.index');
 
-
     // pengaturan
     Route::get('/pengaturan', [AdminPengaturanController::class, 'index'])->name('admin.pengaturan.index');
     Route::post('/pengaturan', [AdminPengaturanController::class, 'update'])->name('admin.pengaturan.update');
+
+    // elrahma
+    Route::post('/elrahma/sinkronisasi', [AdminElrahmaController::class, 'syncMahasiswa'])->name('admin.elrahma.sync');
 });
 
 /* MAHASISWA */

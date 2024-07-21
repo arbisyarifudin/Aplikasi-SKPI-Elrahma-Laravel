@@ -28,4 +28,7 @@ Route::prefix('v1')->group(function () {
 
     // get mahasiswa prodi by prodi id
     Route::get('/mahasiswa-prodi', [App\Http\Controllers\Api\MahasiswaProdiController::class, 'index']);
+
+    // get mahasiswa from elrahma API
+    Route::get('/elrahma/mahasiswa', [App\Http\Controllers\Api\ElrahmaController::class, 'mahasiswa']);
 });

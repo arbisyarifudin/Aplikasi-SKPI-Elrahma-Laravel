@@ -27,6 +27,8 @@ class MahasiswaController extends Controller
         )->join('mahasiswa_program_studi as mps', 'mps.mahasiswa_id', '=', 'mahasiswa.id')
             ->join('program_studi as ps', 'ps.id', '=', 'mps.program_studi_id')
             ->join('jenjang_pendidikan as jp', 'jp.id', '=', 'ps.jenjang_pendidikan_id')
+            ->orderBy('mahasiswa.created_at', 'desc')
+            ->orderBy('tahun_lulus', 'desc')
             ->get();
 
         // check if mahasiswa already has dokumen_skpi
@@ -41,8 +43,10 @@ class MahasiswaController extends Controller
             if ($documenSkpiExists) {
                 $value->has_dokumen_skpi = true;
                 $value->dokumen_skpi_file = $documenSkpiExists->file;
-
             }
+
+            // get is_baru status
+            $value->is_baru = $value->created_at->diffInDays() < 1;
         }
 
         // dd($data);

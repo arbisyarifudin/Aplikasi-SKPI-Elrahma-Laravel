@@ -64,11 +64,11 @@
                                     <div class="fst-italic small text-secondary">{{ $p->gelar_en }}</div>
                                 </td>
                                 <td>
-                                    <a title="Ubah" href="{{ route('admin.prodi.edit-cpl', ['id' => $p->id]) }}" class="btn btn-sm btn-light text-success fw-bold"><i class="bi bi-card-heading"></i> CPL</a>
+                                    <a title="Ubah CPL" href="{{ route('admin.prodi.edit-cpl', ['id' => $p->id]) }}" class="btn btn-sm btn-light text-success fw-bold"><i class="bi bi-card-heading"></i> CPL</a>
+                                    <a title="Ubah" href="{{ route('admin.prodi.edit', ['id' => $p->id]) }}" class="btn btn-sm btn-light text-primary"><i class="bi bi-pencil"></i></a>
                                     <button title="Hapus" type="button" class="btn btn-sm btn-light text-danger" data-bs-toggle="modal" data-bs-target="#hapusModal" data-id="{{ $p->id }}">
                                         <i class="bi bi-trash"></i>
                                     </button>
-                                    <a title="Ubah" href="{{ route('admin.prodi.edit', ['id' => $p->id]) }}" class="btn btn-sm btn-light text-primary"><i class="bi bi-pencil"></i></a>
                                 </td>
                             </tr>
                             @endforeach

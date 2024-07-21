@@ -35,9 +35,24 @@
 
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="card-title">Data Mahasiswa</div>
-                        <button type="button" class="btn btn-sm btn-primary"><i
-                                class="bi bi-arrow-counterclockwise"></i> Sinkronkan data</button>
+                        <form action="{{ route('admin.elrahma.sync') }}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Sinkronkan data</button>
+                        </form>
                     </div>
+
+                    @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                        {!! session('success') !!}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
+                    @if (session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                        {!! session('error') !!}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
 
                     <div class="table-filter mb-3">
                         <div class="row align-items-end">
@@ -84,6 +99,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">Aksi</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">NIM</th>
                                 <th scope="col">Jenjang</th>
@@ -91,14 +107,32 @@
                                 <th scope="col">Thn. Masuk</th>
                                 <th scope="col">Thn. Lulus</th>
                                 <th scope="col">Dokumen SKPI</th>
-                                <th scope="col">Aksi</th>
+                                <th scope="col">Tgl. Dibuat</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($mahasiswa as $m)
                             <tr data-id="{{ $m->id }}">
                                 <td scope="row">{{ $loop->iteration }}</td>
-                                <td>{{ $m->nama }}</td>
+                                <td>
+                                    <a title="Detail" href="{{ route('admin.mahasiswa.show', ['id' => $m->id]) }}" class="btn btn-sm btn-light"><i class="bi bi-search"></i>
+                                        Detail</a>
+                                    {{-- <a href="#" class="btn btn-sm btn-light"><i class="bi bi-trash"></i></a> --}}
+                                    {{-- <button title="Hapus" type="button" class="btn btn-sm btn-light text-danger"
+                                        data-bs-toggle="modal" data-bs-target="#hapusModal">
+                                        <i class="bi bi-trash"></i>
+                                    </button> --}}
+                                    {{-- <a title="Ubah" href="#" class="btn btn-sm btn-light text-primary"><i
+                                            class="bi bi-pencil"></i></a> --}}
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        {{ $m->nama }}
+                                        @if ($m->is_baru)
+                                        <span class="badge bg-success ms-2" style="font-size: 9px; padding: 2px 5px">Baru</span>
+                                        @endif
+                                    </div>
+                                </td>
                                 <td>{{ $m->nim }}</td>
                                 <td>
                                     <div>{{ $m->jenjang_nama }}</div>
@@ -114,31 +148,17 @@
                                     <div class="d-flex justify-content-betweenx align-items-center">
                                         @if ($m->has_dokumen_skpi)
                                         <span class="btn btn-sm btn-success py-0" style="cursor: initial">Dibuat</span>
-                                        <a title="Unduh dokumen"
-                                            href="{{ asset('storage/dokumen_skpi/'.$m->dokumen_skpi_file) }}" target="_blank"
-                                            class="btn btn-sm btn-outline-success py-0 ms-2"><i
-                                                class="bi bi-download"></i></a>
+                                        <a title="Unduh dokumen" href="{{ asset('storage/dokumen_skpi/'.$m->dokumen_skpi_file) }}" target="_blank" class="btn btn-sm btn-outline-success py-0 ms-2"><i class="bi bi-download"></i></a>
                                         @else
                                         {{-- <span class="btn btn-sm btn-danger py-0" style="cursor: initial">Belum
                                             dibuat</span> --}}
 
-                                        <a title="Buat dokumen"
-                                            href="{{ route('admin.dokumen.create', ['mhs' => $m->id, 'prodi' => $m->prodi_id, 'jenjang' => $m->jenjang_id, 'ref' => 'mahasiswa']) }}"
-                                            class="btn btn-sm btn-outline-danger py-0 ms-2"><i
-                                                class="bi bi-file-earmark-plus"></i></a>
+                                        <a title="Buat dokumen" href="{{ route('admin.dokumen.create', ['mhs' => $m->id, 'prodi' => $m->prodi_id, 'jenjang' => $m->jenjang_id, 'ref' => 'mahasiswa']) }}" class="btn btn-sm btn-danger py-0 ms-2"><i class="bi bi-file-earmark-plus"> Buatkan</i></a>
                                         @endif
                                     </div>
                                 </td>
                                 <td>
-                                    <a title="Detail" href="{{ route('admin.mahasiswa.show', ['id' => $m->id]) }}" class="btn btn-sm btn-light"><i class="bi bi-search"></i>
-                                        Detail</a>
-                                    {{-- <a href="#" class="btn btn-sm btn-light"><i class="bi bi-trash"></i></a> --}}
-                                    {{-- <button title="Hapus" type="button" class="btn btn-sm btn-light text-danger"
-                                        data-bs-toggle="modal" data-bs-target="#hapusModal">
-                                        <i class="bi bi-trash"></i>
-                                    </button> --}}
-                                    {{-- <a title="Ubah" href="#" class="btn btn-sm btn-light text-primary"><i
-                                            class="bi bi-pencil"></i></a> --}}
+                                    <span style="font-size: 14px; color: #575757">{{ date('d/m/Y H:m', strtotime($m->created_at)) }}</span>
                                 </td>
                             </tr>
                             @endforeach
@@ -177,23 +197,23 @@
 @push('scripts')
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         const hapusButton = document.querySelector("button[data-bs-target='#hapusModal']");
         const hapusModal = document.getElementById("hapusModal");
         const modalTitle = hapusModal.querySelector(".modal-title");
 
-        hapusButton.addEventListener("click", function (e) {
-            const row = e.target.closest("tr");
-            const dataId = row.getAttribute("data-id");
-            const namaItem = row.querySelector("td:nth-child(2)").textContent; // Mengambil teks dari kolom "Nama"
+        if (hapusButton) {
+            hapusButton.addEventListener("click", function(e) {
+                const row = e.target.closest("tr");
+                const dataId = row.getAttribute("data-id");
+                const namaItem = row.querySelector("td:nth-child(2)").textContent; // Mengambil teks dari kolom "Nama"
 
-            // Setel data dinamis dalam modal
-            // modalTitle.textContent = "Konfirmasi Hapus Mahasiswa #" + dataId;
-            hapusModal.querySelector(".modal-body").textContent = "Apakah Anda yakin ingin menghapus " + namaItem + "?";
-        });
+                // Setel data dinamis dalam modal
+                // modalTitle.textContent = "Konfirmasi Hapus Mahasiswa #" + dataId;
+                hapusModal.querySelector(".modal-body").textContent = "Apakah Anda yakin ingin menghapus " + namaItem + "?";
+            });
+        }
     });
-
-
 </script>
 
 @endpush
