@@ -4,14 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\DokumenSkpi;
+use App\Models\JenjangPendidikan;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data = Mahasiswa::select(
+        // filter params
+        $thn_masuk = $request->input('thn_masuk', date('Y') - 4);
+        $thn_lulus = $request->input('thn_lulus', date('Y'));
+        $jenjang = $request->input('jenjang', null);
+
+        $query = Mahasiswa::select(
             [
                 'mahasiswa.*',
                 'mps.tahun_masuk',
@@ -26,10 +32,28 @@ class MahasiswaController extends Controller
             ]
         )->join('mahasiswa_program_studi as mps', 'mps.mahasiswa_id', '=', 'mahasiswa.id')
             ->join('program_studi as ps', 'ps.id', '=', 'mps.program_studi_id')
-            ->join('jenjang_pendidikan as jp', 'jp.id', '=', 'ps.jenjang_pendidikan_id')
-            ->orderBy('mahasiswa.created_at', 'desc')
+            ->join('jenjang_pendidikan as jp', 'jp.id', '=', 'ps.jenjang_pendidikan_id');
+
+
+        // filter by jenjang
+        if ($jenjang) {
+            $query->where('jp.id', $jenjang);
+        }
+
+        // filter by tahun masuk
+        if ($thn_masuk) {
+            $query->where('mps.tahun_masuk', '>=', $thn_masuk);
+        }
+
+        // filter by tahun lulus
+        if ($thn_lulus) {
+            $query->where('mps.tahun_lulus', '<=', $thn_lulus);
+        }
+
+        $data = $query->orderBy('mahasiswa.created_at', 'desc')
             ->orderBy('tahun_lulus', 'desc')
             ->get();
+
 
         // check if mahasiswa already has dokumen_skpi
         foreach ($data as $key => $value) {
@@ -37,8 +61,8 @@ class MahasiswaController extends Controller
             $value->dokumen_skpi_file = null;
 
             $documenSkpiExists = DokumenSkpi::where('mahasiswa_id', $value->id)
-            ->where('program_studi_id', $value->prodi_id)
-            ->first();
+                ->where('program_studi_id', $value->prodi_id)
+                ->first();
 
             if ($documenSkpiExists) {
                 $value->has_dokumen_skpi = true;
@@ -51,8 +75,20 @@ class MahasiswaController extends Controller
 
         // dd($data);
 
+        $jenjang_list = JenjangPendidikan::all();
+        $tahun_masuk_list = range(2015, date('Y'));
+        $tahun_lulus_list = range(2015, date('Y'));
+
         return view('admin.mahasiswa.index', [
-            'mahasiswa' => $data
+            'mahasiswa' => $data,
+            'jenjang_list' => $jenjang_list,
+            'tahun_masuk_list' => $tahun_masuk_list,
+            'tahun_lulus_list' => $tahun_lulus_list,
+            'filter' => [
+                'thn_masuk' => $thn_masuk,
+                'thn_lulus' => $thn_lulus,
+                'jenjang' => $jenjang,
+            ],
         ]);
     }
 

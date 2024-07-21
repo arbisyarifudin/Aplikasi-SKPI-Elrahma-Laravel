@@ -37,7 +37,8 @@
                         <div class="card-title">Data Mahasiswa</div>
                         <form action="{{ route('admin.elrahma.sync') }}" method="post">
                             @csrf
-                            <button type="submit" class="btn btn-sm btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Sinkronkan data</button>
+                            <button type="submit" class="btn btn-sm btn-primary"><i
+                                    class="bi bi-arrow-counterclockwise"></i> Sinkronkan data</button>
                         </form>
                     </div>
 
@@ -55,43 +56,45 @@
                     @endif
 
                     <div class="table-filter mb-3">
-                        <div class="row align-items-end">
-                            <div class="col-md-3">
-                                <label for="" class="form-label text-small text-semibold">Thn Masuk</label>
-                                <select id="" class="form-control">
-                                    <option>2018</option>
-                                    <option>2019</option>
-                                    <option>2020</option>
-                                    <option>2021</option>
-                                    <option>2022</option>
-                                    <option>2023</option>
-                                    <option>2024</option>
-                                </select>
+                        <form action="" method="get">
+                            <div class="row align-items-end">
+                                <div class="col-md-3">
+                                    <label for="thn_masuk" class="form-label text-small text-semibold">Thn Masuk</label>
+                                    <select id="thn_masuk" name="thn_masuk" class="form-control">
+                                        <option value="">-- Pilih --</option>
+                                        @foreach ($tahun_masuk_list as $thn)
+                                        <option value="{{ $thn }}" {{ $thn == $filter['thn_masuk'] ? 'selected' : '' }}>
+                                            {{ $thn }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="thn_lulus" class="form-label text-small text-semibold">Thn Lulus</label>
+                                    <select id="thn_lulus" name="thn_lulus" class="form-control">
+                                        <option value="">-- Pilih --</option>
+                                        @foreach ($tahun_lulus_list as $thn)
+                                        <option value="{{ $thn }}" {{ $thn == $filter['thn_lulus'] ? 'selected' : '' }}>
+                                            {{ $thn }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="jenjang" class="form-label text-small text-semibold">Jenjang</label>
+                                    <select id="jenjang" name="jenjang" class="form-control">
+                                        <option value="">-- Pilih --</option>
+                                        @foreach ($jenjang_list as $jenjang)
+                                        <option value="{{ $jenjang->id }}" {{ $jenjang->id == $filter['jenjang'] ? 'selected' : '' }}>
+                                            {{ $jenjang->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-3">
+                                    <label for="" class="form-label text-small text-semibold block">&nbsp;</label>
+                                    <button type="submit" class="btn btn-sm btn-primary">Terapkan</button>
+                                    <button type="button" class="btn btn-sm btn-outline-dark" onclick="onResetField()">Reset</button>
+                                </div>
                             </div>
-                            <div class="col-md-3">
-                                <label for="" class="form-label text-small text-semibold">Thn Lulus</label>
-                                <select id="" class="form-control">
-                                    <option>2018</option>
-                                    <option>2019</option>
-                                    <option>2020</option>
-                                    <option>2021</option>
-                                    <option>2022</option>
-                                    <option>2023</option>
-                                    <option>2024</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="" class="form-label text-small text-semibold">Jenjang</label>
-                                <select id="" class="form-control">
-                                    <option>Sarjana</option>
-                                    <option>Magister</option>
-                                </select>
-                            </div>
-                            <div class="col-1">
-                                <label for="" class="form-label text-small text-semibold block">&nbsp;</label>
-                                <button type="submit" class="btn btn-sm btn-primary">Terapkan</button>
-                            </div>
-                        </div>
+                        </form>
                     </div>
 
 
@@ -115,7 +118,8 @@
                             <tr data-id="{{ $m->id }}">
                                 <td scope="row">{{ $loop->iteration }}</td>
                                 <td>
-                                    <a title="Detail" href="{{ route('admin.mahasiswa.show', ['id' => $m->id]) }}" class="btn btn-sm btn-light"><i class="bi bi-search"></i>
+                                    <a title="Detail" href="{{ route('admin.mahasiswa.show', ['id' => $m->id]) }}"
+                                        class="btn btn-sm btn-light"><i class="bi bi-search"></i>
                                         Detail</a>
                                     {{-- <a href="#" class="btn btn-sm btn-light"><i class="bi bi-trash"></i></a> --}}
                                     {{-- <button title="Hapus" type="button" class="btn btn-sm btn-light text-danger"
@@ -129,7 +133,8 @@
                                     <div class="d-flex align-items-center">
                                         {{ $m->nama }}
                                         @if ($m->is_baru)
-                                        <span class="badge bg-success ms-2" style="font-size: 9px; padding: 2px 5px">Baru</span>
+                                        <span class="badge bg-success ms-2"
+                                            style="font-size: 9px; padding: 2px 5px">Baru</span>
                                         @endif
                                     </div>
                                 </td>
@@ -148,17 +153,24 @@
                                     <div class="d-flex justify-content-betweenx align-items-center">
                                         @if ($m->has_dokumen_skpi)
                                         <span class="btn btn-sm btn-success py-0" style="cursor: initial">Dibuat</span>
-                                        <a title="Unduh dokumen" href="{{ asset('storage/dokumen_skpi/'.$m->dokumen_skpi_file) }}" target="_blank" class="btn btn-sm btn-outline-success py-0 ms-2"><i class="bi bi-download"></i></a>
+                                        <a title="Unduh dokumen"
+                                            href="{{ asset('storage/dokumen_skpi/'.$m->dokumen_skpi_file) }}"
+                                            target="_blank" class="btn btn-sm btn-outline-success py-0 ms-2"><i
+                                                class="bi bi-download"></i></a>
                                         @else
                                         {{-- <span class="btn btn-sm btn-danger py-0" style="cursor: initial">Belum
                                             dibuat</span> --}}
 
-                                        <a title="Buat dokumen" href="{{ route('admin.dokumen.create', ['mhs' => $m->id, 'prodi' => $m->prodi_id, 'jenjang' => $m->jenjang_id, 'ref' => 'mahasiswa']) }}" class="btn btn-sm btn-danger py-0 ms-2"><i class="bi bi-file-earmark-plus"> Buatkan</i></a>
+                                        <a title="Buat dokumen"
+                                            href="{{ route('admin.dokumen.create', ['mhs' => $m->id, 'prodi' => $m->prodi_id, 'jenjang' => $m->jenjang_id, 'ref' => 'mahasiswa']) }}"
+                                            class="btn btn-sm btn-danger py-0 ms-2"><i class="bi bi-file-earmark-plus">
+                                                Buatkan</i></a>
                                         @endif
                                     </div>
                                 </td>
                                 <td>
-                                    <span style="font-size: 14px; color: #575757">{{ date('d/m/Y H:m', strtotime($m->created_at)) }}</span>
+                                    <span style="font-size: 14px; color: #575757">{{ date('d/m/Y H:m',
+                                        strtotime($m->created_at)) }}</span>
                                 </td>
                             </tr>
                             @endforeach
@@ -197,6 +209,15 @@
 @push('scripts')
 
 <script>
+    function onResetField () {
+        document.querySelector("[name=thn_masuk]").value = ''
+        document.querySelector("[name=thn_lulus]").value = ''
+        document.querySelector("[name=jenjang]").value = ''
+
+        // refresh page
+        window.location.reload('{{ route('admin.mahasiswa.index') }}')
+    }
+
     document.addEventListener("DOMContentLoaded", function() {
         const hapusButton = document.querySelector("button[data-bs-target='#hapusModal']");
         const hapusModal = document.getElementById("hapusModal");
@@ -213,7 +234,9 @@
                 hapusModal.querySelector(".modal-body").textContent = "Apakah Anda yakin ingin menghapus " + namaItem + "?";
             });
         }
+
     });
+
 </script>
 
 @endpush
