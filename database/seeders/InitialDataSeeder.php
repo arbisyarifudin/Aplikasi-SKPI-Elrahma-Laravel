@@ -127,7 +127,7 @@ class InitialDataSeeder extends Seeder
             // data mahasiswa
             $mahasiswa = [
                 [
-                    'nama' => 'Mahasiswa 1',
+                    'nama' => 'Raditya Dika',
                     'nim' => '1234567890',
                     'jenis_kelamin' => 'L',
                     'tempat_lahir' => 'Bandung',
@@ -153,7 +153,7 @@ class InitialDataSeeder extends Seeder
                     ]
                 ],
                 [
-                    'nama' => 'Mahasiswa 2',
+                    'nama' => 'Panji Pragiwaksono',
                     'nim' => '1234567891',
                     'jenis_kelamin' => 'L',
                     'tempat_lahir' => 'Jakarta',
@@ -168,7 +168,7 @@ class InitialDataSeeder extends Seeder
                     'nomor_ijazah' => '',
                 ],
                 [
-                    'nama' => 'Mahasiswa 2',
+                    'nama' => 'Panji Pragiwaksono',
                     'nim' => '1234567891',
                     'jenis_kelamin' => 'L',
                     'tempat_lahir' => 'Jakarta',
