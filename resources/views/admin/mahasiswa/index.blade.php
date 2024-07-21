@@ -215,7 +215,9 @@
         document.querySelector("[name=jenjang]").value = ''
 
         // refresh page
-        window.location.reload('{{ route('admin.mahasiswa.index') }}')
+        setTimeout(() => {
+            window.location.replace('{{ route('admin.mahasiswa.index') }}')
+        }, 500);
     }
 
     document.addEventListener("DOMContentLoaded", function() {
