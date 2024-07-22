@@ -1,5 +1,5 @@
 @extends('admin.layout')
-@section('title', 'Ubah Program Studi - ')
+@section('title', 'Ubah CPL Program Studi - ')
 
 @section('content')
 <div class="pagetitle">
@@ -32,7 +32,7 @@
                                 aria-label="Close"></button>
                         </div>
                     @endif
-                    <form action="{{ route('admin.prodi.update-cpl', ['id' => $detailData->id]) }}" method="post">
+                    <form action="{{ route('admin.prodi.update-cpl', ['id' => $detailData->id, 'from' => request()->query('from')]) }}" method="post">
 
                         <div class="card-title d-flex justify-content-between">
                             <a href="{{ route('admin.prodi.index') }}" class="btn btn-sm btn-outline-primary"><i class="bi bi-arrow-left"></i> Kembali</a>

@@ -68,7 +68,10 @@ class ProdiController extends Controller
         $newProdi->save();
 
         // redirect back
-        return redirect()->route('admin.prodi.index')->with('success', 'Program studi berhasil ditambahkan');
+        // return redirect()->route('admin.prodi.index')->with('success', 'Program studi berhasil ditambahkan');
+
+        // redirect to cpl page
+        return redirect()->route('admin.prodi.edit-cpl', ['id' => $newProdi->id, 'from' => 'add-prodi'])->with('success', 'Program studi berhasil ditambahkan. Silahkan sesuaikan data CPL-nya.');
     }
 
     public function show($id)
@@ -159,6 +162,10 @@ class ProdiController extends Controller
         ProgramStudi::where('id', $id)->update([
             'kualifikasi_cpl' => $request->cpl
         ]);
+
+        if ($request->from == 'add-prodi') {
+            return redirect()->route('admin.prodi.index')->with('success', 'Data Prodi dan CPL-nya berhasil disimpan');
+        }
 
         // redirect back
         return redirect()->back()->with('success', 'CPL berhasil diperbarui');
