@@ -53,7 +53,7 @@ class ProdiController extends Controller
         ]);
 
         // insert data
-        ProgramStudi::create([
+        $newProdi = ProgramStudi::create([
             'jenjang_pendidikan_id' => $request->jenjang_pendidikan_id,
             'nama' => $request->prodi_nama,
             'nama_en' => $request->prodi_nama_en,
@@ -61,6 +61,11 @@ class ProdiController extends Controller
             'gelar' => $request->prodi_gelar,
             'gelar_en' => $request->prodi_gelar_en
         ]);
+
+        // fill cpl from pengaturan
+        $pengaturan = \App\Models\Pengaturan::where('nama', 'informasi_kualifikasi_dan_hasil_capaian')->first();
+        $newProdi->kualifikasi_cpl = $pengaturan ? $pengaturan->nilai : json_encode([]);
+        $newProdi->save();
 
         // redirect back
         return redirect()->route('admin.prodi.index')->with('success', 'Program studi berhasil ditambahkan');
@@ -146,7 +151,8 @@ class ProdiController extends Controller
         ]);
     }
 
-    public function updateCpl (Request $request, $id) {
+    public function updateCpl(Request $request, $id)
+    {
         // dd($request->cpl);
 
         // update data
