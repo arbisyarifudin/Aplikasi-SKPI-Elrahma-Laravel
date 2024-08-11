@@ -49,6 +49,14 @@
     - akreditasi
     - jenjang_id (FK)
 
+0. CPL (capaian belajar)
+    - id (PK)
+    - tahun_kurikulum
+    - program_studi_id
+    - data JSON
+
+    ```UNIQUE > tahun + prodi```
+
 0. Mahasiswa Program Studi
     - id (PK)
     - mahasiswa_id (FK)

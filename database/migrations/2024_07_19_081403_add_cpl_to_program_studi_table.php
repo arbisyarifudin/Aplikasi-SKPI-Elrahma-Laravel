@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('program_studi', function (Blueprint $table) {
             // add cpl column
-            $table->text('kualifikasi_cpl')->nullable();
+            $table->text('kualifikasi_cpl')->nullable(); // TODO: delete this (use cpl table instead)
         });
     }
 

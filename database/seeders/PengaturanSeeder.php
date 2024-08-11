@@ -236,6 +236,41 @@ class PengaturanSeeder extends Seeder
                         ],
                     ]
                 ]
+            ],
+            [
+                'nama' => 'Kurikulum',
+                'pengaturan' => [
+                    [
+                        'nama' => 'tahun_kurikulum',
+                        'nilai' => '2024',
+                        'tipe' => 'select',
+                    ],
+                ]
+            ],
+            [
+                'nama' => 'Tanda Tangan',
+                'pengaturan' => [
+                    [
+                        'nama' => 'nama_penandatangan',
+                        'nilai' => 'Eko Riswanto',
+                        'tipe' => 'text',
+                    ],
+                    [
+                        'nama' => 'nip_penandatangan',
+                        'nilai' => '1234567890',
+                        'tipe' => 'number',
+                    ],
+                    [
+                        'nama' => 'jabatan_penandatangan',
+                        'nilai' => 'Ketua',
+                        'tipe' => 'text',
+                    ],
+                    [
+                        'nama' => 'gambar_tandatangan_cap',
+                        'nilai' => 'images/ttd_cap.png',
+                        'tipe' => 'image',
+                    ],
+                ]
             ]
         ];
 
@@ -265,12 +300,32 @@ class PengaturanSeeder extends Seeder
             }
         }
 
-        // get all prodi, and set setting 'informasi_kualifikasi_dan_hasil_capaian' for each prodi
+        /* // get all prodi, and set setting 'informasi_kualifikasi_dan_hasil_capaian' for each prodi
         $prodis = \App\Models\ProgramStudi::all();
         foreach ($prodis as $prodi) {
             $pengaturan = \App\Models\Pengaturan::where('nama', 'informasi_kualifikasi_dan_hasil_capaian')->first();
             $prodi->kualifikasi_cpl = $pengaturan ? $pengaturan->nilai : json_encode([]);
             $prodi->save();
+        } */
+
+        // get all prodi,  and create cpl per prodi + tahun kurikukum
+        $prodis = \App\Models\ProgramStudi::all();
+        foreach ($prodis as $prodi) {
+            $pengaturan = \App\Models\Pengaturan::where('nama', 'informasi_kualifikasi_dan_hasil_capaian')->first();
+
+
+            // get range from 2015 to 2024
+            $tahunKurikulums = range(2015, 2024);
+            foreach ($tahunKurikulums as $tahunKurikulum) {
+                $cpl = \App\Models\Cpl::firstOrCreate([
+                    'tahun_kurikulum' => $tahunKurikulum,
+                    'program_studi_id' => $prodi->id,
+                ], [
+                    'tahun_kurikulum' => $tahunKurikulum,
+                    'program_studi_id' => $prodi->id,
+                    'data' => $pengaturan ? $pengaturan->nilai : json_encode([]),
+                ]);
+            }
         }
     }
 }
