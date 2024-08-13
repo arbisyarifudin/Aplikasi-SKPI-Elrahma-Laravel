@@ -2,6 +2,26 @@
 @section('title', 'Prestasi - ')
 
 @section('content')
+
+@php
+
+if (!function_exists('getStatusColor')) {
+    function getStatusColor ($status) {
+        $status = strtolower($status);
+        if ($status == 'diproses') {
+            return '<span class="badge bg-warning">Diproses</span>';
+        } else if ($status == 'ditolak') {
+            return '<span class="badge bg-danger">Ditolak</span>';
+        } else if ($status == 'diterima') {
+            return '<span class="badge bg-secondary">Diterima</span>';
+        } else {
+            return '<span class="badge bg-secondary">Tidak diketahui</span>';
+        }
+    }
+}
+
+@endphp
+
 <div class="pagetitle">
     <h1>Prestasi</h1>
     <nav>
@@ -49,6 +69,7 @@
                                 {{-- <th scope="col">Tingkat</th> --}}
                                 <th scope="col">Pnyelenggara & Tempat</th>
                                 <th scope="col">Sertifikat</th>
+                                <th scope="col">Status Persetujuan</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -76,6 +97,7 @@
                                     <span class="badge bg-secondary">Tidak ada</span>
                                     @endif
                                 </td>
+                                <td>{!! getStatusColor($p->status) !!}</td>
                                 <td>
                                     <button title="Hapus" type="button" class="btn btn-sm btn-light text-danger"
                                         data-bs-toggle="modal" data-bs-target="#hapusModal" data-id="{{ $p->id }}">
