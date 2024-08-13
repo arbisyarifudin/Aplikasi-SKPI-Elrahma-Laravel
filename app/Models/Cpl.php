@@ -10,4 +10,6 @@ class Cpl extends Model
     use HasFactory;
 
     protected $table = 'cpl';
+
+    protected $guarded = [];
 }

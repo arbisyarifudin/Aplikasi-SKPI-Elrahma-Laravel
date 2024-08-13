@@ -9,7 +9,7 @@
 - Admin bisa verifikasi/validasi data prestasi mahasiswa (terima / tolak)
 - Sertifikat pada prestasi > WAJIB
 - Sertifikat bisa unggah file dgn max 1MB, bisa juga bentuk link (public)
-- Pengaturan: tambah tahun kurikulum, nama pendandatangan, jabatan dan cap + ttd PNG (5x5 cm)
+- DONE --> Pengaturan: tambah tahun kurikulum, nama pendandatangan, jabatan dan cap + ttd PNG (5x5 cm)
 - dokumen SKPI ada nomor ijazahnya dan bisa diinputkan oleh admin
 - nomor dokumen di PDF = nomor ijazah 
 - tahun lulus bisa kosong secara default, dan bisa diinput oleh admin

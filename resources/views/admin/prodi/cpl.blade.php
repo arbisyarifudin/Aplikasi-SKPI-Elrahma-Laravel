@@ -19,24 +19,33 @@
             <div class="card overflow-auto" id="app">
                 <div class="card-body" style="min-height: 300px">
                     @if (session('success'))
-                        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-                            {{ session('success') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                aria-label="Close"></button>
-                        </div>
+                    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                     @endif
                     @if (session('error'))
-                        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-                            {{ session('error') }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                aria-label="Close"></button>
-                        </div>
+                    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                     @endif
-                    <form action="{{ route('admin.prodi.update-cpl', ['id' => $detailData->id, 'from' => request()->query('from')]) }}" method="post">
+                    <form
+                        action="{{ route('admin.prodi.update-cpl', ['id' => $detailData->id, 'from' => request()->query('from')]) }}"
+                        method="post">
 
-                        <div class="card-title d-flex justify-content-between">
-                            <a href="{{ route('admin.prodi.index') }}" class="btn btn-sm btn-outline-primary"><i class="bi bi-arrow-left"></i> Kembali</a>
-                            <!-- <span class="text-danger small">Bertanda *) wajib diisi</span> -->
+                        <div class="card-title d-flex justify-content-between align-items-center">
+                            <div class="col-md-6">
+                                <a href="{{ route('admin.prodi.index') }}" class="btn btn-sm btn-outline-primary"><i
+                                        class="bi bi-arrow-left"></i> Kembali</a>
+                                <!-- <span class="text-danger small">Bertanda *) wajib diisi</span> -->
+                            </div>
+                            <div class="col-md-6 text-end">
+                                <a class="btn btn-outline-secondary btn-sm">
+                                    <i class="bi bi-archive"></i>
+                                    Lihat Arsip CPL
+                                </a>
+                            </div>
                         </div>
 
                         <div class="row mt-3">
@@ -53,7 +62,7 @@
                                         {{-- <tr>
                                             <th class="text-center bg-secondary text-white" style="width: 15px">A</th>
                                             <th class="bg-secondary text-white">@{{ item.judul }}</th>
-                                        <th class="bg-secondary text-white">@{{ item.judul_en }}</th>
+                                            <th class="bg-secondary text-white">@{{ item.judul_en }}</th>
                                         </tr> --}}
                                         <template v-if="item && item.subs">
                                             <template v-for="(subItem, subIndex) in item.subs">
@@ -65,7 +74,8 @@
                                                     </th>
                                                 </tr>
                                                 <template v-if="subItem && subItem.list">
-                                                    <template v-for="(subItemListItem, subItemListItemIndex) in subItem.list">
+                                                    <template
+                                                        v-for="(subItemListItem, subItemListItemIndex) in subItem.list">
                                                         <tr>
                                                             <td>@{{ subItemListItemIndex + 1 }}</td>
                                                             <td class="">@{{ subItemListItem.teks }}</td>
@@ -74,7 +84,8 @@
                                                     </template>
                                                 </template>
                                                 <template v-else-if="subItem && subItem.subs">
-                                                    <template v-for="(subItemListItem, subItemListItemIndex) in subItem.subs">
+                                                    <template
+                                                        v-for="(subItemListItem, subItemListItemIndex) in subItem.subs">
                                                         <tr>
                                                             <th></th>
                                                             <th class="small">@{{ subItemListItem.judul }}</th>
@@ -82,7 +93,8 @@
                                                         </tr>
 
                                                         <template v-if="subItemListItem && subItemListItem.list">
-                                                            <template v-for="(subItemListItemListItem, subItemListItemListItemIndex) in subItemListItem.list">
+                                                            <template
+                                                                v-for="(subItemListItemListItem, subItemListItemListItemIndex) in subItemListItem.list">
                                                                 <tr>
                                                                     <td>@{{ subItemListItemListItemIndex + 1 }}</td>
                                                                     <td class="">
@@ -122,28 +134,40 @@
                                                 <tr>
                                                     <th style="background-color: #ddd"></th>
                                                     <th class="" style="background-color: #ddd">
-                                                        <input type="text" :name="`pengaturan_hasil_capaian_data[${index}][subs][${subIndex}][judul]`" class="form-control" v-model="subItem.judul">
+                                                        <input type="text"
+                                                            :name="`pengaturan_hasil_capaian_data[${index}][subs][${subIndex}][judul]`"
+                                                            class="form-control" v-model="subItem.judul">
                                                     </th>
                                                     <th class="" style="background-color: #ddd">
-                                                        <input type="text" :name="`pengaturan_hasil_capaian_data[${index}][subs][${subIndex}][judul_en]`" class="form-control" v-model="subItem.judul_en">
+                                                        <input type="text"
+                                                            :name="`pengaturan_hasil_capaian_data[${index}][subs][${subIndex}][judul_en]`"
+                                                            class="form-control" v-model="subItem.judul_en">
                                                     </th>
                                                     <th>
-                                                        <button class="btn btn-sm btn-danger" title="Hapus" type="button" @click="deleteJudul(index, subIndex)">
+                                                        <button class="btn btn-sm btn-danger" title="Hapus"
+                                                            type="button" @click="deleteJudul(index, subIndex)">
                                                             <i class="bi bi-x"></i></button>
                                                     </th>
                                                 </tr>
                                                 <template v-if="subItem && subItem.list">
-                                                    <template v-for="(subItemListItem, subItemListItemIndex) in subItem.list">
+                                                    <template
+                                                        v-for="(subItemListItem, subItemListItemIndex) in subItem.list">
                                                         <tr>
                                                             <td>@{{ subItemListItemIndex + 1 }}</td>
                                                             <td class="">
-                                                                <input type="text" :name="`pengaturan_hasil_capaian_data[${index}][subs][${subIndex}][list][${subItemListItemIndex}][teks]`" class="form-control" v-model="subItemListItem.teks">
+                                                                <input type="text"
+                                                                    :name="`pengaturan_hasil_capaian_data[${index}][subs][${subIndex}][list][${subItemListItemIndex}][teks]`"
+                                                                    class="form-control" v-model="subItemListItem.teks">
                                                             </td>
                                                             <td class="">
-                                                                <input type="text" :name="`pengaturan_hasil_capaian_data[${index}][subs][${subIndex}][list][${subItemListItemIndex}][teks_en]`" class="form-control" v-model="subItemListItem.teks_en">
+                                                                <input type="text"
+                                                                    :name="`pengaturan_hasil_capaian_data[${index}][subs][${subIndex}][list][${subItemListItemIndex}][teks_en]`"
+                                                                    class="form-control"
+                                                                    v-model="subItemListItem.teks_en">
                                                             </td>
                                                             <td>
-                                                                <button class="btn btn-sm btn-danger" type="button" @click="deleteSubItem(index, subIndex, subItemListItemIndex)">
+                                                                <button class="btn btn-sm btn-danger" type="button"
+                                                                    @click="deleteSubItem(index, subIndex, subItemListItemIndex)">
                                                                     <i class="bi bi-x"></i></button>
                                                             </td>
                                                         </tr>
@@ -152,39 +176,58 @@
                                                 <tr>
                                                     <td style="background-color: #fff" colspan="4">
                                                         <div class="d-flex align-items-center justify-content-center">
-                                                            <button type="button" class="btn btn-sm btn-secondary ms-2" style="font-size: 10px" @click="addItemSubItem(index, subIndex)">Tambah
+                                                            <button type="button" class="btn btn-sm btn-secondary ms-2"
+                                                                style="font-size: 10px"
+                                                                @click="addItemSubItem(index, subIndex)">Tambah
                                                                 Item</button>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <template v-if="subItem && subItem.subs">
-                                                    <template v-for="(subItemListItem, subItemListItemIndex) in subItem.subs">
+                                                    <template
+                                                        v-for="(subItemListItem, subItemListItemIndex) in subItem.subs">
                                                         <tr>
                                                             <th></th>
                                                             <th class="small">
-                                                                <input type="text" :name="`pengaturan_hasil_capaian_data[${index}][subs][${subIndex}][subs][${subItemListItemIndex}][judul]`" class="form-control" v-model="subItemListItem.judul">
+                                                                <input type="text"
+                                                                    :name="`pengaturan_hasil_capaian_data[${index}][subs][${subIndex}][subs][${subItemListItemIndex}][judul]`"
+                                                                    class="form-control"
+                                                                    v-model="subItemListItem.judul">
                                                             </th>
                                                             <th class="small">
-                                                                <input type="text" :name="`pengaturan_hasil_capaian_data[${index}][subs][${subIndex}][subs][${subItemListItemIndex}][judul_en]`" class="form-control" v-model="subItemListItem.judul_en">
+                                                                <input type="text"
+                                                                    :name="`pengaturan_hasil_capaian_data[${index}][subs][${subIndex}][subs][${subItemListItemIndex}][judul_en]`"
+                                                                    class="form-control"
+                                                                    v-model="subItemListItem.judul_en">
                                                             </th>
                                                             <td>
-                                                                <button class="btn btn-sm btn-danger" type="button" @click="deleteSubJudul(index, subIndex, subItemListItemIndex)">
+                                                                <button class="btn btn-sm btn-danger" type="button"
+                                                                    @click="deleteSubJudul(index, subIndex, subItemListItemIndex)">
                                                                     <i class="bi bi-x"></i></button>
                                                             </td>
                                                         </tr>
 
                                                         <template v-if="subItemListItem && subItemListItem.list">
-                                                            <template v-for="(subItemListItemListItem, subItemListItemListItemIndex) in subItemListItem.list">
+                                                            <template
+                                                                v-for="(subItemListItemListItem, subItemListItemListItemIndex) in subItemListItem.list">
                                                                 <tr>
                                                                     <td>@{{ subItemListItemListItemIndex + 1 }}</td>
                                                                     <td class="">
-                                                                        <input type="text" :name="`pengaturan_hasil_capaian_data[${index}][subs][${subIndex}][subs][${subItemListItemIndex}][list][${subItemListItemListItemIndex}][teks]`" class="form-control" v-model="subItemListItemListItem.teks">
+                                                                        <input type="text"
+                                                                            :name="`pengaturan_hasil_capaian_data[${index}][subs][${subIndex}][subs][${subItemListItemIndex}][list][${subItemListItemListItemIndex}][teks]`"
+                                                                            class="form-control"
+                                                                            v-model="subItemListItemListItem.teks">
                                                                     </td>
                                                                     <td class="">
-                                                                        <input type="text" :name="`pengaturan_hasil_capaian_data[${index}][subs][${subIndex}][subs][${subItemListItemIndex}][list][${subItemListItemListItemIndex}][teks_en]`" class="form-control" v-model="subItemListItemListItem.teks_en">
+                                                                        <input type="text"
+                                                                            :name="`pengaturan_hasil_capaian_data[${index}][subs][${subIndex}][subs][${subItemListItemIndex}][list][${subItemListItemListItemIndex}][teks_en]`"
+                                                                            class="form-control"
+                                                                            v-model="subItemListItemListItem.teks_en">
                                                                     </td>
                                                                     <td>
-                                                                        <button class="btn btn-sm btn-danger" type="button" @click="deleteSubItemListItem(index, subIndex, subItemListItemIndex, subItemListItemListItemIndex)">
+                                                                        <button class="btn btn-sm btn-danger"
+                                                                            type="button"
+                                                                            @click="deleteSubItemListItem(index, subIndex, subItemListItemIndex, subItemListItemListItemIndex)">
                                                                             <i class="bi bi-x"></i></button>
                                                                     </td>
                                                                 </tr>
@@ -193,8 +236,12 @@
 
                                                         <tr>
                                                             <td style="background-color: #fff" colspan="4">
-                                                                <div class="d-flex align-items-center justify-content-center">
-                                                                    <button type="button" class="btn btn-sm btn-secondary ms-2" style="font-size: 10px" @click="addItemSubItemListItem(index, subIndex, subItemListItemIndex)">Tambah
+                                                                <div
+                                                                    class="d-flex align-items-center justify-content-center">
+                                                                    <button type="button"
+                                                                        class="btn btn-sm btn-secondary ms-2"
+                                                                        style="font-size: 10px"
+                                                                        @click="addItemSubItemListItem(index, subIndex, subItemListItemIndex)">Tambah
                                                                         Item</button>
                                                                 </div>
                                                             </td>
@@ -204,7 +251,9 @@
                                                 <tr>
                                                     <td style="background-color: #fff" colspan="4">
                                                         <div class="d-flex align-items-center justify-content-center">
-                                                            <button type="button" class="btn btn-sm btn-secondary" style="font-size: 10px" @click="addItemSubJudul(index, subIndex)">Tambah
+                                                            <button type="button" class="btn btn-sm btn-secondary"
+                                                                style="font-size: 10px"
+                                                                @click="addItemSubJudul(index, subIndex)">Tambah
                                                                 Subjudul</button>
                                                         </div>
                                                     </td>
@@ -213,7 +262,8 @@
                                             <tr>
                                                 <td style="background-color: #fff" colspan="4">
                                                     <div class="d-flex justify-content-center">
-                                                        <button type="button" class="btn btn-sm btn-dark small" @click="addItemJudul(index)">Tambah Judul</button>
+                                                        <button type="button" class="btn btn-sm btn-dark small"
+                                                            @click="addItemJudul(index)">Tambah Judul</button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -263,12 +313,12 @@
     });
 
     const cplEditMode = true;
-    const cplData = @json($detailData->kualifikasi_cpl);
+    const cplData = @json($cplData);
 
     const app = Vue.createApp({
         data() {
             return {
-                kualifikasiCplData: JSON.parse(cplData),
+                kualifikasiCplData: JSON.parse(cplData?.data ?? '[]'),
                 cplEditMode: true,
                 loading: true,
             }

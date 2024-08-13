@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cpl;
 use App\Models\JenjangPendidikan;
 use App\Models\MahasiswaProgramStudi;
 use App\Models\ProgramStudi;
@@ -52,26 +53,43 @@ class ProdiController extends Controller
             'prodi_gelar_en.required' => 'Gelar (English) harus diisi'
         ]);
 
-        // insert data
-        $newProdi = ProgramStudi::create([
-            'jenjang_pendidikan_id' => $request->jenjang_pendidikan_id,
-            'nama' => $request->prodi_nama,
-            'nama_en' => $request->prodi_nama_en,
-            'akreditasi' => $request->prodi_akreditasi,
-            'gelar' => $request->prodi_gelar,
-            'gelar_en' => $request->prodi_gelar_en
-        ]);
+        \DB::beginTransaction();
+        try {
+            // insert data
+            $newProdi = ProgramStudi::create([
+                'jenjang_pendidikan_id' => $request->jenjang_pendidikan_id,
+                'nama' => $request->prodi_nama,
+                'nama_en' => $request->prodi_nama_en,
+                'akreditasi' => $request->prodi_akreditasi,
+                'gelar' => $request->prodi_gelar,
+                'gelar_en' => $request->prodi_gelar_en
+            ]);
 
-        // fill cpl from pengaturan
-        $pengaturan = \App\Models\Pengaturan::where('nama', 'informasi_kualifikasi_dan_hasil_capaian')->first();
-        $newProdi->kualifikasi_cpl = $pengaturan ? $pengaturan->nilai : json_encode([]);
-        $newProdi->save();
+            // fill cpl from pengaturan
+            // $pengaturan = \App\Models\Pengaturan::where('nama', 'informasi_kualifikasi_dan_hasil_capaian')->first();
+            // $newProdi->kualifikasi_cpl = $pengaturan ? $pengaturan->nilai : json_encode([]);
+            // $newProdi->save();
 
-        // redirect back
-        // return redirect()->route('admin.prodi.index')->with('success', 'Program studi berhasil ditambahkan');
+            // dd(\App\Utils\Skpi::getSettingByName('informasi_kualifikasi_dan_hasil_capaian'));
 
-        // redirect to cpl page
-        return redirect()->route('admin.prodi.edit-cpl', ['id' => $newProdi->id, 'from' => 'add-prodi'])->with('success', 'Program studi berhasil ditambahkan. Silahkan sesuaikan data CPL-nya.');
+            // create new cpl for this prodi
+            $newCpl = \App\Models\Cpl::firstOrCreate([
+                'tahun_kurikulum' => \App\Utils\Skpi::getSettingByName('tahun_kurikulum'),
+                'program_studi_id' => $newProdi->id
+            ], [
+                'data' => json_encode(\App\Utils\Skpi::getSettingByName('informasi_kualifikasi_dan_hasil_capaian'))
+            ]);
+
+            \DB::commit();
+
+            // redirect to cpl page
+            return redirect()->route('admin.prodi.edit-cpl', ['id' => $newProdi->id, 'from' => 'add-prodi'])->with('success', 'Program studi berhasil ditambahkan. Silahkan sesuaikan data CPL-nya.');
+        } catch (\Exception $e) {
+            \DB::rollBack();
+            // throw $e;
+            logger($e);
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat menambahkan program studi');
+        }
     }
 
     public function show($id)
@@ -144,13 +162,20 @@ class ProdiController extends Controller
 
     /* CPL (capaian pembelajaran) */
 
-    public function editCpl($id)
+    public function editCpl(Request $request, $id)
     {
         // get detail data
         $detailData = ProgramStudi::findOrFail($id);
 
+        // get tahun kurikulum
+        $tahunKurikulumAktif = \App\Utils\Skpi::getSettingByName('tahun_kurikulum');
+
+        // get cpl data
+        $cplData = Cpl::where('program_studi_id', $detailData->id)->where('tahun_kurikulum', $tahunKurikulumAktif)->first();
+
         return view('admin.prodi.cpl', [
-            'detailData' => $detailData
+            'detailData' => $detailData,
+            'cplData' => $cplData,
         ]);
     }
 
@@ -159,8 +184,14 @@ class ProdiController extends Controller
         // dd($request->cpl);
 
         // update data
-        ProgramStudi::where('id', $id)->update([
-            'kualifikasi_cpl' => $request->cpl
+        // ProgramStudi::where('id', $id)->update([
+        //     'kualifikasi_cpl' => $request->cpl
+        // ]);
+
+        $tahunKurikulumAktif = \App\Utils\Skpi::getSettingByName('tahun_kurikulum');
+
+        Cpl::where('program_studi_id', $id)->where('tahun_kurikulum', $tahunKurikulumAktif)->update([
+            'data' => $request->cpl
         ]);
 
         if ($request->from == 'add-prodi') {
