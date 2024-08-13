@@ -162,10 +162,10 @@ class ProdiController extends Controller
 
     /* CPL (capaian pembelajaran) */
 
-    public function editCpl(Request $request, $id)
+    public function editCpl(Request $request, $prodiId)
     {
         // get detail data
-        $detailData = ProgramStudi::findOrFail($id);
+        $detailData = ProgramStudi::findOrFail($prodiId);
 
         // get tahun kurikulum
         $tahunKurikulumAktif = \App\Utils\Skpi::getSettingByName('tahun_kurikulum');
@@ -179,7 +179,7 @@ class ProdiController extends Controller
         ]);
     }
 
-    public function updateCpl(Request $request, $id)
+    public function updateCpl(Request $request, $prodiId)
     {
         // dd($request->cpl);
 
@@ -190,7 +190,7 @@ class ProdiController extends Controller
 
         $tahunKurikulumAktif = \App\Utils\Skpi::getSettingByName('tahun_kurikulum');
 
-        Cpl::where('program_studi_id', $id)->where('tahun_kurikulum', $tahunKurikulumAktif)->update([
+        Cpl::where('program_studi_id', $prodiId)->where('tahun_kurikulum', $tahunKurikulumAktif)->update([
             'data' => $request->cpl
         ]);
 
@@ -200,5 +200,47 @@ class ProdiController extends Controller
 
         // redirect back
         return redirect()->back()->with('success', 'CPL berhasil diperbarui');
+    }
+
+    /* CPL ARCHIVES */
+
+    public function archiveCpl(Request $request, $prodiId)
+    {
+        // get detail data
+        $prodiDetailData = ProgramStudi::findOrFail($prodiId);
+
+        // get cpl data
+        $cplListData = Cpl::where('program_studi_id', $prodiDetailData->id)
+            ->join('program_studi as p', 'p.id', '=', 'cpl.program_studi_id')
+            ->select([
+                'cpl.*',
+                'p.nama as program_studi_nama',
+                'p.nama_en as program_studi_nama_en'
+            ])
+            ->orderByDesc('cpl.tahun_kurikulum')
+            ->get();
+
+        // get tahun kurikulum aktif
+        $tahunKurikulumAktif = \App\Utils\Skpi::getSettingByName('tahun_kurikulum');
+
+        return view('admin.prodi.cpl-archive', [
+            'prodi' => $prodiDetailData,
+            'cplListData' => $cplListData,
+            'tahunKurikulumAktif' => $tahunKurikulumAktif
+        ]);
+    }
+
+    public function viewCpl(Request $request, $prodiId, $idCpl)
+    {
+        // get detail data
+        $prodiDetailData = ProgramStudi::findOrFail($prodiId);
+
+        // get cpl detail data
+        $cplDetailData = Cpl::findOrFail($idCpl);
+
+        return view('admin.prodi.cpl-view', [
+            'prodi' => $prodiDetailData,
+            'cpl' => $cplDetailData,
+        ]);
     }
 }

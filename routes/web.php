@@ -79,6 +79,8 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], func
 
     // prodi CPL (capaian pembelajaran)
     Route::get('/prodi/{id}/cpl', [AdminProdiController::class, 'editCpl'])->name('admin.prodi.edit-cpl');
+    Route::get('/prodi/{id}/arsip-cpl', [AdminProdiController::class, 'archiveCpl'])->name('admin.prodi.list-cpl');
+    Route::get('/prodi/{id}/view-cpl/{idCpl}', [AdminProdiController::class, 'viewCpl'])->name('admin.prodi.view-cpl');
     Route::put('/prodi/{id}/cpl', [AdminProdiController::class, 'updateCpl'])->name('admin.prodi.update-cpl');
 
     // dokumen skpi

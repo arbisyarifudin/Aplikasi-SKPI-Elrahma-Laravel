@@ -9,6 +9,8 @@
             <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
             <li class="breadcrumb-item">Program Studi</li>
             <li class="breadcrumb-item active">CPL</li>
+            <li class="breadcrumb-item">Arsip</li>
+            <li class="breadcrumb-item active">Lihat</li>
         </ol>
     </nav>
 </div><!-- End Page Title -->
@@ -18,40 +20,19 @@
         <div class="col-md-10">
             <div class="card overflow-auto" id="app">
                 <div class="card-body" style="min-height: 300px">
-                    @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-                        {{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    @endif
-                    @if (session('error'))
-                    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-                        {{ session('error') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    @endif
-                    <form
-                        action="{{ route('admin.prodi.update-cpl', ['id' => $detailData->id, 'from' => request()->query('from')]) }}"
-                        method="post">
-
-                        <div class="card-title d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="card-title row justify-content-between align-items-center">
                             <div class="col-md-6">
-                                <a href="{{ route('admin.prodi.index') }}" class="btn btn-sm btn-outline-primary"><i
-                                        class="bi bi-arrow-left"></i> Kembali</a>
-                                <!-- <span class="text-danger small">Bertanda *) wajib diisi</span> -->
+                                {{ $prodi->nama }} / <small class="text-muted">{{$prodi->nama_en}}</small> ({{ $cpl->tahun_kurikulum }})
                             </div>
                             <div class="col-md-6 text-end">
-                                <a class="btn btn-outline-secondary btn-sm" href="{{ route('admin.prodi.list-cpl', ['id' => $detailData->id]) }}">
-                                    <i class="bi bi-archive"></i>
-                                    Lihat Arsip CPL
-                                </a>
+                                <a href="{{ route('admin.prodi.list-cpl', ['id' => $prodi->id]) }}"
+                                    class="btn btn-sm btn-outline-primary"><i class="bi bi-arrow-left"></i> Kembali</a>
                             </div>
                         </div>
 
                         <div class="row mt-3">
                             <div class="col-md-12" v-if="!!kualifikasiCplData">
-                                @csrf
-                                @method('put')
                                 <div class="mb-2">
                                     <div>
                                         <span>Informasi Tentang Kualifikasi dan Hasil yang Dicapai</span>
@@ -280,14 +261,7 @@
                                 </div>
                             </div>
                         </div>
-
-                        <textarea name="cpl" :value="kualifikasiCplDataStringify" style="display: none;"></textarea>
-
-                        <div class="mb-3" v-if="!!kualifikasiCplData">
-                            <button type="submit" class="btn btn-primary" :disabled="!isFormValid">Simpan & Buat
-                                SKPI</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -312,13 +286,13 @@
         }
     });
 
-    const cplData = @json($cplData);
+    const cplData = @json($cpl);
 
     const app = Vue.createApp({
         data() {
             return {
                 kualifikasiCplData: JSON.parse(cplData?.data ?? '[]'),
-                cplEditMode: true,
+                cplEditMode: false,
                 loading: true,
             }
         },
@@ -330,60 +304,8 @@
             kualifikasiCplDataStringify() {
                 return !!this.kualifikasiCplData ? JSON.stringify(this.kualifikasiCplData) : ''
             },
-            isFormValid() {
-                return !!this.kualifikasiCplData
-            }
         },
         methods: {
-            addItemJudul(index, subIndex) {
-                this.kualifikasiCplData[index].subs.push({
-                    judul: '',
-                    judul_en: '',
-                    subs: [],
-                    list: [],
-                });
-            },
-            addItemSubJudul(index, subIndex) {
-                if (!this.kualifikasiCplData[index].subs[subIndex].subs) {
-                    this.kualifikasiCplData[index].subs[subIndex].subs = [];
-                }
-                this.kualifikasiCplData[index].subs[subIndex].subs.push({
-                    judul: 'Subjudul baru',
-                    judul_en: 'New subjudul',
-                    list: [],
-                });
-            },
-            addItemSubItem(index, subIndex) {
-                if (!this.kualifikasiCplData[index].subs[subIndex].list) {
-                    this.kualifikasiCplData[index].subs[subIndex].list = [];
-                }
-                this.kualifikasiCplData[index].subs[subIndex].list.push({
-                    teks: 'Item baru',
-                    teks_en: 'New item',
-                });
-            },
-            addItemSubItemListItem(index, subIndex, subItemListItemIndex) {
-                if (!this.kualifikasiCplData[index].subs[subIndex].subs[subItemListItemIndex].list) {
-                    this.kualifikasiCplData[index].subs[subIndex].subs[subItemListItemIndex].list = [];
-                }
-                this.kualifikasiCplData[index].subs[subIndex].subs[subItemListItemIndex].list.push({
-                    teks: 'Item baru',
-                    teks_en: 'New item',
-                });
-            },
-
-            deleteJudul(index, subIndex) {
-                this.kualifikasiCplData[index].subs.splice(subIndex, 1);
-            },
-            deleteSubJudul(index, subIndex, subItemListItemIndex) {
-                this.kualifikasiCplData[index].subs[subIndex].subs.splice(subItemListItemIndex, 1);
-            },
-            deleteSubItem(index, subIndex, subItemListItemIndex) {
-                this.kualifikasiCplData[index].subs[subIndex].list.splice(subItemListItemIndex, 1);
-            },
-            deleteSubItemListItem(index, subIndex, subItemListItemIndex, subItemListItemListItemIndex) {
-                this.kualifikasiCplData[index].subs[subIndex].subs[subItemListItemIndex].list.splice(subItemListItemListItemIndex, 1);
-            },
         }
     });
 
