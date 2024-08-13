@@ -252,12 +252,12 @@ class PengaturanSeeder extends Seeder
                 'pengaturan' => [
                     [
                         'nama' => 'nama_penandatangan',
-                        'nilai' => 'Eko Riswanto',
+                        'nilai' => 'Eko Riswanto, S.T., M.Cs',
                         'tipe' => 'text',
                     ],
                     [
                         'nama' => 'nip_penandatangan',
-                        'nilai' => '1234567890',
+                        'nilai' => '197501152005011002',
                         'tipe' => 'number',
                     ],
                     [

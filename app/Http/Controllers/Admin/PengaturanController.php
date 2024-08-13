@@ -28,6 +28,12 @@ class PengaturanController extends Controller
             'jenis_pendidikan' => \App\Utils\Skpi::getSettingByName('jenis_pendidikan'),
             'jenis_pendidikan_en' => \App\Utils\Skpi::getSettingByName('jenis_pendidikan_en'),
 
+            'tahun_kurikulum' => \App\Utils\Skpi::getSettingByName('tahun_kurikulum'),
+
+            'nama_penandatangan' => \App\Utils\Skpi::getSettingByName('nama_penandatangan'),
+            'nip_penandatangan' => \App\Utils\Skpi::getSettingByName('nip_penandatangan'),
+            'jabatan_penandatangan' => \App\Utils\Skpi::getSettingByName('jabatan_penandatangan'),
+            'gambar_tandatangan_cap' => \App\Utils\Skpi::getSettingByName('gambar_tandatangan_cap'),
         ];
 
         if (isset($dataPengaturan['logo_aplikasi']) && $dataPengaturan['logo_aplikasi'] != '') {
@@ -56,16 +62,20 @@ class PengaturanController extends Controller
             return $this->__updateDasar($request);
         } else if ($category == 'institusi') {
             return $this->__updateInstitusi($request);
-        } else {
-            return redirect()->route('admin.pengaturan.index')->with('error', 'Kategori pengaturan tidak ditemukan');
+        } else if ($category == 'kurikulum') {
+            return $this->__updateKurikulum($request);
+        } else if ($category == 'tandatangan') {
+            return $this->__updateTandatangan($request);
         }
+
+        return redirect()->route('admin.pengaturan.index')->with('error', 'Kategori pengaturan tidak ditemukan');
     }
 
     private function __updateDasar(Request $request)
     {
         $request->validate([
             'nama_aplikasi' => 'required',
-            'logo_aplikasi' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'logo_aplikasi' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
             'logo_aplikasi_url' => [
                 'nullable',
                 // 'url'
@@ -106,7 +116,7 @@ class PengaturanController extends Controller
             \App\Utils\Skpi::updateSettingByName($key, $value);
         }
 
-        return redirect()->route('admin.pengaturan.index')->with('success', 'Pengaturan berhasil diperbarui');
+        return redirect()->route('admin.pengaturan.index', ['tab' => 'dasar'])->with('success', 'Pengaturan berhasil diperbarui');
     }
 
     private function __updateInstitusi(Request $request)
@@ -122,7 +132,7 @@ class PengaturanController extends Controller
             'telepon_institusi' => 'required',
             'jenis_pendidikan' => 'required',
             'jenis_pendidikan_en' => 'required',
-            'logo_institusi' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'logo_institusi' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
             'logo_institusi_url' => [
                 'nullable',
                 // 'url'
@@ -181,6 +191,77 @@ class PengaturanController extends Controller
             \App\Utils\Skpi::updateSettingByName($key, $value);
         }
 
-        return redirect()->route('admin.pengaturan.index')->with('success', 'Pengaturan berhasil diperbarui');
+        return redirect()->route('admin.pengaturan.index', ['tab' => 'institusi'])->with('success', 'Pengaturan berhasil diperbarui');
+    }
+
+    private function __updateKurikulum(Request $request)
+    {
+        $request->validate([
+            'tahun_kurikulum' => 'required|numeric|min:2010|max:' . (date('Y') + 1),
+        ]);
+
+        $tahunKurikulum = $request->input('tahun_kurikulum');
+
+        $dataPengaturan = [
+            'tahun_kurikulum' => $tahunKurikulum,
+        ];
+
+        foreach ($dataPengaturan as $key => $value) {
+            \App\Utils\Skpi::updateSettingByName($key, $value);
+        }
+
+        return redirect()->route('admin.pengaturan.index', ['tab' => 'kurikulum'])->with('success', 'Pengaturan kurikulum berhasil diperbarui');
+    }
+
+    private function __updateTandatangan(Request $request)
+    {
+        $request->validate([
+            'nama_penandatangan' => 'required',
+            'nip_penandatangan' => 'required|numeric',
+            'jabatan_penandatangan' => 'required',
+            'gambar_tandatangan_cap' => 'nullable|image|mimes:png|max:1024',
+            'gambar_tandatangan_cap_url' => [
+                'nullable',
+                // 'url'
+                // must valid url if logo_aplikasi is null
+                function ($attribute, $value, $fail) use ($request) {
+                    $logoInstitusi = $request->file('gambar_tandatangan_cap');
+                    if (!isset($logoInstitusi) && !filter_var($value, FILTER_VALIDATE_URL)) {
+                        $fail('Gambar tandatangan bercap harus berupa url yang valid');
+                    }
+                }
+            ]
+        ]);
+
+        $namaPenandatangan = $request->input('nama_pendandatangan');
+        $nipPenandatangan = $request->input('nip_penandatangan');
+        $jabatanPenandatangan = $request->input('jabatan_penandatangan');
+        $gambarTandatanganCap = $request->file('gambar_tandatangan_cap');
+
+        $dataPengaturan = [
+            'nama_pendandatangan' => $namaPenandatangan,
+            'nip_penandatangan' => $nipPenandatangan,
+            'jabatan_penandatangan' => $jabatanPenandatangan,
+            'gambar_tandatangan_cap' => \App\Utils\Skpi::getSettingByName('gambar_tandatangan_cap'),
+        ];
+
+        if (isset($gambarTandatanganCap)) {
+            // delete old logo
+            if (isset($dataPengaturan['gambar_tandatangan_cap']) && $dataPengaturan['gambar_tandatangan_cap'] != '') {
+                if (\Storage::exists('public/'.$dataPengaturan['gambar_tandatangan_cap'])) {
+                    \Storage::delete('public/'.$dataPengaturan['gambar_tandatangan_cap']);
+                }
+            }
+
+            $namaFile = time() . '.' . $gambarTandatanganCap->getClientOriginalExtension();
+            $filePath = $gambarTandatanganCap->storeAs('settings', $namaFile, 'public');
+            $dataPengaturan['gambar_tandatangan_cap'] = $filePath;
+        }
+
+        foreach ($dataPengaturan as $key => $value) {
+            \App\Utils\Skpi::updateSettingByName($key, $value);
+        }
+
+        return redirect()->route('admin.pengaturan.index', ['tab' => 'tandatangan'])->with('success', 'Pengaturan tandatangan berhasil diperbarui');
     }
 }
