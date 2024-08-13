@@ -24,7 +24,8 @@
                         <span class="text-danger small">Bertanda *) wajib diisi</span>
                     </div>
 
-                    <form action="{{ route('mahasiswa.prestasi.update', ['id' => $prestasi->id]) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('mahasiswa.prestasi.update', ['id' => $prestasi->id]) }}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -98,9 +99,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="prestasi_sertifikat" class="form-label">Sertifikat <span
-                                    class="text-danger">[tidak wajib]</span></label>
-
+                            <label class="form-label">Sertifikat/Surat Tugas <span class="text-danger">*</span></label>
                             @if ($prestasi->file_sertifikat)
                             <div class="mb-3 flex justify-end">
                                 <a href="{{ $prestasi->file_sertifikat_url }}" target="_blank"
@@ -108,16 +107,52 @@
                                     Lihat Sertifikat</a>
                             </div>
                             @endif
-
-                            <input type="file" name="prestasi_sertifikat" id="prestasi_sertifikat"
-                                class="form-control @error('prestasi_sertifikat') is-invalid @enderror"
-                                accept=".pdf,.jpg,.jpeg,.png">
-                            @error('prestasi_sertifikat')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                            <div>
+                                <input type="radio" id="fileOption" name="sertifikat_option" value="file" {{
+                                    old('sertifikat_option', $file_option)=='file' ? 'checked' : '' }}>
+                                <label for="fileOption">File</label>
+                                <input type="radio" id="urlOption" name="sertifikat_option" value="url" {{
+                                    old('sertifikat_option', $file_option) =='url' ? 'checked' : '' }}>
+                                <label for="urlOption">URL</label>
+                            </div>
+                            <div id="fileInput" class="mt-2"
+                                style="{{ old('sertifikat_option', $file_option) == 'file' ? 'display: block;' : 'display: none;' }}">
+                                <input type="file" name="prestasi_sertifikat_file" id="prestasi_sertifikat_file"
+                                    class="form-control @error('prestasi_sertifikat_file') is-invalid @enderror"
+                                    accept=".pdf,.jpg,.jpeg,.png" />
+                                @error('prestasi_sertifikat_file')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                                <div class="mt-2 text-muted text-small">
+                                    File maksimal 1MB. Format yang diperbolehkan: PDF, JPG, JPEG, PNG.
+                                </div>
+                            </div>
+                            <div id="urlInput" class="mt-2"
+                                style="{{ old('sertifikat_option', $file_option) == 'url' ? 'display: block;' : 'display: none;' }}">
+                                <input type="url" name="prestasi_sertifikat_url" id="prestasi_sertifikat_url"
+                                    class="form-control @error('prestasi_sertifikat_url') is-invalid @enderror"
+                                    placeholder="https://example.com/sertifikat.pdf"
+                                    value="{{ old('prestasi_sertifikat_url', $prestasi->file_sertifikat_url) }}">
+                                @error('prestasi_sertifikat_url')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                                <div class="mt-2 text-muted text-small">
+                                    Pastikan URL sertifikat dapat diakses publik.
+                                </div>
+                            </div>
                         </div>
 
                         <hr class="my-4" />
+
+                        <div class="mb-3">
+                            <div class="alert alert-info">
+                                <strong>Info!</strong> Jika Anda tidak memiliki sertifikat, silahkan unggah surat tugas
+                                atau
+                                dokumen lain yang dapat memvalidasi prestasi Anda. <br>
+                                Tidak semua prestasi akan ditampilkan pada SKPI, <b>hanya data yang lolos validasi</b>
+                                Admin yang akan ditampilkan.
+                            </div>
+                        </div>
 
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary">Simpan</button>
@@ -129,5 +164,30 @@
         </div>
     </div>
 </section>
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const fileOption = document.getElementById('fileOption');
+        const urlOption = document.getElementById('urlOption');
+        const fileInput = document.getElementById('fileInput');
+        const urlInput = document.getElementById('urlInput');
+
+        fileOption.addEventListener('change', function () {
+            if (fileOption.checked) {
+                fileInput.style.display = 'block';
+                urlInput.style.display = 'none';
+            }
+        });
+
+        urlOption.addEventListener('change', function () {
+            if (urlOption.checked) {
+                fileInput.style.display = 'none';
+                urlInput.style.display = 'block';
+            }
+        });
+    });
+</script>
+@endpush
 
 @endsection

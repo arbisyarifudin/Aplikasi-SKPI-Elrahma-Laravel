@@ -34,7 +34,8 @@ class PrestasiController extends Controller
             'prestasi_penyelenggara' => 'required',
             'prestasi_tempat' => 'required',
             'prestasi_pencapaian' => 'required',
-            'prestasi_sertifikat' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:10000',
+            'prestasi_sertifikat_file' => 'required_if:sertifikat_option,file|nullable|file|mimes:pdf,jpg,jpeg,png|max:1024',
+            'prestasi_sertifikat_url' => 'required_if:sertifikat_option,url|nullable|url'
         ], [
             'prestasi_nama.required' => 'Nama prestasi harus diisi',
             'prestasi_tingkat.required' => 'Tingkat prestasi harus diisi',
@@ -42,10 +43,12 @@ class PrestasiController extends Controller
             'prestasi_penyelenggara.required' => 'Penyelenggara kegiatan harus diisi',
             'prestasi_tempat.required' => 'Tempat kegiatan harus diisi',
             'prestasi_pencapaian.required' => 'Pencapaian harus diisi',
-            'prestasi_sertifikat.required' => 'Sertifikat prestasi harus diisi',
-            'prestasi_sertifikat.file' => 'Sertifikat prestasi harus berupa file',
-            'prestasi_sertifikat.mimes' => 'Sertifikat prestasi harus berupa file pdf',
-            'prestasi_sertifikat.max' => 'Sertifikat prestasi maksimal 10 MB',
+            'prestasi_sertifikat_file.required_if' => 'File sertifikat prestasi harus diisi jika opsi \'file\' dipilih',
+            'prestasi_sertifikat_file.file' => 'File sertifikat prestasi tidak valid',
+            'prestasi_sertifikat_file.mimes' => 'File sertifikat prestasi harus berupa file PDF, JPG, JPEG, PNG',
+            'prestasi_sertifikat_file.max' => 'File sertifikat prestasi maksimal 1 MB (1024 KB)',
+            'prestasi_sertifikat_url.required_if' => 'URL sertifikat harus diisi jika \'opsi\' URL dipilih',
+            'prestasi_sertifikat_url.url' => 'URL sertifikat tidak valid'
         ]);
 
         $prestasi = new Prestasi();
@@ -58,11 +61,13 @@ class PrestasiController extends Controller
         $prestasi->pencapaian = $request->prestasi_pencapaian;
         $prestasi->file_sertifikat = null;
 
-        if ($request->hasFile('prestasi_sertifikat')) {
-            $file = $request->file('prestasi_sertifikat');
+        if ($request->hasFile('prestasi_sertifikat_file')) {
+            $file = $request->file('prestasi_sertifikat_file');
             $fileName = time() . '_' . str_replace(' ', '_', $file->getClientOriginalName());
             $filePath = $file->storeAs('prestasi', $fileName, 'public');
             $prestasi->file_sertifikat = $filePath;
+        } else {
+            $prestasi->file_sertifikat = $request->prestasi_sertifikat_url;
         }
 
         $prestasi->save();
@@ -76,7 +81,10 @@ class PrestasiController extends Controller
         // get file sertifikat url
         $prestasi->file_sertifikat_url = $prestasi->file_sertifikat ? \App\Utils\Skpi::getAssetUrl($prestasi->file_sertifikat) : '';
 
-        return view('mahasiswa.prestasi.edit', compact('prestasi'));
+        // define sertifikat option, file or url
+        $file_option = $prestasi->file_sertifikat && filter_var($prestasi->file_sertifikat, FILTER_VALIDATE_URL) ? 'url' : 'file';
+
+        return view('mahasiswa.prestasi.edit', compact('prestasi', 'file_option'));
     }
 
     public function update(Request $request, $id)
@@ -88,7 +96,8 @@ class PrestasiController extends Controller
             'prestasi_penyelenggara' => 'required',
             'prestasi_tempat' => 'required',
             'prestasi_pencapaian' => 'required',
-            'prestasi_sertifikat' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:10000',
+            'prestasi_sertifikat_file' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:1024',
+            'prestasi_sertifikat_url' => 'nullable|url'
         ], [
             'prestasi_nama.required' => 'Nama prestasi harus diisi',
             'prestasi_tingkat.required' => 'Tingkat prestasi harus diisi',
@@ -96,10 +105,12 @@ class PrestasiController extends Controller
             'prestasi_penyelenggara.required' => 'Penyelenggara kegiatan harus diisi',
             'prestasi_tempat.required' => 'Tempat kegiatan harus diisi',
             'prestasi_pencapaian.required' => 'Pencapaian harus diisi',
-            'prestasi_sertifikat.required' => 'Sertifikat prestasi harus diisi',
-            'prestasi_sertifikat.file' => 'Sertifikat prestasi harus berupa file',
-            'prestasi_sertifikat.mimes' => 'Sertifikat prestasi harus berupa file pdf',
-            'prestasi_sertifikat.max' => 'Sertifikat prestasi maksimal 10 MB',
+            'prestasi_sertifikat_file.required_if' => 'File sertifikat prestasi harus diisi jika opsi file dipilih',
+            'prestasi_sertifikat_file.file' => 'File sertifikat prestasi tidak valid',
+            'prestasi_sertifikat_file.mimes' => 'File sertifikat prestasi harus berupa file PDF, JPG, JPEG, PNG',
+            'prestasi_sertifikat_file.max' => 'File sertifikat prestasi maksimal 1 MB (1024 KB)',
+            'prestasi_sertifikat_url.required_if' => 'URL sertifikat harus diisi jika opsi URL dipilih',
+            'prestasi_sertifikat_url.url' => 'URL sertifikat tidak valid'
         ]);
 
         $prestasi = Prestasi::findOrFail($id);
@@ -110,18 +121,20 @@ class PrestasiController extends Controller
         $prestasi->tempat = $request->prestasi_tempat;
         $prestasi->pencapaian = $request->prestasi_pencapaian;
 
-        if ($request->hasFile('prestasi_sertifikat')) {
+        if ($request->hasFile('prestasi_sertifikat_file')) {
             $oldFile = $prestasi->file_sertifikat;
             if ($oldFile && $oldFile != '') {
-                if (\Storage::exists('public/'.$oldFile)) {
-                    \Storage::delete('public/'.$oldFile);
+                if (\Storage::exists('public/' . $oldFile)) {
+                    \Storage::delete('public/' . $oldFile);
                 }
             }
 
-            $file = $request->file('prestasi_sertifikat');
+            $file = $request->file('prestasi_sertifikat_file');
             $fileName = time() . '_' . str_replace(' ', '_', $file->getClientOriginalName());
             $filePath = $file->storeAs('prestasi', $fileName, 'public');
             $prestasi->file_sertifikat = $filePath;
+        } elseif ($request->prestasi_sertifikat_url) {
+            $prestasi->file_sertifikat = $request->prestasi_sertifikat_url;
         }
 
         $prestasi->save();
