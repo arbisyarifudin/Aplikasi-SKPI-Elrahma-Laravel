@@ -128,13 +128,12 @@ return '<span class="badge bg-secondary">Tidak diketahui</span>';
                             </table>
                         </div>
 
-                        <div class="col-12">
+                        <div class="col-12 mt-4">
 
-                            <div class="d-flex justify-content-between">
+                            <div class="d-flex justify-content-start align-center mb-4">
                                 <h5>Prestasi</h5>
-
-                                {{-- <a href="{{ route('admin.mahasiswa.prestasi.create') }}"
-                                    class="btn btn-sm btn-primary"><i class="bi bi-plus"></i> Tambah</a> --}}
+                                <a href="{{ route('admin.mahasiswa.prestasi.create', ['mahasiswaId' => $mahasiswa->id]) }}"
+                                    class="ms-3 btn btn-sm btn-primary"><i class="bi bi-plus"></i> Tambah Prestasi</a>
                             </div>
 
                             <table class="table table-borderless datatable">
@@ -181,21 +180,21 @@ return '<span class="badge bg-secondary">Tidak diketahui</span>';
                                             <a title="Ubah" data-tooltip="tooltip"
                                                 href="{{ route('admin.mahasiswa.prestasi.edit', ['mahasiswaId' => $mahasiswa->id, 'prestasiId' => $prestasi->id]) }}"
                                                 class="btn btn-sm btn-info"><i class="bi bi-pencil"></i></a>
-                                            <form id="updateStatusForm"
+                                            <form id="updateStatusForm-{{ $prestasi->id }}"
                                                 action="{{ route('admin.mahasiswa.prestasi.update-status', ['mahasiswaId' => $mahasiswa->id, 'prestasiId' => $prestasi->id]) }}"
                                                 method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('PUT')
-                                                <input type="hidden" name="status" id="status" value="">
+                                                <input type="hidden" name="status" id="status-{{ $prestasi->id }}" value="">
                                                 @if ($prestasi->status !== 'Diterima')
                                                 <button title="Terima" data-tooltip="tooltip" type="button"
-                                                    class="btn btn-sm btn-success" onclick="submitForm('Diterima')">
+                                                    class="btn btn-sm btn-success" onclick="submitForm({{ $prestasi->id }}, 'Diterima')">
                                                     <i class="bi bi-check"></i>
                                                 </button>
                                                 @endif
                                                 @if ($prestasi->status !== 'Ditolak')
                                                 <button title="Tolak" data-tooltip="tooltip" type="button"
-                                                    class="btn btn-sm btn-danger" onclick="submitForm('Ditolak')">
+                                                    class="btn btn-sm btn-danger" onclick="submitForm({{ $prestasi->id }}, 'Ditolak')">
                                                     <i class="bi bi-x"></i>
                                                 </button>
                                                 @endif
@@ -219,9 +218,9 @@ return '<span class="badge bg-secondary">Tidak diketahui</span>';
 
 @push('scripts')
 <script>
-    function submitForm(status) {
-        document.getElementById('status').value = status;
-        document.getElementById('updateStatusForm').submit();
+    function submitForm(id, status) {
+        document.getElementById('status-' + id).value = status;
+        document.getElementById('updateStatusForm-' + id).submit();
     }
 </script>
 @endpush
