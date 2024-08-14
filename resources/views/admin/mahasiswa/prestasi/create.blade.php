@@ -113,7 +113,7 @@
                                 </div>
                             </div>
                             <div id="urlInput" class="mt-2" style="{{ old('tipe_sertifikat') == 'url' ? 'display: block;' : 'display: none;' }}">
-                                <input type="url" name="prestasi_sertifikat_url" id="prestasi_sertifikat_url"
+                                <input type="text" name="prestasi_sertifikat_url" id="prestasi_sertifikat_url"
                                     class="form-control @error('prestasi_sertifikat_url') is-invalid @enderror"
                                     placeholder="https://example.com/sertifikat.pdf" value="{{ old('prestasi_sertifikat_url') }}">
                                 @error('prestasi_sertifikat_url')

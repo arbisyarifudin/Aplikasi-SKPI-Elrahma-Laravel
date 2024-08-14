@@ -89,6 +89,12 @@ class PrestasiController extends Controller
 
     public function update(Request $request, $id)
     {
+        if ($request->sertifikat_option === 'file') {
+            $request->merge(['prestasi_sertifikat_url' => null]);
+        } else {
+            $request->merge(['prestasi_sertifikat_file' => null]);
+        }
+
         $request->validate([
             'prestasi_nama' => 'required',
             'prestasi_tingkat' => 'required',

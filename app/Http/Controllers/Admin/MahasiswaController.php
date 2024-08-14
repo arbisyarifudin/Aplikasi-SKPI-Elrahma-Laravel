@@ -230,6 +230,12 @@ class MahasiswaController extends Controller
         // find prestasi
         $prestasi = Prestasi::findOrFail($prestasiId);
 
+        if ($request->tipe_sertifikat === 'file') {
+            $request->merge(['prestasi_sertifikat_url' => null]);
+        } else {
+            $request->merge(['prestasi_sertifikat_file' => null]);
+        }
+
         // validate request
         $request->validate([
             'prestasi_nama' => 'required',
