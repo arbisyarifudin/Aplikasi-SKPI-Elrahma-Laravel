@@ -17,4 +17,4 @@
 - mahasiswa bisa preview & download SKPI bertanda tangan dan cap gambar digital, namun tetap harus mengambil versi basah di kampus
 
 # TAMBAHAN
-- admin bisa hapus prestasi
+- DONE --> admin bisa hapus prestasi
