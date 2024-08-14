@@ -198,6 +198,7 @@ class MahasiswaController extends Controller
             $prestasi->file_sertifikat = $request->prestasi_sertifikat_url;
         }
 
+        $prestasi->status = 'Diterima';
         $prestasi->save();
 
         return redirect()->route('admin.mahasiswa.show', ['id' => $mahasiswaId])->with('success', 'Prestasi berhasil ditambahkan');
