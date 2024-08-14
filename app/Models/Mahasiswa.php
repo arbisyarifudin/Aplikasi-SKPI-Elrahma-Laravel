@@ -23,6 +23,22 @@ class Mahasiswa extends Model
         'no_telepon',
     ];
 
+    protected $appends = [
+        'tanggal_lahir_indo',
+        'nomor_whatsapp',
+    ];
+
+    /* ATTRIBUTES */
+    public function getTanggalLahirIndoAttribute()
+    {
+        return date('d-M-Y', strtotime($this->tanggal_lahir));
+    }
+
+    public function getNomorWhatsappAttribute()
+    {
+        return preg_replace('/^0/', '62', $this->no_telepon);
+    }
+
     /* RELATIONS */
     public function user()
     {

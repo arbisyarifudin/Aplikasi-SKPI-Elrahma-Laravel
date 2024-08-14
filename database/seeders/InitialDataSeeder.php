@@ -129,6 +129,7 @@ class InitialDataSeeder extends Seeder
                 [
                     'nama' => 'Raditya Dika',
                     'nim' => '1234567890',
+                    'nik' => '3001010101000001',
                     'jenis_kelamin' => 'L',
                     'tempat_lahir' => 'Bandung',
                     'tanggal_lahir' => '2000-01-01',
@@ -155,6 +156,7 @@ class InitialDataSeeder extends Seeder
                 [
                     'nama' => 'Panji Pragiwaksono',
                     'nim' => '1234567891',
+                    'nik' => '3001010101000002',
                     'jenis_kelamin' => 'L',
                     'tempat_lahir' => 'Jakarta',
                     'tanggal_lahir' => '1995-04-05',
@@ -170,6 +172,7 @@ class InitialDataSeeder extends Seeder
                 [
                     'nama' => 'Panji Pragiwaksono',
                     'nim' => '1234567891',
+                    'nik' => '3001010101000002',
                     'jenis_kelamin' => 'L',
                     'tempat_lahir' => 'Jakarta',
                     'tanggal_lahir' => '1995-04-05',

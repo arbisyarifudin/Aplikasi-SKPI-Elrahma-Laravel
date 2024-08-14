@@ -136,4 +136,100 @@ class MahasiswaController extends Controller
     {
         //
     }
+
+    /* MAHASISWA PRESTASI */
+    public function prestasiEdit($mahasiswaId, $prestasiId)
+    {
+        // find mahasiswa
+        $mahasiswa = Mahasiswa::findOrFail($mahasiswaId);
+
+        // find prestasi
+        $prestasi = $mahasiswa->prestasis()->findOrFail($prestasiId);
+
+        // define sertifikat option, file or url
+        $tipe_sertifikat = $prestasi->file_sertifikat && filter_var($prestasi->file_sertifikat, FILTER_VALIDATE_URL) ? 'url' : 'file';
+
+        return view('admin.mahasiswa.prestasi.edit', [
+            'mahasiswa' => $mahasiswa,
+            'prestasi' => $prestasi,
+            'tipe_sertifikat' => $tipe_sertifikat,
+        ]);
+    }
+
+    public function prestasiUpdate(Request $request, $mahasiswaId, $prestasiId)
+    {
+        // find mahasiswa
+        $mahasiswa = Mahasiswa::findOrFail($mahasiswaId);
+
+        // find prestasi
+        $prestasi = $mahasiswa->prestasis()->findOrFail($prestasiId);
+
+        $request->validate([
+            'prestasi_nama' => 'required',
+            'prestasi_tingkat' => 'required',
+            'prestasi_tahun' => 'required',
+            'prestasi_penyelenggara' => 'required',
+            'prestasi_tempat' => 'required',
+            'prestasi_pencapaian' => 'required',
+            'prestasi_sertifikat_file' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:1024',
+            'prestasi_sertifikat_url' => 'nullable|url'
+        ], [
+            'prestasi_nama.required' => 'Nama prestasi harus diisi',
+            'prestasi_tingkat.required' => 'Tingkat prestasi harus diisi',
+            'prestasi_tahun.required' => 'Tahun prestasi harus diisi',
+            'prestasi_penyelenggara.required' => 'Penyelenggara kegiatan harus diisi',
+            'prestasi_tempat.required' => 'Tempat kegiatan harus diisi',
+            'prestasi_pencapaian.required' => 'Pencapaian harus diisi',
+            'prestasi_sertifikat_file.required_if' => 'File sertifikat prestasi harus diisi jika opsi \'file\' dipilih',
+            'prestasi_sertifikat_file.file' => 'File sertifikat prestasi tidak valid',
+            'prestasi_sertifikat_file.mimes' => 'File sertifikat prestasi harus berupa file PDF, JPG, JPEG, PNG',
+            'prestasi_sertifikat_file.max' => 'File sertifikat prestasi maksimal 1 MB (1024 KB)',
+            'prestasi_sertifikat_url.required_if' => 'URL sertifikat harus diisi jika opsi URL dipilih',
+            'prestasi_sertifikat_url.url' => 'URL sertifikat tidak valid'
+        ]);
+
+        $prestasi->nama = $request->prestasi_nama;
+        $prestasi->tingkat = $request->prestasi_tingkat;
+        $prestasi->tahun = $request->prestasi_tahun;
+        $prestasi->penyelenggara = $request->prestasi_penyelenggara;
+        $prestasi->tempat = $request->prestasi_tempat;
+        $prestasi->pencapaian = $request->prestasi_pencapaian;
+
+        if ($request->hasFile('prestasi_sertifikat_file')) {
+            $oldFile = $prestasi->file_sertifikat;
+            if ($oldFile && $oldFile != '') {
+                if (\Storage::exists('public/' . $oldFile)) {
+                    \Storage::delete('public/' . $oldFile);
+                }
+            }
+
+            $file = $request->file('prestasi_sertifikat_file');
+            $fileName = time() . '_' . str_replace(' ', '_', $file->getClientOriginalName());
+            $filePath = $file->storeAs('prestasi', $fileName, 'public');
+            $prestasi->file_sertifikat = $filePath;
+        } elseif ($request->prestasi_sertifikat_url) {
+            $prestasi->file_sertifikat = $request->prestasi_sertifikat_url;
+        }
+
+        $prestasi->save();
+
+        return redirect()->route('admin.mahasiswa.show', ['id' => $mahasiswaId])->with('success', 'Prestasi berhasil diperbarui');
+    }
+
+    public function prestasiUpdateStatus (Request $request, $mahasiswaId, $prestasiId) {
+        // find mahasiswa
+        $mahasiswa = Mahasiswa::findOrFail($mahasiswaId);
+
+        // find prestasi
+        $prestasi = $mahasiswa->prestasis()->findOrFail($prestasiId);
+
+        // update status
+        if ($request->filled('status')) {
+            $prestasi->status = $request->status;
+            $prestasi->save();
+        }
+
+        return redirect()->route('admin.mahasiswa.show', ['id' => $mahasiswaId])->with('success', 'Status berhasil diperbarui');
+    }
+
 }

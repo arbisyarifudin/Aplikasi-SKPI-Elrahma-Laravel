@@ -10,4 +10,14 @@ class Prestasi extends Model
     use HasFactory;
 
     public $table = 'prestasi';
+
+    protected $appends = [
+        'file_sertifikat_url',
+    ];
+
+    /* ATTRIBUTES */
+    public function getFileSertifikatUrlAttribute()
+    {
+        return $this->file_sertifikat ? \App\Utils\Skpi::getAssetUrl($this->file_sertifikat) : '';
+    }
 }

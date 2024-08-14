@@ -61,6 +61,11 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], func
     Route::put('/mahasiswa/{id}', [AdminMahasiswaController::class, 'update']);
     Route::delete('/mahasiswa/{id}', [AdminMahasiswaController::class, 'destroy']);
 
+    // mahasiswa prestasi
+    Route::get('/mahasiswa/{mahasiswaId}/prestasi/{prestasiId}/ubah', [AdminMahasiswaController::class, 'prestasiEdit'])->name('admin.mahasiswa.prestasi.edit');
+    Route::put('/mahasiswa/{mahasiswaId}/prestasi/{prestasiId}', [AdminMahasiswaController::class, 'prestasiUpdate'])->name('admin.mahasiswa.prestasi.update');
+    Route::put('/mahasiswa/{mahasiswaId}/prestasi/{prestasiId}/status', [AdminMahasiswaController::class, 'prestasiUpdateStatus'])->name('admin.mahasiswa.prestasi.update-status');
+
     // jenjang
     Route::get('/jenjang', [AdminJenjangController::class, 'index'])->name('admin.jenjang.index');
     Route::get('/jenjang/tambah', [AdminJenjangController::class, 'create'])->name('admin.jenjang.create');

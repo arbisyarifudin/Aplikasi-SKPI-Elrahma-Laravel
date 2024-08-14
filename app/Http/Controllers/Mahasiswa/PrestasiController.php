@@ -105,7 +105,7 @@ class PrestasiController extends Controller
             'prestasi_penyelenggara.required' => 'Penyelenggara kegiatan harus diisi',
             'prestasi_tempat.required' => 'Tempat kegiatan harus diisi',
             'prestasi_pencapaian.required' => 'Pencapaian harus diisi',
-            'prestasi_sertifikat_file.required_if' => 'File sertifikat prestasi harus diisi jika opsi file dipilih',
+            'prestasi_sertifikat_file.required_if' => 'File sertifikat prestasi harus diisi jika opsi \'file\' dipilih',
             'prestasi_sertifikat_file.file' => 'File sertifikat prestasi tidak valid',
             'prestasi_sertifikat_file.mimes' => 'File sertifikat prestasi harus berupa file PDF, JPG, JPEG, PNG',
             'prestasi_sertifikat_file.max' => 'File sertifikat prestasi maksimal 1 MB (1024 KB)',

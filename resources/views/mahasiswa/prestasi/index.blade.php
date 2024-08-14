@@ -1,8 +1,6 @@
 @extends('mahasiswa.layout')
 @section('title', 'Prestasi - ')
 
-@section('content')
-
 @php
 
 if (!function_exists('getStatusColor')) {
@@ -13,7 +11,7 @@ if (!function_exists('getStatusColor')) {
         } else if ($status == 'ditolak') {
             return '<span class="badge bg-danger">Ditolak</span>';
         } else if ($status == 'diterima') {
-            return '<span class="badge bg-secondary">Diterima</span>';
+            return '<span class="badge bg-success">Diterima</span>';
         } else {
             return '<span class="badge bg-secondary">Tidak diketahui</span>';
         }
@@ -21,6 +19,8 @@ if (!function_exists('getStatusColor')) {
 }
 
 @endphp
+
+@section('content')
 
 <div class="pagetitle">
     <h1>Prestasi</h1>

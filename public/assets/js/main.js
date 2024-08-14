@@ -116,6 +116,11 @@
     return new bootstrap.Tooltip(tooltipTriggerEl)
   })
 
+  const tooltipOnToggleModalList = [].slice.call(document.querySelectorAll('[data-tooltip="tooltip"]'))
+  var tooltipList2 = tooltipOnToggleModalList.map(function(tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+  })
+
   /**
    * Initiate quill editors
    */
@@ -203,6 +208,8 @@
   datatables.forEach(datatable => {
     new simpleDatatables.DataTable(datatable);
   })
+
+
 
 })();
 
