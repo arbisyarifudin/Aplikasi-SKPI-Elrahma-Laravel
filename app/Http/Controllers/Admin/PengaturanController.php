@@ -224,7 +224,7 @@ class PengaturanController extends Controller
             'nama_penandatangan' => 'required',
             'nip_penandatangan' => 'required|numeric',
             'jabatan_penandatangan' => 'required',
-            'gambar_tandatangan_cap' => 'nullable|image|mimes:png|max:1024',
+            'gambar_tandatangan_cap' => 'nullable|image|mimes:png,jpg,jpeg|max:1024',
             'gambar_tandatangan_cap_url' => [
                 'nullable',
                 // 'url'

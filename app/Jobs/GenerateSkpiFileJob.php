@@ -92,9 +92,12 @@ class GenerateSkpiFileJob implements ShouldQueue
             $mahasiswa->tanggal_lahir = $tanggalLahirIndo;
             $mahasiswa->tanggal_lahir_en = $tanggalLahirEn;
 
+            // LOGO
             $logoInstitusi = Skpi::getSettingByName('logo_institusi');
             // $logoInstitusiUrl = asset('storage/' . $logoInstitusi);
+            info('logoInstitusi: ' . $logoInstitusi);
             $logoInstitusiUrl = Skpi::getAssetUrl($logoInstitusi);
+            info('logoInstitusiUrl: ' . $logoInstitusiUrl);
             $logoInstitusiExtension = pathinfo($logoInstitusiUrl, PATHINFO_EXTENSION);
             $logoInstitusiMimeType = 'image/jpeg';
 
@@ -103,6 +106,20 @@ class GenerateSkpiFileJob implements ShouldQueue
             }
 
             $logoInstitusiBase64String = 'data:' . $logoInstitusiMimeType . ';base64,' . base64_encode(file_get_contents($logoInstitusiUrl));
+
+            // TTD CAP
+            $gambarTtdCap = Skpi::getSettingByName('gambar_tandatangan_cap');
+            info('gambarTtdCap: ' . $gambarTtdCap);
+            $gambarTtdCapUrl = Skpi::getAssetUrl($gambarTtdCap);
+            info('gambarTtdCapUrl: ' . $gambarTtdCapUrl);
+            $gambarTtdCapExtension = pathinfo($gambarTtdCapUrl, PATHINFO_EXTENSION);
+            $gambarTtdCapMimeType = 'image/jpeg';
+
+            if ($gambarTtdCapExtension === 'png') {
+                $gambarTtdCapMimeType = 'image/png';
+            }
+
+            $gambarTtdCapBase64String = 'data:' . $gambarTtdCapMimeType . ';base64,' . base64_encode(file_get_contents($gambarTtdCapUrl));
 
             // get tanggal indo format from $dokumenSkpi->tanggal
             $tanggal = $dokumenSkpi->tanggal;
@@ -129,10 +146,13 @@ class GenerateSkpiFileJob implements ShouldQueue
                     'nama_penandatangan' => Skpi::getSettingByName('nama_penandatangan'),
                     'nip_penandatangan' => Skpi::getSettingByName('nip_penandatangan'),
                     'jabatan_penandatangan' => Skpi::getSettingByName('jabatan_penandatangan'),
-                    'gambar_tandatangan_cap' => Skpi::getSettingByName('gambar_tandatangan_cap'),
+                    // 'gambar_tandatangan_cap' => Skpi::getSettingByName('gambar_tandatangan_cap'),
+                    'gambar_tandatangan_cap' => $gambarTtdCapBase64String,
                 ],
                 'tanggal' => $tanggalIndo,
             ])->render();
+
+            info('pdfView:'. $pdfView);
 
             // echo ($pdfPreview); die;
 

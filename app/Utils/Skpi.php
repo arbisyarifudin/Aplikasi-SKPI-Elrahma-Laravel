@@ -54,8 +54,9 @@ class Skpi
 
         // check if path is exists in storage
         if (\Storage::exists('public/'.$path)) {
-            return \Storage::url('public/'.$path);
+            return url(\Storage::url('public/'.$path));
         }
+
 
         // if not storage
         return asset($path);

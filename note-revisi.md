@@ -10,10 +10,10 @@
 - DONE --> Sertifikat bisa unggah file dgn max 1MB, bisa juga bentuk link (public)
 - DONE --> Admin bisa edit dan tambah prestasi per mahasiswa
 - DONE --> Admin bisa verifikasi/validasi data prestasi mahasiswa (terima / tolak)
-- nomor dokumen di PDF = nomor ijazah 
+- DONE --> nomor dokumen di PDF = nomor ijazah 
 - tahun lulus bisa kosong secara default, dan bisa diinput oleh admin
-- buang border pada dokumen pdf SKPI
-- dokumen SKPI ada nomor ijazahnya dan bisa diinputkan oleh admin
+- DONE --> buang border pada dokumen pdf SKPI
+- DONE --> dokumen SKPI ada nomor ijazahnya dan bisa diinputkan oleh admin
 - mahasiswa bisa preview & download SKPI bertanda tangan dan cap gambar digital, namun tetap harus mengambil versi basah di kampus
 
 # TAMBAHAN

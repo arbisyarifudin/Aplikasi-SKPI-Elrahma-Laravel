@@ -1563,25 +1563,28 @@
                         <span style="font-family:'Times New Roman'">&#xa0;</span>
                     </p>
                 </td>
-                <td style="width:15.9pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
+                <td colspan="9" style="width:15.9pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
+                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt">
+                        <span style="font-family:'Times New Roman'">&#xa0;</span>
+                    </p>
+                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt">
+                        <span style="font-family:'Times New Roman'">&#xa0;</span>
+                    </p>
+                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt">
+                        <span style="font-family:'Times New Roman'">&#xa0;</span>
+                    </p>
+                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt">
+                        <span style="font-family:'Times New Roman'">&#xa0;</span>
+                    </p>
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt">
                         <span style="font-family:'Times New Roman'">&#xa0;</span>
                     </p>
                 </td>
-                <td colspan="8" style="width:98.5pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                </td>
-                <td style="width:270.15pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
-                    </p>
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">&#xa0;</span>
+                <td style="padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle; position: relative">
+                    <p style="margin-top:-150pt">
+                        <div style="display:block; position:absolute; z-index:10000; top: -30pt; right: 10%; transform: translate(-50%); width: 160pt; height: 160pt; max-width: 100%">
+                            <img src="{{ $pengaturan['gambar_tandatangan_cap'] }}" alt="ttd cap" style="max-width: 100%">
+                        </div>
                     </p>
                 </td>
             </tr>
