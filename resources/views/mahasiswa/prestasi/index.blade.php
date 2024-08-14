@@ -103,8 +103,10 @@ if (!function_exists('getStatusColor')) {
                                         data-bs-toggle="modal" data-bs-target="#hapusModal" data-id="{{ $p->id }}">
                                         <i class="bi bi-trash"></i>
                                     </button>
+                                    @if ($p->status !== 'Ditolak')
                                     <a title="Ubah" href="{{ route('mahasiswa.prestasi.edit', ['id' => $p->id]) }}"
                                         class="btn btn-sm btn-light text-primary"><i class="bi bi-pencil"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
