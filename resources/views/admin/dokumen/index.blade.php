@@ -209,5 +209,10 @@
                 });
             });
         });
+
+        // reload each 10 seconds
+        setInterval(() => {
+            location.reload();
+        }, 10000);
     </script>
 @endpush
