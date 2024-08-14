@@ -154,7 +154,7 @@
                                         @if ($m->has_dokumen_skpi)
                                         <span class="btn btn-sm btn-success py-0" style="cursor: initial">Dibuat</span>
                                         <a title="Unduh dokumen"
-                                            href="{{ asset('storage/dokumen_skpi/'.$m->dokumen_skpi_file) }}"
+                                            href="{{ asset('storage/'.$m->dokumen_skpi_file) }}"
                                             target="_blank" class="btn btn-sm btn-outline-success py-0 ms-2"><i
                                                 class="bi bi-download"></i></a>
                                         @else
