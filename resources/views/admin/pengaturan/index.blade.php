@@ -92,7 +92,8 @@
                                                         aria-describedby="logo_aplikasi-addon" class="form-control"
                                                         value="{{ old('logo_aplikasi',  $pengaturan['logo_aplikasi_url']) }}"
                                                         autofocus placeholder="https://">
-                                                    <input type="file" accept="image/*" name="logo_aplikasi" class="d-none" />
+                                                    <input type="file" accept="image/*" name="logo_aplikasi"
+                                                        class="d-none" />
                                                     <button class="input-group-text" type="button"
                                                         onclick="openFile(this)" title="Browse Server">
                                                         <i class="bi bi-folder2-open me-1"></i> Pilih Berkas
@@ -197,7 +198,8 @@
                                                         class="form-control"
                                                         value="{{ old('logo_institusi',  $pengaturan['logo_institusi_url']) }}"
                                                         autofocus placeholder="https://">
-                                                    <input type="file" accept="image/*" name="logo_institusi" class="d-none" />
+                                                    <input type="file" accept="image/*" name="logo_institusi"
+                                                        class="d-none" />
                                                     <button class="input-group-text" type="button"
                                                         onclick="openFile(this)" title="Browse Server">
                                                         <i class="bi bi-folder2-open me-1"></i> Pilih Berkas
@@ -386,11 +388,12 @@
                                             @enderror
                                         </div>
                                         <div class="mb-3">
-                                            <label for="gambar_tandatangan_cap" class="form-label">Gambar Tandatangan Bercap</label>
+                                            <label for="gambar_tandatangan_cap" class="form-label">Gambar Tandatangan
+                                                Bercap</label>
                                             <div class="row">
                                                 @if (!empty($pengaturan['gambar_tandatangan_cap']))
                                                 <div class="col-md-4">
-                                                    <img src="{{ $pengaturan['gambar_tandatangan_cap'] }}"
+                                                    <img src="{{ $pengaturan['gambar_tandatangan_cap_url'] }}"
                                                         class="img-fluid img-thumbnail" alt="Gambar">
                                                 </div>
                                                 @endif
@@ -399,17 +402,20 @@
                                                         class="input-group mb-3 @error('gambar_tandatangan_cap') is-invalid @enderror @error('gambar_tandatangan_cap') is-invalid @enderror">
                                                         <input type="text" name="gambar_tandatangan_cap"
                                                             class="form-control url"
-                                                            aria-describedby="gambar_tandatangan_cap-addon" class="form-control"
-                                                            value="{{ old('gambar_tandatangan_cap',  $pengaturan['gambar_tandatangan_cap']) }}"
+                                                            aria-describedby="gambar_tandatangan_cap-addon"
+                                                            class="form-control"
+                                                            value="{{ old('gambar_tandatangan_cap',  $pengaturan['gambar_tandatangan_cap_url']) }}"
                                                             autofocus placeholder="https://">
-                                                        <input type="file" accept="image/*" name="gambar_tandatangan_cap" class="d-none" />
+                                                        <input type="file" accept="image/*"
+                                                            name="gambar_tandatangan_cap" class="d-none" />
                                                         <button class="input-group-text" type="button"
                                                             onclick="openFile(this)" title="Browse Server">
                                                             <i class="bi bi-folder2-open me-1"></i> Pilih Berkas
                                                         </button>
                                                     </div>
                                                     <div class="form-text">Ukuran gambar maksimal 1 MB</div>
-                                                    <div class="form-text">Format gambar harus .jpg, .jpeg, atau .png</div>
+                                                    <div class="form-text">Format gambar harus .jpg, .jpeg, atau .png
+                                                    </div>
                                                     @error('gambar_tandatangan_cap_url')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                     @enderror
@@ -472,6 +478,15 @@
             }
         })
     }
+
+    triggerTabList.forEach(function (triggerEl) {
+        triggerEl.addEventListener('click', function (event) {
+            const newTabKey = event.target.id.replace('-tab', '');
+            const newUrl = new URL(window.location);
+            newUrl.searchParams.set('tab', newTabKey);
+            history.pushState(null, '', newUrl);
+        });
+    });
 
 </script>
 

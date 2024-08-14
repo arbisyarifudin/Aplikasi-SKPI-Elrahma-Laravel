@@ -46,6 +46,11 @@ class PengaturanController extends Controller
             $dataPengaturan['logo_institusi_url'] = \App\Utils\Skpi::getAssetUrl($dataPengaturan['logo_institusi']);
         }
 
+        if (isset($dataPengaturan['gambar_tandatangan_cap']) && $dataPengaturan['gambar_tandatangan_cap'] != '') {
+            $dataPengaturan['gambar_tandatangan_cap_url'] = \App\Utils\Skpi::getAssetUrl($dataPengaturan['gambar_tandatangan_cap']);
+        }
+
+
         // dd($dataPengaturan);
 
         return view('admin.pengaturan.index', [
