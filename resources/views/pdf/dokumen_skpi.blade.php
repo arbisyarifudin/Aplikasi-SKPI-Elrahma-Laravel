@@ -1581,9 +1581,9 @@
                     </p>
                 </td>
                 <td style="padding-right:5.4pt; padding-left:5.4pt; vertical-align:middle; position: relative">
-                    <p style="margin-top:-150pt">
-                        <div style="display:block; position:absolute; z-index:10000; top: -30pt; right: 10%; transform: translate(-50%); width: 160pt; height: 160pt; max-width: 100%">
-                            <img src="{{ $pengaturan['gambar_tandatangan_cap'] }}" alt="ttd cap" style="max-width: 100%">
+                    <p style="margin-top:0pt">
+                        <div style="display:block; position:absolute; z-index:10000; top: -10pt; right: 40%; transform: translate(-50%); width: 80pt; height: 80pt; max-width: 100%">
+                            <img src="{{ $pengaturan['gambar_tandatangan_cap'] }}" alt="ttd cap" style="max-width: 100%; width: 100%; object-fit: contain;">
                         </div>
                     </p>
                 </td>

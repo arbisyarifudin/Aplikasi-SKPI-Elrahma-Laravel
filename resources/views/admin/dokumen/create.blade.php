@@ -190,7 +190,7 @@ if (!function_exists('getBackUrl')) {
 
                                                 </div> --}}
                                                 <!-- Create custom multiple select -->
-                                                <div class="mt-2 p-2" style="border: 1px solid #ddd">
+                                                <div class="mt-2 p-2">
                                                     <table class="table table-bordered">
                                                         <thead>
                                                             <tr>
