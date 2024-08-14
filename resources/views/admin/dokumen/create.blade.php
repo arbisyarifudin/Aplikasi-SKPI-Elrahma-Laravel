@@ -124,7 +124,7 @@ if (!function_exists('getBackUrl')) {
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6" v-if="selectedProdi">
+                            <div class="col-md-12" v-if="selectedProdi">
                                 <div class="mb-3">
                                     <div :class="loadingMahasiswa ? 'mb-2' : 'mb-1'">Mahasiswa <span
                                             class="text-danger">*</span></div>
@@ -135,7 +135,16 @@ if (!function_exists('getBackUrl')) {
                                                     v-if="loadingMahasiswa">
                                                     <span class="visually-hidden">Loading...</span>
                                                 </div>
-                                                <div class="text-secondary small" v-else style="flex: 1"></div>
+                                                <div class="text-secondary small" v-else style="flex: 1">
+                                                    <div v-if="mahasiswaData.length > 0">
+                                                        <small style="font-size: 80%">Pilih mahasiswa yang ingin dibuatkan
+                                                            dokumen.
+                                                            {{-- Gunakan tombol --}}
+                                                            <!-- <strong>Ctrl</strong> untuk memilih lebih dari
+                                                            satu mahasiswa. -->
+                                                        </small>
+                                                    </div>
+                                                </div>
                                                 <div class="form-check"
                                                     v-if="!checkAllMahasiswa && mahasiswaData.length">
                                                     <input class="form-check-input" type="checkbox" value=""
@@ -155,22 +164,88 @@ if (!function_exists('getBackUrl')) {
 
 
                                                 <!-- Create custom multiple select -->
-                                                <div class="mt-2 p-2" style="border: 1px solid #ddd">
-                                                    <div v-for="item in mahasiswaData" :key="item.id"
-                                                        class="form-check">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            :id="'mahasiswa_' + item.id" :name="'mahasiswa_ids[]'"
-                                                            :value="item.id" v-model="selectedMahasiswa">
-                                                        <label class="form-check-label" :for="'mahasiswa_' + item.id">
-                                                            @{{ item.nama }} (@{{ item.nim }}) <span
-                                                                v-if="item.is_have_skpi" class="badge bg-success">Sudah
-                                                                dibuat</span>
-                                                        </label>
+                                                {{-- <div class="mt-2 p-2" style="border: 1px solid #ddd">
+                                                    <div v-for="(item, index) in mahasiswaData" :key="item.id"
+                                                        class="mb-2 d-flex align-center">
+                                                        <div class="form-check" style="flex: 1;">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                :id="'mahasiswa_' + item.id" :name="'mahasiswa_ids[]'"
+                                                                :value="item.id" v-model="selectedMahasiswa">
+                                                            <label class="form-check-label"
+                                                                :for="'mahasiswa_' + item.id">
+                                                                @{{ item.nama }} <br><small class="text-muted">(NIM: @{{
+                                                                    item.nim }})</small> <span v-if="item.is_have_skpi"
+                                                                    class="badge bg-success">Sudah
+                                                                    dibuat</span>
+                                                            </label>
+                                                        </div>
+                                                        <input style="flex: 1;" type="number"
+                                                            :id="'dok_number_' + item.id" :name="'nomor_dokumens[]'"
+                                                            :value="item.dokumen_nomor" v-model="nomorDokumens[index]"
+                                                            class="form-control" />
                                                     </div>
                                                     <div v-if="mahasiswaData.length == 0" class="text-secondary mt-2">
                                                         Tidak ada mahasiswa
                                                     </div>
 
+                                                </div> --}}
+                                                <!-- Create custom multiple select -->
+                                                <div class="mt-2 p-2" style="border: 1px solid #ddd">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="vertical-align: middle">Pilih</th>
+                                                                <th style="vertical-align: middle">Nama Mahasiswa</th>
+                                                                <th style="vertical-align: middle">Status SKPI</th>
+                                                                <th style="vertical-align: middle">
+                                                                    Nomor Dokumen<br/><small class="text-muted" style="font-weight: 400">[tidak wajib]</small>
+                                                                </th>
+                                                                <th style="vertical-align: middle">
+                                                                    Thn. Lulus<br/><small class="text-muted" style="font-weight: 400">[tidak wajib]</small>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr v-for="(item, index) in mahasiswaData" :key="item.id">
+                                                                <td>
+                                                                    <div class="form-check d-flex justify-content-center">
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                            :id="'mahasiswa_' + item.id"
+                                                                            :name="'mahasiswa_ids[]'" :value="item.id"
+                                                                            v-model="selectedMahasiswa">
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <label class="form-check-label"
+                                                                        :for="'mahasiswa_' + item.id">
+                                                                        @{{ item.nama }} <br/><small class="text-muted">NIM: @{{ item.nim }}</small>
+                                                                    </label>
+                                                                </td>
+                                                                <td>
+                                                                    <span v-if="item.is_have_skpi"
+                                                                        class="badge bg-success">Sudah dibuat</span>
+                                                                    <span v-else
+                                                                        class="badge bg-secondary">Belum dibuat</span>
+                                                                </td>
+                                                                <td>
+                                                                    <input type="number" :id="'dok_number_' + item.id"
+                                                                        :name="'nomor_dokumens['+item.id+']'"
+                                                                        v-model="nomorDokumens[item.id]"
+                                                                        class="form-control" />
+                                                                </td>
+                                                                <td>
+                                                                    <input type="number" :id="'tahun_lulus_' + item.id"
+                                                                        :name="'tahun_lulus['+item.id+']'"
+                                                                        v-model="tahunLuluses[item.id]"
+                                                                        class="form-control" min="2000" max="{{ date('Y') }}" />
+                                                                </td>
+                                                            </tr>
+                                                            <tr v-if="mahasiswaData.length == 0">
+                                                                <td colspan="5" class="text-secondary text-center">Tidak
+                                                                    ada mahasiswa</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
                                                 </div>
 
                                                 @error('mahasiswa_ids')
@@ -181,15 +256,6 @@ if (!function_exists('getBackUrl')) {
                                                     <small style="font-size: 80%">Terdapat @{{ isAlreadyHaveSkpiCount }}
                                                         mahasiswa yang sudah dibuatkan SKPI. Jika Anda memilih mahasiswa
                                                         tersebut, maka file yang sudah ada akan ditimpa.</small>
-                                                </div>
-
-                                                <div class="text-secondary mt-1" v-if="mahasiswaData.length > 0">
-                                                    <small style="font-size: 80%">Pilih mahasiswa yang ingin dibuatkan
-                                                        dokumen.
-                                                        Gunakan tombol
-                                                        <!-- <strong>Ctrl</strong> untuk memilih lebih dari
-														satu mahasiswa. -->
-                                                    </small>
                                                 </div>
                                             </div>
                                         </div>
@@ -206,7 +272,7 @@ if (!function_exists('getBackUrl')) {
                         <hr />
 
                         <div class="row mt-3">
-                            <div class="col-md-12" v-if="!!pengaturanHasilCapaianData && !!selectedProdi">
+                            <div class="col-md-12" v-if="!!cplPerProdiData && !!selectedProdi">
                                 <div class="mb-2">
                                     <div>
                                         <span>Informasi Tentang Kualifikasi dan Hasil yang Dicapai</span>
@@ -218,8 +284,8 @@ if (!function_exists('getBackUrl')) {
                                         </button>
                                     </div>
                                 </div>
-                                <table class="table table-bordered" v-if="!pengaturanHasilCapaianInEditMode">
-                                    <tbody v-for="(item, index) in pengaturanHasilCapaianData">
+                                <table class="table table-bordered" v-if="!cplPerProdiInEditMode">
+                                    <tbody v-for="(item, index) in cplPerProdiData">
 
                                         <template v-if="item && item.subs">
                                             <template v-for="(subItem, subIndex) in item.subs">
@@ -271,7 +337,7 @@ if (!function_exists('getBackUrl')) {
                                 </table>
 
                                 <table class="table table-bordered" v-else>
-                                    <tbody v-for="(item, index) in pengaturanHasilCapaianData">
+                                    <tbody v-for="(item, index) in cplPerProdiData">
 
                                         <template v-if="item && item.subs">
                                             <template v-for="(subItem, subIndex) in item.subs">
@@ -417,10 +483,10 @@ if (!function_exists('getBackUrl')) {
                             </div>
                         </div>
 
-                        <textarea name="cpl" :value="pengaturanHasilCapaianDataStringify"
+                        <textarea name="cpl" :value="cplPerProdiDataStringify"
                             style="display: none;"></textarea>
 
-                        <div class="mb-3" v-if="!!pengaturanHasilCapaianData && !!selectedProdi">
+                        <div class="mb-3" v-if="!!cplPerProdiData && !!selectedProdi">
                             <button type="submit" class="btn btn-primary" :disabled="!isFormValid">Simpan & Buat
                                 SKPI</button>
                         </div>
@@ -454,8 +520,8 @@ if (!function_exists('getBackUrl')) {
     const selectedJenjang = {!! json_encode($selectedJenjangId) !!};
     const selectedProdi = {!! json_encode($selectedProdiId) !!};
     const selectedMahasiswa = {!! json_encode($selectedMahasiswaId) !!};
-    const pengaturanHasilCapaianData = {!! json_encode($pengaturanHasilCapaian) !!};
-    const pengaturanHasilCapaianInEditMode = false;
+    const cplPerProdiData = {!! json_encode($cplPerProdi) !!};
+    const cplPerProdiInEditMode = false;
 
 	const app = Vue.createApp({
 		data() {
@@ -468,8 +534,11 @@ if (!function_exists('getBackUrl')) {
 				selectedProdi: selectedProdi ?? '',
 				checkAllMahasiswa: false,
 				selectedMahasiswa: selectedMahasiswa ?? [],
-				pengaturanHasilCapaianData: pengaturanHasilCapaianData || null,
-				pengaturanHasilCapaianInEditMode: false,
+				cplPerProdiData: cplPerProdiData || null,
+				cplPerProdiInEditMode: false,
+
+                nomorDokumens: {},
+                tahunLuluses: {},
 			}
 		},
 		mounted() {
@@ -491,8 +560,8 @@ if (!function_exists('getBackUrl')) {
 			isAlreadyHaveSkpiCount() {
 				return this.mahasiswaData.filter(item => item.is_have_skpi).length;
 			},
-            pengaturanHasilCapaianDataStringify () {
-              return this.pengaturanHasilCapaianData  ? JSON.stringify(this.pengaturanHasilCapaianData) : ''
+            cplPerProdiDataStringify () {
+              return this.cplPerProdiData  ? JSON.stringify(this.cplPerProdiData) : ''
             }
 		},
 		watch: {
@@ -515,8 +584,8 @@ if (!function_exists('getBackUrl')) {
 				if (val) {
                     this.getProdiDetailData()
 				} else {
-					this.pengaturanHasilCapaianData = null
-					this.pengaturanHasilCapaianInEditMode = false
+					this.cplPerProdiData = null
+					this.cplPerProdiInEditMode = false
 				}
 			}
 		},
@@ -541,8 +610,8 @@ if (!function_exists('getBackUrl')) {
 			},
 			getProdiDetailData() {
 				if (this.selectedProdi) {
-					this.pengaturanHasilCapaianData = [];
-					this.pengaturanHasilCapaianInEditMode = false
+					this.cplPerProdiData = [];
+					this.cplPerProdiInEditMode = false
 					api.get(`/v1/prodi/${this.selectedProdi}`)
 						.then(res => {
 							console.log(res.data);
@@ -550,7 +619,7 @@ if (!function_exists('getBackUrl')) {
 							if (prodiDetailData) {
 								console.log('prodiDetailData', prodiDetailData)
                               const kualifikasiCpl = JSON.parse(prodiDetailData.kualifikasi_cpl)
-                              this.pengaturanHasilCapaianData = kualifikasiCpl
+                              this.cplPerProdiData = kualifikasiCpl
 							}
 						})
 						.catch(err => {
@@ -575,6 +644,11 @@ if (!function_exists('getBackUrl')) {
 							if (this.selectedMahasiswa.length == this.mahasiswaData.length) {
 								this.checkAllMahasiswa = true;
 							}
+
+                            this.mahasiswaData.forEach(item => {
+                                this.nomorDokumens[item.id] = item.dokumen_nomor
+                                this.tahunLuluses[item.id] = item.tahun_lulus
+                            })
 						})
 						.catch(err => {
 							console.log(err);
@@ -591,7 +665,7 @@ if (!function_exists('getBackUrl')) {
             },
 
 			addItemJudul(index, subIndex) {
-				this.pengaturanHasilCapaianData[index].subs.push({
+				this.cplPerProdiData[index].subs.push({
 					judul: '',
 					judul_en: '',
 					subs: [],
@@ -599,45 +673,45 @@ if (!function_exists('getBackUrl')) {
 				});
 			},
 			addItemSubJudul(index, subIndex) {
-				if (!this.pengaturanHasilCapaianData[index].subs[subIndex].subs) {
-					this.pengaturanHasilCapaianData[index].subs[subIndex].subs = [];
+				if (!this.cplPerProdiData[index].subs[subIndex].subs) {
+					this.cplPerProdiData[index].subs[subIndex].subs = [];
 				}
-				this.pengaturanHasilCapaianData[index].subs[subIndex].subs.push({
+				this.cplPerProdiData[index].subs[subIndex].subs.push({
 					judul: 'Subjudul baru',
 					judul_en: 'New subjudul',
 					list: [],
 				});
 			},
 			addItemSubItem(index, subIndex) {
-				if (!this.pengaturanHasilCapaianData[index].subs[subIndex].list) {
-					this.pengaturanHasilCapaianData[index].subs[subIndex].list = [];
+				if (!this.cplPerProdiData[index].subs[subIndex].list) {
+					this.cplPerProdiData[index].subs[subIndex].list = [];
 				}
-				this.pengaturanHasilCapaianData[index].subs[subIndex].list.push({
+				this.cplPerProdiData[index].subs[subIndex].list.push({
 					teks: 'Item baru',
 					teks_en: 'New item',
 				});
 			},
 			addItemSubItemListItem(index, subIndex, subItemListItemIndex) {
-				if (!this.pengaturanHasilCapaianData[index].subs[subIndex].subs[subItemListItemIndex].list) {
-					this.pengaturanHasilCapaianData[index].subs[subIndex].subs[subItemListItemIndex].list = [];
+				if (!this.cplPerProdiData[index].subs[subIndex].subs[subItemListItemIndex].list) {
+					this.cplPerProdiData[index].subs[subIndex].subs[subItemListItemIndex].list = [];
 				}
-				this.pengaturanHasilCapaianData[index].subs[subIndex].subs[subItemListItemIndex].list.push({
+				this.cplPerProdiData[index].subs[subIndex].subs[subItemListItemIndex].list.push({
 					teks: 'Item baru',
 					teks_en: 'New item',
 				});
 			},
 
 			deleteJudul(index, subIndex) {
-				this.pengaturanHasilCapaianData[index].subs.splice(subIndex, 1);
+				this.cplPerProdiData[index].subs.splice(subIndex, 1);
 			},
 			deleteSubJudul(index, subIndex, subItemListItemIndex) {
-				this.pengaturanHasilCapaianData[index].subs[subIndex].subs.splice(subItemListItemIndex, 1);
+				this.cplPerProdiData[index].subs[subIndex].subs.splice(subItemListItemIndex, 1);
 			},
 			deleteSubItem(index, subIndex, subItemListItemIndex) {
-				this.pengaturanHasilCapaianData[index].subs[subIndex].list.splice(subItemListItemIndex, 1);
+				this.cplPerProdiData[index].subs[subIndex].list.splice(subItemListItemIndex, 1);
 			},
 			deleteSubItemListItem(index, subIndex, subItemListItemIndex, subItemListItemListItemIndex) {
-				this.pengaturanHasilCapaianData[index].subs[subIndex].subs[subItemListItemIndex].list.splice(subItemListItemListItemIndex, 1);
+				this.cplPerProdiData[index].subs[subIndex].subs[subItemListItemIndex].list.splice(subItemListItemListItemIndex, 1);
 			},
 		}
 	});

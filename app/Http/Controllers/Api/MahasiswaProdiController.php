@@ -16,21 +16,25 @@ class MahasiswaProdiController extends Controller
         $mahasiswaProdi = MahasiswaProgramStudi::where('program_studi_id', $prodiId)
             ->join('mahasiswa', 'mahasiswa_program_studi.mahasiswa_id', '=', 'mahasiswa.id')
             ->select([
+                // 'mahasiswa_program_studi.id as key',
                 'mahasiswa.id',
                 'mahasiswa.nama',
                 'mahasiswa.nim',
+                'mahasiswa_program_studi.tahun_lulus',
             ])
             ->get();
 
         // is already have skpi
         foreach ($mahasiswaProdi as $key => $value) {
             $value->is_have_skpi = false;
+            $value->dokumen_nomor = null;
 
             DokumenSkpi::where('mahasiswa_id', $value->id)
                 ->where('program_studi_id', $prodiId)
                 ->get()
                 ->each(function ($item, $key) use ($value) {
                     $value->is_have_skpi = true;
+                    $value->dokumen_nomor = $item->nomor;
                 });
         }
 

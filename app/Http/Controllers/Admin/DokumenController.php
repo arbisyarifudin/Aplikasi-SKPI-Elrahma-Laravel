@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\GenerateSkpiFileJob;
+use App\Models\Cpl;
 use App\Models\DokumenSkpi;
 use App\Models\JenjangPendidikan;
 use App\Models\Mahasiswa;
+use App\Models\MahasiswaProgramStudi;
 use App\Models\PengajuanSkpi;
 use App\Models\Pengaturan;
 use App\Models\Prestasi;
@@ -68,7 +70,7 @@ class DokumenController extends Controller
         // $pengaturanHasilCapaian = Pengaturan::where('nama', 'informasi_kualifikasi_dan_hasil_capaian')->first();
         // $pengaturanHasilCapaian = isset($pengaturanHasilCapaian->nilai) ? json_decode($pengaturanHasilCapaian->nilai) : [];
         // $pengaturanHasilCapaian = Skpi::getSettingByName('informasi_kualifikasi_dan_hasil_capaian');
-        $pengaturanHasilCapaian = [];
+        // $pengaturanHasilCapaian = [];
 
         // get mhs, prodi, jenjang from query string
         $mhsId = request()->get('mhs');
@@ -77,10 +79,15 @@ class DokumenController extends Controller
         $ref = request()->get('ref');
         // dd($mhsId);
 
+        // CPL
+        $tahunKurikulum = Skpi::getSettingByName('tahun_kurikulum');
+        $cplPerProdi = [];
         if ($prodiId) {
             $programStudi = ProgramStudi::find($prodiId);
             if ($programStudi) {
-                $pengaturanHasilCapaian = json_decode($programStudi->kualifikasi_cpl);
+                // $pengaturanHasilCapaian = json_decode($programStudi->kualifikasi_cpl);
+                $cplFind = Cpl::where('program_studi_id', $prodiId)->where('tahun_kurikulum', $tahunKurikulum)->first();
+                $cplPerProdi = $cplFind ? $cplFind->data : [];
             }
         }
 
@@ -92,7 +99,7 @@ class DokumenController extends Controller
         return view('admin.dokumen.create', [
             'noDokumen' => $noDokumen,
             'jenjang' => $jenjang,
-            'pengaturanHasilCapaian' => $pengaturanHasilCapaian,
+            'cplPerProdi' => $cplPerProdi,
             'mhsId' => $mhsId,
             'selectedJenjangId' => $selectedJenjangId,
             'selectedProdiId' => $selectedProdiId,
@@ -102,6 +109,7 @@ class DokumenController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         // validate request
         $request->validate([
             'dokumen_tanggal' => 'required',
@@ -131,6 +139,23 @@ class DokumenController extends Controller
                         $mahasiswa = Mahasiswa::find($mahasiswaId);
                         if (!$mahasiswa) {
                             $fail('Mahasiswa tidak ditemukan.');
+                        }
+                    }
+                }
+            ],
+            'nomor_dokumens' => [
+                'nullable',
+                'array',
+            ],
+            'tahun_lulus' => [
+                'nullable',
+                'array',
+                function ($attribute, $value, $fail) {
+                    $tahunLuluses = $value;
+                    foreach ($tahunLuluses as $tahunLulus) {
+                        // min: 2000, max: current year
+                        if (!empty($tahunLulus) && ($tahunLulus < 2000 || $tahunLulus > date('Y'))) {
+                            $fail('Tahun lulus harus diantara 2000 dan ' . date('Y') . '.');
                         }
                     }
                 }
@@ -182,18 +207,26 @@ class DokumenController extends Controller
                 // $dokumenSkpi->file = '-';
                 // $dokumenSkpi->save();
 
-                // generate unique nomor dokumen
-                // kode = 20210301
-                // nomor = 202103010001
-                $kode = date('Ymd'); // 20210301
-                $nomor = '0001';
-                $lastDokumenSkpi = DokumenSkpi::where('nomor', 'like', "{$kode}%")->orderBy('nomor', 'desc')->first();
-                if ($lastDokumenSkpi) {
-                    // get 4 last digit
-                    $lastNomor = substr($lastDokumenSkpi->nomor, -4);
-                    $nomor = str_pad($lastNomor + 1, 4, '0', STR_PAD_LEFT);
+                $dokumenNomor = null;
+                if ($request->nomor_dokumens) {
+                    $dokumenNomor = $request->nomor_dokumens[$mahasiswaId];
                 }
-                $dokumenNomor = $kode . $nomor;
+
+                if (empty($dokumenNomor)) {
+                    // generate unique nomor dokumen
+                    // kode = 20210301
+                    // nomor = 202103010001
+                    $kode = date('Ymd'); // 20210301
+                    $nomor = '0001';
+                    $lastDokumenSkpi = DokumenSkpi::where('nomor', 'like', "{$kode}%")->orderBy('nomor', 'desc')->first();
+                    if ($lastDokumenSkpi) {
+                        // get 4 last digit
+                        $lastNomor = substr($lastDokumenSkpi->nomor, -4);
+                        $nomor = str_pad($lastNomor + 1, 4, '0', STR_PAD_LEFT);
+                    }
+                    $dokumenNomor = $kode . $nomor;
+                }
+
 
                 // is already have skpi
                 $isAlreadyHaveSkpi = DokumenSkpi::where('mahasiswa_id', $mahasiswaId)
@@ -241,6 +274,15 @@ class DokumenController extends Controller
                     ]);
                 }
 
+                // update tahun_lulus of mahasiswa_prodi
+                $mahasiswaProdi = MahasiswaProgramStudi::where('mahasiswa_id', $mahasiswaId)
+                    ->where('program_studi_id', $programStudiId)
+                    ->first();
+                if ($mahasiswaProdi) {
+                    $tahunLulus = $request->tahun_lulus[$mahasiswaId];
+                    $mahasiswaProdi->tahun_lulus = $tahunLulus;
+                    $mahasiswaProdi->save();
+                }
 
 
                 // generate file
