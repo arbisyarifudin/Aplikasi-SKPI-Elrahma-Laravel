@@ -115,7 +115,7 @@ if (!function_exists('getJenjangStatus')) {
                                         <input type="hidden" name="mahasiswa_prodi_id" value="{{ $d->mps_id }}">
                                         <button type="submit" class="btn btn-sm btn-primary" title="Ajukan Pembuatan">
                                             <i class="bi bi-check-circle"></i>
-                                            Ajukan
+                                            {{ !empty($d->file) ? 'Ajukan Baru' : 'Ajukan' }}
                                         </button>
                                     </form>
                                     @endif
@@ -123,7 +123,7 @@ if (!function_exists('getJenjangStatus')) {
                                         @if ($d->file !== 'proses')
                                         <div class="mt-2">
                                             <a href="{{ $d->file_url }}" target="_blank" class="btn btn-sm btn-light"><i
-                                                class="bi bi-file-earmark"></i> Lihat</a>
+                                                class="bi bi-file-earmark"></i> Lihat SKPI</a>
                                         </div>
                                         @endif
                                     @endif

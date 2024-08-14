@@ -134,10 +134,12 @@ class DokumenController extends Controller
             return redirect()->route('mahasiswa.pengajuan.index')->with('error', 'Anda sudah mengirim pengajuan SKPI');
         }
 
-        $code = \Str::random(10);
-
+        // $code = \Str::random(10);
+        $code = date('YmdHi');
+        $counter = 1;
         while (PengajuanSkpi::where('kode', $code)->first()) {
-            $code = \Str::random(10);
+            $code = date('YmdHi') . $counter;
+            $counter++;
         }
 
         $pengajuanSkpi = PengajuanSkpi::create([
