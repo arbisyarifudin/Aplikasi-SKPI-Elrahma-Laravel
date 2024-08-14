@@ -64,7 +64,7 @@ class Skpi
     /**
      * @param $date
      * @return false|string
-     * @example 2021-10-29-> 29 Oktober 2021
+     * @example 2021-10-29 -> 29 Oktober 2021
      */
     static function dateIndo($date)
     {

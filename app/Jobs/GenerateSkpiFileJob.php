@@ -8,6 +8,7 @@ use App\Models\MahasiswaProgramStudi;
 use App\Models\Prestasi;
 use App\Models\ProgramStudi;
 use App\Utils\Skpi;
+use App\Utils\Translate;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -76,6 +77,11 @@ class GenerateSkpiFileJob implements ShouldQueue
 
             $prestasi = Prestasi::where('mahasiswa_id', $mahasiswa->id)->get();
 
+            foreach ($prestasi as $key => $value) {
+                $value->teks = $value->pencapaian . ' ' . $value->nama . ' tingkat ' . $value->tingkat . ' pada ' . $value->tahun . ' oleh ' . $value->penyelenggara . ' ' . ' di ' . $value->tempat;
+                $value->teks_en = Translate::setSource('id')->setTarget('en')->translate($value->teks);
+            }
+
             // generate tanggal lahir indo
             $tanggalLahir = $mahasiswa->tanggal_lahir;
             $tanggalLahirIndo = Skpi::dateIndo($tanggalLahir); // 29 Oktober 2021
@@ -98,6 +104,10 @@ class GenerateSkpiFileJob implements ShouldQueue
 
             $logoInstitusiBase64String = 'data:' . $logoInstitusiMimeType . ';base64,' . base64_encode(file_get_contents($logoInstitusiUrl));
 
+            // get tanggal indo format from $dokumenSkpi->tanggal
+            $tanggal = $dokumenSkpi->tanggal;
+            $tanggalIndo = Skpi::dateIndo($tanggal); // 29 Oktober 2021
+
             $pdfView = view('pdf.dokumen_skpi', [
                 'dokumenSkpi' => $dokumenSkpi,
                 'mahasiswa' => $mahasiswa,
@@ -115,7 +125,13 @@ class GenerateSkpiFileJob implements ShouldQueue
                     'jenis_pendidikan_en' => Skpi::getSettingByName('jenis_pendidikan_en'),
                     // 'logo_institusi' => 'data:image/jpeg;base64,' . base64_encode(file_get_contents(public_path('images/elrahma.jpeg'))),
                     'logo_institusi' => $logoInstitusiBase64String,
-                ]
+
+                    'nama_penandatangan' => Skpi::getSettingByName('nama_penandatangan'),
+                    'nip_penandatangan' => Skpi::getSettingByName('nip_penandatangan'),
+                    'jabatan_penandatangan' => Skpi::getSettingByName('jabatan_penandatangan'),
+                    'gambar_tandatangan_cap' => Skpi::getSettingByName('gambar_tandatangan_cap'),
+                ],
+                'tanggal' => $tanggalIndo,
             ])->render();
 
             // echo ($pdfPreview); die;

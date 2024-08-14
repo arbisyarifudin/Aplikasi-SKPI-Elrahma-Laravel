@@ -21,7 +21,7 @@
         body {
             font-family: 'Times New Roman', Times, serif;
             font-size: 12pt;
-            border: 10pt solid black;
+            /* border: 10pt solid black; */
             margin: 0cm 0cm;
             padding-top: 0.5cm;
         }
@@ -1414,6 +1414,8 @@
                     </p>
                 </td>
             </tr>
+
+            @foreach ($prestasi as $p)
             <tr style="height:13.5pt; page-break-inside: avoid;">
                 <td colspan="3"
                     style="width:36.4pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
@@ -1427,19 +1429,44 @@
                 <td colspan="12"
                     style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Juara II "Lomba Futsal" Dalam Acara Pekan Kreatif
-                            Mahasiswa (PKM) 2015 di STMIK EL Rahma</span>
+                        {{-- <span style="font-family:'Times New Roman'">Juara II "Lomba Futsal" Dalam Acara Pekan Kreatif
+                            Mahasiswa (PKM) 2015 di STMIK EL Rahma</span> --}}
+                        <span style="font-family:'Times New Roman'">{{ $p->teks }}</span>
                     </p>
                 </td>
                 <td colspan="2"
                     style="width:275.05pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Second Place "Futsal Competition" in Student
+                        {{-- <span style="font-family:'Times New Roman'">Second Place "Futsal Competition" in Student
                             Creative
-                            Week (PKM) 2015 at STMIK EL Rahma</span>
+                            Week (PKM) 2015 at STMIK EL Rahma</span> --}}
+                        <span style="font-family:'Times New Roman'">{{ $p->teks_en }} </span>
                     </p>
                 </td>
             </tr>
+            @endforeach
+            @if (empty($prestasi))
+            <tr style="height:13.5pt; page-break-inside: avoid;">
+                <td colspan="3"
+                    style="width:36.4pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
+                    <ol type="1" style="margin:0pt; padding-left:0pt">
+                        <li
+                            style="margin-left:31.25pt; text-align:center; padding-left:4.75pt; font-family:'Times New Roman'; font-size:11pt">
+                            &#xa0;
+                        </li>
+                    </ol>
+                </td>
+                <td colspan="12"
+                    style="width:172.4pt; border-top-style:solid; border-top-width:0.75pt; border-right-style:solid; border-right-width:0.75pt; border-bottom-style:solid; border-bottom-width:0.75pt; padding-right:5.03pt; padding-left:5.4pt; vertical-align:bottom">
+                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt"></p>
+                </td>
+                <td colspan="2"
+                    style="width:275.05pt; border-style:solid; border-width:0.75pt; padding-right:5.03pt; padding-left:5.03pt; vertical-align:middle">
+                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt"></p>
+                </td>
+            </tr>
+            @endif
+
             <tr style="height:15pt">
                 <td colspan="4" style="width:41.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt">
@@ -1464,7 +1491,7 @@
                         <span style="font-family:'Times New Roman'">&#xa0;</span>
                     </p>
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Yogyakarta, 30 Oktober 2021</span><span
+                        <span style="font-family:'Times New Roman'">Yogyakarta, {{ $tanggal }}</span><span
                             style="font-family:'Times New Roman'">&#xa0; </span>
                     </p>
                 </td>
@@ -1487,7 +1514,7 @@
                 </td>
                 <td colspan="9" style="width:379.45pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Ketua Sekolah Tinggi Manajemen Informatika dan Ilmu
+                        <span style="font-family:'Times New Roman'">{{ $pengaturan['jabatan_penandatangan'] }} Sekolah Tinggi Manajemen Informatika dan Ilmu
                             Komputer</span>
                     </p>
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
@@ -1603,7 +1630,8 @@
                 </td>
                 <td colspan="9" style="width:379.45pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">Eko Riswanto, S.T., M.Cs</span>
+                        {{-- <span style="font-family:'Times New Roman'">Eko Riswanto, S.T., M.Cs</span> --}}
+                        <span style="font-family:'Times New Roman'">{{ $pengaturan['nama_penandatangan'] }}</span>
                     </p>
                 </td>
             </tr>
@@ -1625,7 +1653,7 @@
                 </td>
                 <td colspan="9" style="width:379.45pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:bottom">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
-                        <span style="font-family:'Times New Roman'">NIP 197501152005011002</span>
+                        <span style="font-family:'Times New Roman'">NIP {{ $pengaturan['nip_penandatangan'] }}</span>
                     </p>
                 </td>
             </tr>
