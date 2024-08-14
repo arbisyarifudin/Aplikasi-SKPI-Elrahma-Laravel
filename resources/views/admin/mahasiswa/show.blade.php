@@ -185,20 +185,26 @@ return '<span class="badge bg-secondary">Tidak diketahui</span>';
                                                 method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('PUT')
-                                                <input type="hidden" name="status" id="status-{{ $prestasi->id }}" value="">
+                                                <input type="hidden" name="status" id="status-{{ $prestasi->id }}"
+                                                    value="">
                                                 @if ($prestasi->status !== 'Diterima')
                                                 <button title="Terima" data-tooltip="tooltip" type="button"
-                                                    class="btn btn-sm btn-success" onclick="submitForm({{ $prestasi->id }}, 'Diterima')">
+                                                    class="btn btn-sm btn-success"
+                                                    onclick="submitForm({{ $prestasi->id }}, 'Diterima')">
                                                     <i class="bi bi-check"></i>
                                                 </button>
                                                 @endif
                                                 @if ($prestasi->status !== 'Ditolak')
                                                 <button title="Tolak" data-tooltip="tooltip" type="button"
-                                                    class="btn btn-sm btn-danger" onclick="submitForm({{ $prestasi->id }}, 'Ditolak')">
+                                                    class="btn btn-sm btn-danger"
+                                                    onclick="submitForm({{ $prestasi->id }}, 'Ditolak')">
                                                     <i class="bi bi-x"></i>
                                                 </button>
                                                 @endif
                                             </form>
+                                            <button type="button" title="Hapus" data-tooltip="tooltip" data-bs-toggle="modal"
+                                                data-bs-target="#hapusModal" data-id="{{ $prestasi->id }}" data-mahasiswa-id="{{ $mahasiswa->id }}"
+                                                class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -214,6 +220,28 @@ return '<span class="badge bg-secondary">Tidak diketahui</span>';
     </div>
 </section>
 
+<div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centeredx">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="hapusModalLabel">Konfirmasi Hapus</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+            </div>
+            <div class="modal-body">
+                Apakah Anda yakin ingin menghapus data prestasi ini?
+            </div>
+            <div class="modal-footer">
+                <form method="POST" action="">
+                    @csrf
+                    @method("DELETE")
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @push('scripts')
@@ -222,5 +250,30 @@ return '<span class="badge bg-secondary">Tidak diketahui</span>';
         document.getElementById('status-' + id).value = status;
         document.getElementById('updateStatusForm-' + id).submit();
     }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const hapusButton = document.querySelectorAll("button[data-bs-target='#hapusModal']");
+        const hapusModal = document.getElementById("hapusModal");
+        const modalTitle = hapusModal.querySelector(".modal-title");
+
+        hapusButton.forEach(btn => {
+            btn.addEventListener("click", function(e) {
+                const dataId = this.dataset.id;
+                const mahasiswaId = this.dataset.mahasiswaId;
+
+                const row = e.target.closest("tr");
+                const namaItem = row.querySelector("td:nth-child(2)").textContent;
+                const form = hapusModal.querySelector("form");
+                const buttonHapus = hapusModal.querySelector("button[type='button']");
+                const url = "{{ route('admin.mahasiswa.prestasi.destroy', ['mahasiswaId' => ':mahasiswaId', 'prestasiId' => ':id']) }}";
+                const urlDelete = url.replace(":id", dataId).replace(":mahasiswaId", mahasiswaId);
+
+                form.setAttribute("action", urlDelete);
+
+                hapusModal.querySelector(".modal-body").innerHTML = "Apakah Anda yakin ingin menghapus prestasi: <b>" + namaItem + "</b>?";
+
+            });
+        });
+    });
 </script>
 @endpush

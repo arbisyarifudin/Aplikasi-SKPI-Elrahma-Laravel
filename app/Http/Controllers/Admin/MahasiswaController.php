@@ -300,4 +300,25 @@ class MahasiswaController extends Controller
         return redirect()->route('admin.mahasiswa.show', ['id' => $mahasiswaId])->with('success', 'Status berhasil diperbarui');
     }
 
+    public function prestasiDestroy ($mahasiswaId, $prestasiId) {
+        // find mahasiswa
+        $mahasiswa = Mahasiswa::findOrFail($mahasiswaId);
+
+        // find prestasi
+        $prestasi = Prestasi::findOrFail($prestasiId);
+
+        // delete file
+        $file = $prestasi->file_sertifikat;
+        if ($file && $file != '') {
+            if (\Storage::exists('public/' . $file)) {
+                \Storage::delete('public/' . $file);
+            }
+        }
+
+        // delete prestasi
+        $prestasi->delete();
+
+        return redirect()->route('admin.mahasiswa.show', ['id' => $mahasiswaId])->with('success', 'Prestasi berhasil dihapus');
+    }
+
 }

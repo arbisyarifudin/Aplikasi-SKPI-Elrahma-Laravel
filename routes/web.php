@@ -67,6 +67,7 @@ Route::group(['middleware' => ['auth', 'role:admin'], 'prefix' => 'admin'], func
     Route::post('/mahasiswa/{mahasiswaId}/prestasi', [AdminMahasiswaController::class, 'prestasiStore'])->name('admin.mahasiswa.prestasi.store');
     Route::put('/mahasiswa/{mahasiswaId}/prestasi/{prestasiId}', [AdminMahasiswaController::class, 'prestasiUpdate'])->name('admin.mahasiswa.prestasi.update');
     Route::put('/mahasiswa/{mahasiswaId}/prestasi/{prestasiId}/status', [AdminMahasiswaController::class, 'prestasiUpdateStatus'])->name('admin.mahasiswa.prestasi.update-status');
+    Route::delete('/mahasiswa/{mahasiswaId}/prestasi/{prestasiId}', [AdminMahasiswaController::class, 'prestasiDestroy'])->name('admin.mahasiswa.prestasi.destroy');
 
     // jenjang
     Route::get('/jenjang', [AdminJenjangController::class, 'index'])->name('admin.jenjang.index');
