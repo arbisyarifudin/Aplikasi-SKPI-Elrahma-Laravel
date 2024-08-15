@@ -267,7 +267,7 @@ class PengaturanSeeder extends Seeder
                     ],
                     [
                         'nama' => 'gambar_tandatangan_cap',
-                        'nilai' => 'images/ttd_cap.png',
+                        'nilai' => '',
                         'tipe' => 'image',
                     ],
                 ]
