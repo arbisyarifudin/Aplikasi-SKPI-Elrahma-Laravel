@@ -90,9 +90,9 @@
 
                         <div class="mb-3">
                             <label for="lama_studi_reguler" class="form-label">Lama Studi Reguler</label>
-                            <input type="number" name="lama_studi_reguler" id="lama_studi_reguler"
+                            <input type="text" name="lama_studi_reguler" id="lama_studi_reguler"
                                 class="form-control @error('lama_studi_reguler') is-invalid @enderror"
-                                value="{{ $detailData->lama_studi_reguler }}" placeholder="Lama">
+                                value="{{ $detailData->lama_studi_reguler }}" placeholder="Berapa Semeter">
                             @error('lama_studi_reguler')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

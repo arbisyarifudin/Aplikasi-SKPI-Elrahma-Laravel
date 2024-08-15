@@ -33,7 +33,8 @@ class JenjangController extends Controller
             'level_kkni' => 'nullable|numeric',
             'syarat_masuk' => 'nullable',
             'syarat_masuk_en' => 'nullable',
-            'lama_studi_reguler' => 'nullable|numeric',
+            // 'lama_studi_reguler' => 'nullable|numeric',
+            'lama_studi_reguler' => 'nullable',
             'jenjang_lanjutan' => 'nullable',
             'jenjang_lanjutan_en' => 'nullable',
         ], [
@@ -88,7 +89,8 @@ class JenjangController extends Controller
             'level_kkni' => 'nullable|numeric',
             'syarat_masuk' => 'nullable',
             'syarat_masuk_en' => 'nullable',
-            'lama_studi_reguler' => 'nullable|numeric',
+            // 'lama_studi_reguler' => 'nullable|numeric',
+            'lama_studi_reguler' => 'nullable',
             'jenjang_lanjutan' => 'nullable',
             'jenjang_lanjutan_en' => 'nullable',
         ], [
