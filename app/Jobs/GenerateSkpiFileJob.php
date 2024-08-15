@@ -94,32 +94,38 @@ class GenerateSkpiFileJob implements ShouldQueue
 
             // LOGO
             $logoInstitusi = Skpi::getSettingByName('logo_institusi');
-            // $logoInstitusiUrl = asset('storage/' . $logoInstitusi);
-            info('logoInstitusi: ' . $logoInstitusi);
-            $logoInstitusiUrl = Skpi::getAssetUrl($logoInstitusi);
-            info('logoInstitusiUrl: ' . $logoInstitusiUrl);
-            $logoInstitusiExtension = pathinfo($logoInstitusiUrl, PATHINFO_EXTENSION);
-            $logoInstitusiMimeType = 'image/jpeg';
+            $logoInstitusiBase64String = '';
+            if (!empty($logoInstitusi)) {
+                // $logoInstitusiUrl = asset('storage/' . $logoInstitusi);
+                // info('logoInstitusi: ' . $logoInstitusi);
+                $logoInstitusiUrl = Skpi::getAssetUrl($logoInstitusi);
+                // info('logoInstitusiUrl: ' . $logoInstitusiUrl);
+                $logoInstitusiExtension = pathinfo($logoInstitusiUrl, PATHINFO_EXTENSION);
+                $logoInstitusiMimeType = 'image/jpeg';
 
-            if ($logoInstitusiExtension === 'png') {
-                $logoInstitusiMimeType = 'image/png';
+                if ($logoInstitusiExtension === 'png') {
+                    $logoInstitusiMimeType = 'image/png';
+                }
+
+                $logoInstitusiBase64String = 'data:' . $logoInstitusiMimeType . ';base64,' . base64_encode(file_get_contents($logoInstitusiUrl));
             }
-
-            $logoInstitusiBase64String = 'data:' . $logoInstitusiMimeType . ';base64,' . base64_encode(file_get_contents($logoInstitusiUrl));
 
             // TTD CAP
             $gambarTtdCap = Skpi::getSettingByName('gambar_tandatangan_cap');
-            info('gambarTtdCap: ' . $gambarTtdCap);
-            $gambarTtdCapUrl = Skpi::getAssetUrl($gambarTtdCap);
-            info('gambarTtdCapUrl: ' . $gambarTtdCapUrl);
-            $gambarTtdCapExtension = pathinfo($gambarTtdCapUrl, PATHINFO_EXTENSION);
-            $gambarTtdCapMimeType = 'image/jpeg';
+            $gambarTtdCapBase64String = '';
+            if (!empty($gambarTtdCap)) {
+                // info('gambarTtdCap: ' . $gambarTtdCap);
+                $gambarTtdCapUrl = Skpi::getAssetUrl($gambarTtdCap);
+                // info('gambarTtdCapUrl: ' . $gambarTtdCapUrl);
+                $gambarTtdCapExtension = pathinfo($gambarTtdCapUrl, PATHINFO_EXTENSION);
+                $gambarTtdCapMimeType = 'image/jpeg';
 
-            if ($gambarTtdCapExtension === 'png') {
-                $gambarTtdCapMimeType = 'image/png';
+                if ($gambarTtdCapExtension === 'png') {
+                    $gambarTtdCapMimeType = 'image/png';
+                }
+
+                $gambarTtdCapBase64String = 'data:' . $gambarTtdCapMimeType . ';base64,' . base64_encode(file_get_contents($gambarTtdCapUrl));
             }
-
-            $gambarTtdCapBase64String = 'data:' . $gambarTtdCapMimeType . ';base64,' . base64_encode(file_get_contents($gambarTtdCapUrl));
 
             // get tanggal indo format from $dokumenSkpi->tanggal
             $tanggal = $dokumenSkpi->tanggal;
@@ -152,7 +158,7 @@ class GenerateSkpiFileJob implements ShouldQueue
                 'tanggal' => $tanggalIndo,
             ])->render();
 
-            info('pdfView:'. $pdfView);
+            // info('pdfView:'. $pdfView);
 
             // echo ($pdfPreview); die;
 

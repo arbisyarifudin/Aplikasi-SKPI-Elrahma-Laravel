@@ -36,16 +36,19 @@ class PengaturanController extends Controller
             'gambar_tandatangan_cap' => \App\Utils\Skpi::getSettingByName('gambar_tandatangan_cap'),
         ];
 
+        $dataPengaturan['logo_aplikasi_url'] = '';
         if (isset($dataPengaturan['logo_aplikasi']) && $dataPengaturan['logo_aplikasi'] != '') {
             // $dataPengaturan['logo_aplikasi_url'] = asset('storage/' . $dataPengaturan['logo_aplikasi']);
             $dataPengaturan['logo_aplikasi_url'] = \App\Utils\Skpi::getAssetUrl($dataPengaturan['logo_aplikasi']);
         }
 
+        $dataPengaturan['logo_institusi_url'] = '';
         if (isset($dataPengaturan['logo_institusi']) && $dataPengaturan['logo_institusi'] != '') {
             // $dataPengaturan['logo_institusi_url'] = asset('storage/' . $dataPengaturan['logo_institusi']);
             $dataPengaturan['logo_institusi_url'] = \App\Utils\Skpi::getAssetUrl($dataPengaturan['logo_institusi']);
         }
 
+        $dataPengaturan['gambar_tandatangan_cap_url'] = '';
         if (isset($dataPengaturan['gambar_tandatangan_cap']) && $dataPengaturan['gambar_tandatangan_cap'] != '') {
             $dataPengaturan['gambar_tandatangan_cap_url'] = \App\Utils\Skpi::getAssetUrl($dataPengaturan['gambar_tandatangan_cap']);
         }
