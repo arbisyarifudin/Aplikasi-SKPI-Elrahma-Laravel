@@ -147,4 +147,22 @@ class PrestasiController extends Controller
 
         return redirect()->route('mahasiswa.prestasi.index')->with('success', 'Prestasi berhasil diperbarui');
     }
+
+    public function destroy ($id) {
+        // find prestasi
+        $prestasi = Prestasi::findOrFail($id);
+
+        // delete file
+        $file = $prestasi->file_sertifikat;
+        if ($file && $file != '') {
+            if (\Storage::exists('public/' . $file)) {
+                \Storage::delete('public/' . $file);
+            }
+        }
+
+        // delete prestasi
+        $prestasi->delete();
+
+        return redirect()->route('mahasiswa.prestasi.index')->with('success', 'Prestasi berhasil dihapus');
+    }
 }
