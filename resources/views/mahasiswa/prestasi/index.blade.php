@@ -162,7 +162,7 @@ if (!function_exists('getStatusColor')) {
 
             const row = e.target.closest("tr");
             // const dataId = row.getAttribute("data-id");
-            const namaItem = row.querySelector("td:nth-child(2) > div").textContent; // Mengambil teks dari kolom "Nama"
+            const namaItem = row.querySelector("td:nth-child(2)").textContent; // Mengambil teks dari kolom "Nama"
             const form = hapusModal.querySelector("form");
             // const inputId = form.querySelector("input[name='id']");
             const buttonHapus = hapusModal.querySelector("button[type='button']");
