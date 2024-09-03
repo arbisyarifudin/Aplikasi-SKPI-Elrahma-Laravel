@@ -4,18 +4,18 @@
 @php
 
 if (!function_exists('getStatusColor')) {
-    function getStatusColor ($status) {
-        $status = strtolower($status);
-        if ($status == 'diproses') {
-            return '<span class="badge bg-warning">Diproses</span>';
-        } else if ($status == 'ditolak') {
-            return '<span class="badge bg-danger">Ditolak</span>';
-        } else if ($status == 'diterima') {
-            return '<span class="badge bg-success">Diterima</span>';
-        } else {
-            return '<span class="badge bg-secondary">Tidak diketahui</span>';
-        }
-    }
+function getStatusColor ($status) {
+$status = strtolower($status);
+if ($status == 'diproses') {
+return '<span class="badge bg-warning">Diproses</span>';
+} else if ($status == 'ditolak') {
+return '<span class="badge bg-danger">Ditolak</span>';
+} else if ($status == 'diterima') {
+return '<span class="badge bg-success">Diterima</span>';
+} else {
+return '<span class="badge bg-secondary">Tidak diketahui</span>';
+}
+}
 }
 
 @endphp
@@ -90,9 +90,12 @@ if (!function_exists('getStatusColor')) {
                                 </td>
                                 <td>
                                     @if ($p->file_sertifikat)
-                                    <a href="{{ $p->file_sertifikat_url }}" target="_blank"
-                                        class="btn btn-sm btn-success"><i class="bi bi-file-earmark-pdf"></i>
-                                        Lihat</a>
+                                    <button type="button" class="btn btn-sm btn-success preview-file"
+                                        data-bs-toggle="modal" data-bs-target="#previewModal"
+                                        data-url="{{ $p->file_sertifikat_url }}"
+                                        data-type="{{ pathinfo($p->file_sertifikat_url, PATHINFO_EXTENSION) }}">
+                                        <i class="bi bi-file-earmark"></i> Lihat
+                                    </button>
                                     @else
                                     <span class="badge bg-secondary">Tidak ada</span>
                                     @endif
@@ -144,6 +147,29 @@ if (!function_exists('getStatusColor')) {
     </div>
 </div>
 
+<div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="previewModalLabel">Preview Sertifikat</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <iframe id="fileFrame" src="" width="100%" height="728px" style="display: none;"></iframe>
+                <img id="fileImage" src="" alt="Preview Image" width="100%" style="display: none;">
+                <div class="text-center mt-3">
+                    <div id="unsupportedFile" style="display: none;">
+                        <p>File ini tidak dapat dipreview.</p>
+                    </div>
+                    <div class="py-6">
+                        <a href="" id="downloadLink" download class="btn btn-primary" target="_blank"><i
+                                class="bi bi-download"></i> Buka/Unduh Dokumen</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection
 
@@ -184,6 +210,37 @@ if (!function_exists('getStatusColor')) {
             //     form.submit();
             // });
 
+            });
+        });
+
+        const previewButtons = document.querySelectorAll(".preview-file");
+        const previewModal = document.getElementById("previewModal");
+        const fileFrame = document.getElementById("fileFrame");
+        const fileImage = document.getElementById("fileImage");
+        const unsupportedFile = document.getElementById("unsupportedFile");
+        const downloadLink = document.getElementById("downloadLink");
+
+        previewButtons.forEach(btn => {
+            btn.addEventListener("click", function() {
+                const fileUrl = this.dataset.url;
+                const fileType = this.dataset.type.toLowerCase();
+
+                downloadLink.href = fileUrl;
+
+                fileFrame.style.display = 'none';
+                fileImage.style.display = 'none';
+                unsupportedFile.style.display = 'none';
+
+                if (fileType === 'pdf') {
+                    fileFrame.src = fileUrl + '#toolbar=0&navpanes=0&scrollbar=0';
+                    fileFrame.style.display = 'block';
+                } else if (['jpg', 'jpeg', 'png', 'gif'].includes(fileType)) {
+                    fileImage.src = fileUrl + '?t=' + new Date().getTime();
+                    fileImage.style.display = 'block';
+                } else {
+                    downloadLink.href = fileUrl;
+                    unsupportedFile.style.display = 'block';
+                }
             });
         });
     });
