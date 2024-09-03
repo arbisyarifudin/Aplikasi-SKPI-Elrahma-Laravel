@@ -16,5 +16,10 @@
 - DONE --> dokumen SKPI ada nomor ijazahnya dan bisa diinputkan oleh admin
 - mahasiswa bisa preview & download SKPI bertanda tangan dan cap gambar digital, namun tetap harus mengambil versi basah di kampus
 
+## 16 Agustus 2024
+- Tambahkan modal untuk lihat gambar / preview file
+
 # TAMBAHAN
+
+## 14 Agustus
 - DONE --> admin bisa hapus prestasi

@@ -46,7 +46,7 @@ if (!function_exists('getJenjangStatus')) {
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="card-title">Data Dokumen SKPI</div>
                         <a href="{{ route('mahasiswa.pengajuan.index') }}" class="btn btn-sm btn-primary"><i
-                            class="bi bi-file-break"></i> Lihat Pengajuan</a>
+                                class="bi bi-file-break"></i> Lihat Pengajuan</a>
                     </div>
 
                     @if (session('success'))
@@ -120,12 +120,17 @@ if (!function_exists('getJenjangStatus')) {
                                     </form>
                                     @endif
                                     @if (!empty($d->file))
-                                        @if ($d->file !== 'proses')
-                                        <div class="mt-2">
-                                            <a href="{{ $d->file_url }}" target="_blank" class="btn btn-sm btn-light"><i
+                                    @if ($d->file !== 'proses')
+                                    {{-- <div class="mt-2">
+                                        <a href="{{ $d->file_url }}" target="_blank" class="btn btn-sm btn-light"><i
                                                 class="bi bi-file-earmark"></i> Lihat SKPI</a>
-                                        </div>
-                                        @endif
+                                    </div> --}}
+                                    <a href="{{ $d->file_url }}" target="_blank"
+                                        class="btn btn-sm btn-outline-dark preview-pdf" data-bs-toggle="modal"
+                                        data-bs-target="#previewModal" data-url="{{ $d->file_url }}"><i
+                                            class="bi bi-file-earmark"></i>
+                                        Lihat SKPI</a>
+                                    @endif
                                     @endif
                                 </td>
                             </tr>
@@ -164,9 +169,41 @@ if (!function_exists('getJenjangStatus')) {
     </div>
 </div>
 
+<div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="previewModalLabel">Preview PDF</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <iframe id="pdfFrame" src="" width="100%" height="728px"></iframe>
+
+                <div class="text-center">
+                    <a href="" id="downloadLink" download class="btn btn-primary mt-3" target="_blank"><i
+                            class="bi bi-download"></i> Unduh Dokumen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection
 
 @push('scripts')
+<script>
+    // Handle PDF preview
+    const previewButtons = document.querySelectorAll(".preview-pdf");
+    const previewModal = document.getElementById("previewModal");
+    const pdfFrame = document.getElementById("pdfFrame");
+    const downloadLink = document.getElementById("downloadLink");
 
+    previewButtons.forEach(btn => {
+        btn.addEventListener("click", function() {
+            const fileUrl = this.dataset.url;
+            pdfFrame.src = fileUrl + "#toolbar=0&navpanes=0&scrollbar=0";
+            downloadLink.href = fileUrl;
+        });
+    });
+</script>
 @endpush
